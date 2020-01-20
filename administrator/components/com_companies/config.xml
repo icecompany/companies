@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset name="settings" label="COM_COMPANIES_SETTINGS_FIELDSET_SETTINGS_LABEL" description="COM_COMPANIES_SETTINGS_FIELDSET_SETTINGS_DESC">
+		<field name="spacer_search"
+			   type="spacer"
+			   label="COM_COMPANIES_SETTINGS_SPACER_SEARCH_LABEL"
+			   description="COM_COMPANIES_SETTINGS_SPACER_SEARCH_DESC"
+			   component="com_companies"
+			   section="component"
+		/>
+		<field
+				name="settings_search_algorithm"
+				type="list"
+				label="COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_LABEL"
+				description="COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_DESC"
+				required="true"
+				default="fulltext"
+				component="com_companies"
+				section="component"
+				>
+			<option value="simple">COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_SIMPLE</option>
+			<option value="fulltext">COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_FULLTEXT</option>
+		</field>
+	</fieldset>
+	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+		<field name="rules"
+			   type="rules"
+			   label="JCONFIG_PERMISSIONS_LABEL"
+			   filter="rules"
+			   component="com_companies"
+			   section="component">
+		</field>
+	</fieldset>
+</config>

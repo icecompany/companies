@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <layout title="COM_COMPANIES_MENU_COMPANIES">
+        <message>
+            <![CDATA[COM_COMPANIES_MENU_COMPANIES_DESC]]>
+		</message>
+    </layout>
+    <fieldset name="request">
+        <fields name="request">
+            <field
+                    name="status"
+                    label="COM_COMPANIES_MENU_COMPANIES_FILTER_TYPE"
+                    description="COM_COMPANIES_MENU_COMPANIES_FILTER_TYPE_DESC"
+                    type="list"
+                    default="">
+                <option value="">COM_COMPANIES_MENU_COMPANIES_STATUS_ALL</option>
+                <option value="0">COM_COMPANIES_MENU_COMPANIES_STATUS_0</option>
+                <option value="1">COM_COMPANIES_MENU_COMPANIES_STATUS_1</option>
+                <option value="2">COM_COMPANIES_MENU_COMPANIES_STATUS_2</option>
+            </field>
+        </fields>
+    </fieldset>
+</metadata>

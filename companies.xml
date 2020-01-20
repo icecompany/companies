@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extension type="component" version="3.8" method="upgrade">
+	<name>COM_COMPANIES</name>
+	<creationDate>15.01.2020</creationDate>
+	<author>Admin</author>
+	<authorEmail>your@email.com</authorEmail>
+	<authorUrl>https://xakepok.com</authorUrl>
+	<copyright>A copyright</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>1.0.0</version>
+	<description>COM_COMPANIES_XML_DESCRIPTION</description>
+
+	<!-- Scripts to run on installation -->
+	<scriptfile>script.php</scriptfile>
+
+	<!-- Runs on install -->
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install/mysql/mysql.sql</file>
+		</sql>
+	</install>
+
+	<!-- Runs on update -->
+	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+
+	<!-- Media files -->
+	<media folder="media/com_companies" destination="com_companies">
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+	</media>
+
+	<!-- Front-end files -->
+	<files folder="components/com_companies">
+		<filename>companies.php</filename>
+		<filename>controller.php</filename>
+		<folder>controllers</folder>
+		<folder>language</folder>
+		<folder>layouts</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+
+	<!-- Back-end files -->
+	<administration>
+		<!-- Menu entries -->
+		<menu view="companies">COM_COMPANIES</menu>
+		<submenu>
+			<!--
+				Note that all & must be escaped to &amp; for the file to be valid
+				XML and be parsed by the installer
+			-->
+			<menu link="option=com_companies&amp;view=companies">COM_COMPANIES_MENU_COMPANIES</menu>
+			<menu link="option=com_companies&amp;view=contacts">COM_COMPANIES_MENU_CONTACTS</menu>
+			<menu link="option=com_companies&amp;view=activities">COM_COMPANIES_MENU_ACTIVITIES</menu>
+		</submenu>
+
+		<!-- Core files -->
+		<files folder="administrator/components/com_companies">
+			<filename>companies.php</filename>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
+			<filename>LICENSE.txt</filename>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>language</folder>
+			<folder>models</folder>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+	</administration>
+
+	<!-- Update servers -->
+	<updateservers>
+		<server type="extension" priority="1" name="companies">https://www.xakepok.com/Thrid/updates/companies.xml</server>
+	</updateservers>
+</extension>
