@@ -274,7 +274,7 @@
                 type="phone"
                 label="COM_COMPANIES_FORM_COMPANY_PHONE_1_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_PHONE_1_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_HINT"
+                hint="COM_COMPANIES_FORM_COMPANY_PHONE_HINT"
                 autocomplete="off"
                 inputtype="tel"
                 filter="tel"

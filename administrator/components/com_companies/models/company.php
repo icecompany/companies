@@ -1,12 +1,41 @@
 <?php
 defined('_JEXEC') or die;
 use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\MVC\Model\ListModel;
 
 class CompaniesModelCompany extends AdminModel {
 
     public function getItem($pk = null)
     {
-        return parent::getItem($pk);
+        $item = parent::getItem($pk);
+        if ($item->id !== null && is_numeric($item->id)) {
+            $item->hidden_parent_id = $this->loadParentID((int) $item->id);
+            if ($item->hidden_parent_id !== '') $item->hidden_parent_title = $this->loadParentTitle($item->hidden_parent_id);
+        }
+        return $item;
+    }
+
+    private function loadChildren(int $id): array
+    {
+        if ($id <= 0) return array();
+        $model = ListModel::getInstance('Parents', 'CompaniesModel', array('companyID' => $id));
+        return $model->getItems();
+    }
+
+    private function loadParentID(int $companyID)
+    {
+        if ($companyID <= 0) return '';
+        $table = $this->getTable('Parents');
+        $table->load(array('companyID' => $companyID));
+        return $table->parentID ?? '';
+    }
+
+    private function loadParentTitle(int $companyID): string
+    {
+        if ($companyID <= 0) return '';
+        $table = $this->getTable();
+        $table->load($companyID);
+        return $table->title ?? '';
     }
 
     public function getTable($name = 'Companies', $prefix = 'TableCompanies', $options = array())
