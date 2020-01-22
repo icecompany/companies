@@ -53,6 +53,8 @@
                 description="COM_COMPANIES_FORM_COMPANY_FORM_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_FORM_HINT"
                 value="varchar"
+                required="true"
+                maxlength="255"
                 class="input-xlarge"
         />
         <field
@@ -64,6 +66,7 @@
                 autocomplete="off"
                 required="true"
                 value="varchar"
+                maxlength="255"
                 class="input-xlarge"
         />
         <field
@@ -73,6 +76,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_TITLE_FULL_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_TITLE_FULL_HINT"
                 autocomplete="off"
+                maxlength="255"
                 value="varchar"
                 class="input-xlarge"
         />
@@ -83,6 +87,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_TITLE_EN_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_TITLE_EN_HINT"
                 value="varchar"
+                maxlength="255"
                 autocomplete="off"
                 class="input-xlarge"
         />
@@ -93,6 +98,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_HINT"
                 validate="varchar"
+                maxlength="255"
                 autocomplete="off"
                 class="input-xlarge"
         />
@@ -103,6 +109,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_DIRECTOR_POST_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_DIRECTOR_POST_HINT"
                 validate="varchar"
+                maxlength="255"
                 class="input-xlarge"
         />
         <field
@@ -177,9 +184,9 @@
         <field
                 name="bik"
                 type="text"
-                label="COM_PROJECTS_HEAD_EXP_BANK_BIK"
-                description="COM_PROJECTS_HEAD_EXP_BANK_BIK_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_BANK_BIK_HINT"
+                label="COM_COMPANIES_FORM_COMPANY_BIK_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_BIK_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_BIK_HINT"
                 autocomplete="off"
                 validate="bik"
                 class="input-xlarge"
@@ -187,76 +194,80 @@
     </fieldset>
     <fieldset name="addresses">
         <field
-                name="regID"
+                name="legal_city"
                 type="list"
-                label="COM_PROJECTS_HEAD_CITY"
-                description="COM_PROJECTS_HEAD_CITY_DESC"
+                label="COM_COMPANIES_FORM_COMPANY_LEGAL_CITY_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_LEGAL_CITY_DESC"
                 required="true"
                 class="input-xlarge"
                 default="4400"
+                filter="integer"
                 validate="city"
         />
         <field
-                name="indexcode"
+                name="legal_index"
                 type="text"
-                label="COM_PROJECTS_HEAD_EXP_INDEX"
-                description="COM_PROJECTS_HEAD_EXP_INDEX_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_INDEX_HINT"
+                label="COM_COMPANIES_FORM_COMPANY_LEGAL_INDEX_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_LEGAL_INDEX_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_LEGAL_INDEX_HINT"
+                autocomplete="off"
+                maxlength="6"
+                class="input-xlarge"
+        />
+        <field
+                name="legal_street"
+                type="text"
+                label="COM_COMPANIES_FORM_COMPANY_LEGAL_STREET_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_LEGAL_STREET_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_LEGAL_STREET_HINT"
                 autocomplete="off"
                 class="input-xlarge"
         />
         <field
-                name="addr_legal_street"
+                name="legal_house"
                 type="text"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_LEGAL_STREET"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_LEGAL_STREET_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_LEGAL_STREET_HINT"
+                label="COM_COMPANIES_FORM_COMPANY_LEGAL_HOUSE_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_LEGAL_HOUSE_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_LEGAL_HOUSE_HINT"
                 autocomplete="off"
                 class="input-xlarge"
         />
         <field
-                name="addr_legal_home"
-                type="text"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_LEGAL_HOME"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_LEGAL_HOME_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_LEGAL_HOME_HINT"
-                autocomplete="off"
-                class="input-xlarge"
-        />
-        <field
-                name="regID_fact"
+                name="fact_city"
                 type="list"
-                label="COM_PROJECTS_HEAD_CITY_FACT"
-                description="COM_PROJECTS_HEAD_CITY_FACT_DESC"
+                label="COM_COMPANIES_FORM_COMPANY_FACT_CITY_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_FACT_CITY_DESC"
                 required="true"
                 class="input-xlarge"
                 default="4400"
+                filter="integer"
                 validate="city"
         />
         <field
-                name="indexcode_fact"
+                name="fact_index"
                 type="text"
-                label="COM_PROJECTS_HEAD_EXP_INDEX_FACT"
-                description="COM_PROJECTS_HEAD_EXP_INDEX_FACT_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_INDEX_FACT_HINT"
+                label="COM_COMPANIES_FORM_COMPANY_FACT_INDEX_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_FACT_INDEX_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_FACT_INDEX_HINT"
+                autocomplete="off"
+                maxlength="6"
+                class="input-xlarge"
+        />
+        <field
+                name="fact_street"
+                type="text"
+                label="COM_COMPANIES_FORM_COMPANY_FACT_STREET_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_FACT_STREET_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_FACT_STREET_HINT"
                 autocomplete="off"
                 class="input-xlarge"
         />
         <field
-                name="addr_fact_street"
+                name="fact_house"
                 type="text"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_FACT_STREET"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_FACT_STREET_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_FACT_STREET_HINT"
-                autocomplete="off"
-                class="input-xlarge"
-        />
-        <field
-                name="addr_fact_home"
-                type="text"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_FACT_HOME"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_FACT_HOME_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_ADDR_FACT_HOME_HINT"
+                label="COM_COMPANIES_FORM_COMPANY_FACT_HOUSE_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_FACT_HOUSE_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_FACT_HOUSE_HINT"
                 autocomplete="off"
                 class="input-xlarge"
         />
@@ -267,59 +278,68 @@
                 description="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_1_DESC"
                 hint="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_HINT"
                 autocomplete="off"
-                class="input-xlarge phone_mask"
+                inputtype="tel"
+                filter="tel"
+                maxlength="255"
+                class="input-xlarge"
         />
         <field
                 name="phone_1_comment"
                 type="text"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_COMMENT"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_COMMENT_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_COMMENT_HINT_1"
+                label="COM_COMPANIES_FORM_COMPANY_PHONE_1_COMMENT_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_PHONE_1_COMMENT_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_PHONE_1_COMMENT_HINT"
                 autocomplete="off"
                 class="input-xlarge"
         />
         <field
                 name="phone_2"
                 type="phone"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_2"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_2_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_HINT"
+                label="COM_COMPANIES_FORM_COMPANY_PHONE_2_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_PHONE_2_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_PHONE_HINT"
                 autocomplete="off"
-                class="input-xlarge phone_mask"
+                inputtype="tel"
+                filter="tel"
+                maxlength="255"
+                class="input-xlarge"
         />
         <field
                 name="phone_2_comment"
                 type="text"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_COMMENT"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_COMMENT_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_COMMENT_HINT_2"
+                label="COM_COMPANIES_FORM_COMPANY_PHONE_2_COMMENT_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_PHONE_2_COMMENT_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_PHONE_2_COMMENT_HINT"
                 autocomplete="off"
                 class="input-xlarge"
         />
         <field
                 name="fax"
-                type="phone"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_FAX"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_FAX_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_PHONE_HINT"
+                type="text"
+                label="COM_COMPANIES_FORM_COMPANY_FAX_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_FAX_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_PHONE_HINT"
                 autocomplete="off"
-                class="input-xlarge phone_mask"
+                inputtype="tel"
+                filter="tel"
+                maxlength="255"
+                class="input-xlarge"
         />
         <field
                 name="email"
                 type="email"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_EMAIL"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_EMAIL_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_EMAIL_HINT"
+                label="COM_COMPANIES_FORM_COMPANY_EMAIL_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_EMAIL_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_EMAIL_HINT"
                 autocomplete="off"
                 class="input-xlarge"
         />
         <field
                 name="site"
                 type="url"
-                label="COM_PROJECTS_HEAD_EXP_CONTACT_SITE"
-                description="COM_PROJECTS_HEAD_EXP_CONTACT_SITE_DESC"
-                hint="COM_PROJECTS_HEAD_EXP_CONTACT_SITE_HINT"
+                label="COM_COMPANIES_FORM_COMPANY_SITE_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_SITE_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_SITE_HINT"
                 autocomplete="off"
                 class="input-xlarge"
         />
