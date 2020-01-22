@@ -9,7 +9,7 @@ class CompaniesModelCompany extends AdminModel {
         return parent::getItem($pk);
     }
 
-    public function getTable($name = 'Companies', $prefix = 'TableProjects', $options = array())
+    public function getTable($name = 'Companies', $prefix = 'TableCompanies', $options = array())
     {
         return JTable::getInstance($name, $prefix, $options);
     }
