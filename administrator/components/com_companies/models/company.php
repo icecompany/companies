@@ -15,27 +15,12 @@ class CompaniesModelCompany extends AdminModel {
         return $item;
     }
 
-    private function loadChildren(int $id): array
+    public function save($data)
     {
-        if ($id <= 0) return array();
-        $model = ListModel::getInstance('Parents', 'CompaniesModel', array('companyID' => $id));
-        return $model->getItems();
-    }
-
-    private function loadParentID(int $companyID)
-    {
-        if ($companyID <= 0) return '';
-        $table = $this->getTable('Parents');
-        $table->load(array('companyID' => $companyID));
-        return $table->parentID ?? '';
-    }
-
-    private function loadParentTitle(int $companyID): string
-    {
-        if ($companyID <= 0) return '';
-        $table = $this->getTable();
-        $table->load($companyID);
-        return $table->title ?? '';
+        $s1 = parent::save($data);
+        $companyID = $data['id'] ?? JFactory::getDbo()->insertid();
+        $s2 = (!empty($data['parentID'])) ? $this->saveParentID((int) $companyID, (int) $data['parentID']) : true;
+        return $s1 && $s2;
     }
 
     public function getTable($name = 'Companies', $prefix = 'TableCompanies', $options = array())
@@ -96,4 +81,30 @@ class CompaniesModelCompany extends AdminModel {
     {
         return 'administrator/components/' . $this->option . '/models/forms/company.js';
     }
+
+    private function loadParentID(int $companyID)
+    {
+        if ($companyID <= 0) return '';
+        $table = $this->getTable('Parents');
+        $table->load(array('companyID' => $companyID));
+        return $table->parentID ?? '';
+    }
+
+    private function saveParentID(int $companyID, int $parentID): bool
+    {
+        if ($companyID === 0 || $parentID === 0) return true;
+        $table = $this->getTable('Parents');
+        $table->load(array('companyID' => $companyID));
+        $arr = array('id' => $table->id ?? null, 'companyID' => $companyID, 'parentID' => $parentID);
+        return $table->save($arr);
+    }
+
+    private function loadParentTitle(int $companyID): string
+    {
+        if ($companyID <= 0) return '';
+        $table = $this->getTable();
+        $table->load($companyID);
+        return $table->title ?? '';
+    }
+
 }
