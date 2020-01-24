@@ -26,3 +26,9 @@ create unique index `s7vi9_mkv_companies_parents_companyID_parentID_uindex`
 create index `s7vi9_mkv_companies_parents_parentID_index`
     on `s7vi9_mkv_companies_parents` (parentID);
 
+create or replace view `s7vi9_grph_cities_all` as
+select c.id, c.name as city, c.region_id, r.name as region, r.country_id, cntr.name as country
+from `s7vi9_grph_cities` c
+         left join `s7vi9_grph_regions` r on c.region_id = r.id
+         left join `s7vi9_grph_countries` cntr on r.country_id = cntr.id;
+
