@@ -41,6 +41,15 @@ HTMLHelper::_('script', 'com_companies/company.js', array('version' => 'auto', '
                     </div>
                 </div>
                 <?php echo JHtml::_('bootstrap.endTab'); ?>
+                <?php if ($this->item->id !== null): ?>
+                    <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'children', JText::sprintf('COM_COMPANIES_TAB_COMPANY_CHILDREN')); ?>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div><?php echo $this->loadTemplate('children'); ?></div>
+                        </div>
+                    </div>
+                    <?php echo JHtml::_('bootstrap.endTab'); ?>
+                <?php endif;?>
             </div>
             <?php echo JHtml::_('bootstrap.endTabSet'); ?>
         </div>

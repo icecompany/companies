@@ -1,16 +1,19 @@
 <?php
 defined('_JEXEC') or die;
 use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\MVC\Model\ListModel;
 
 class CompaniesModelCompany extends AdminModel {
 
     public function getItem($pk = null)
     {
         $item = parent::getItem($pk);
-        //Роительская компания
         if ($item->id !== null && is_numeric($item->id)) {
+            //Роительская компания
             $item->hidden_parent_id = $this->loadParentID((int) $item->id);
             if ($item->hidden_parent_id !== '') $item->hidden_parent_title = $this->loadParentTitle($item->hidden_parent_id);
+            //Дочерние компании
+            $item->children = $this->loadChildren($item->id);
         }
         //Города, по умолчанию - Москва
         $legal_city = $this->loadCity(($item->legal_city !== null) ? $item->legal_city : 4400);
@@ -131,6 +134,13 @@ class CompaniesModelCompany extends AdminModel {
         $table = $this->getTable();
         $table->load($companyID);
         return $table->title ?? '';
+    }
+
+    private function loadChildren(int $companyID): array
+    {
+        $params = array('raw' => true, 'parentID' => $companyID);
+        $model = ListModel::getInstance('Parents', 'CompaniesModel', $params);
+        return $model->getItems();
     }
 
 }

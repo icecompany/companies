@@ -1,5 +1,7 @@
 <?php
+
 use Joomla\CMS\MVC\Model\ListModel;
+
 defined('_JEXEC') or die;
 
 class CompaniesModelParents extends ListModel
@@ -24,10 +26,15 @@ class CompaniesModelParents extends ListModel
         $db = $this->getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select("id, companyID, parentID")
-            ->from("#__mkv_companies_parents");
-        if ($this->companyID > 0 && $this->parentID == 0) $query->where("companyID = {$this->companyID}");
-        if ($this->companyID == 0 && $this->parentID > 0) $query->where("parentID = {$this->parentID}");
+            ->select("p.id, p.companyID, p.parentID")
+            ->select("c.*")
+            ->from("#__mkv_companies_parents p")
+            ->leftJoin("#__mkv_companies c on c.id = p.companyID");
+        if ($this->companyID == 0 && $this->parentID > 0) {
+            $query
+                ->where("p.parentID = {$this->parentID}")
+                ->order("c.title");
+        }
         $this->setState('list.limit', 0);
 
         return $query;
@@ -37,20 +44,17 @@ class CompaniesModelParents extends ListModel
     {
         $items = parent::getItems();
         $result = array();
-        if ($this->companyID == 0 && $this->parentID > 0) {
-            return $items[0]->companyID;
-        }
+        $return = CompaniesHelper::getReturnUrl();
         foreach ($items as $item) {
-            if ($this->companyID > 0 && $this->parentID == 0) {
-                $result[] = $item->parentID;
-            }
-            else {
-                $arr = array();
-                $arr['id'] = $item->id;
-                $arr['companyID'] = $item->companyID;
-                $arr['parentID'] = $item->parentID;
-                $result[] = $arr;
-            }
+            $arr = array();
+            $arr['id'] = $item->id;
+            $arr['companyID'] = $item->companyID;
+            $arr['parentID'] = $item->parentID;
+            $arr['title'] = $item->title;
+            $url = JRoute::_("index.php?option=com_companies&amp;task=company.edit&amp;id={$item->id}&amp;return={$return}");
+            $params = array('target' => '_blank');
+            $arr['edit_link'] = JHtml::link($url, $item->title, $params);
+            $result[] = $arr;
         }
         return $result;
     }
