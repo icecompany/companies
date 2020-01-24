@@ -91,7 +91,7 @@
                 label="COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_HINT"
-                validate="varchar"
+                validate="fio"
                 maxlength="255"
                 autocomplete="off"
                 class="input-xlarge"

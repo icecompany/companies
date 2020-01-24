@@ -4,5 +4,5 @@ defined('_JEXEC') or die;
 
 class JFormRuleRs extends FormRule
 {
-    protected $regex = '^([0-9]{15,25})$';
+    protected $regex = '^([0-9]{0,25})$';
 }
