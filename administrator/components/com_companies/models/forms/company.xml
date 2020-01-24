@@ -194,7 +194,6 @@
                 description="COM_COMPANIES_FORM_COMPANY_LEGAL_CITY_DESC"
                 required="true"
                 class="input-xlarge"
-                default="4400"
                 filter="integer"
                 validate="city"
         />
@@ -235,7 +234,6 @@
                 description="COM_COMPANIES_FORM_COMPANY_FACT_CITY_DESC"
                 required="true"
                 class="input-xlarge"
-                default="4400"
                 filter="integer"
                 validate="city"
         />
