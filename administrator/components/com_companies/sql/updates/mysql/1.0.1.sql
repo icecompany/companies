@@ -20,11 +20,8 @@ create table `s7vi9_mkv_companies_parents`
 create index `s7vi9_mkv_companies_parents_companyID_index`
     on `s7vi9_mkv_companies_parents` (companyID);
 
-create unique index `s7vi9_mkv_companies_parents_companyID_parentID_uindex`
-    on `s7vi9_mkv_companies_parents` (companyID, parentID);
-
-create index `s7vi9_mkv_companies_parents_parentID_index`
-    on `s7vi9_mkv_companies_parents` (parentID);
+create unique index `s7vi9_mkv_companies_parents_companyID_uindex`
+    on `s7vi9_mkv_companies_parents` (companyID);
 
 create or replace view `s7vi9_grph_cities_all` as
 select c.id, c.name as city, c.region_id, r.name as region, r.country_id, cntr.name as country
