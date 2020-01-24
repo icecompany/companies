@@ -342,22 +342,22 @@
                 class="input-xlarge"
         />
         <field
-                name="hidden_city_id"
+                name="hidden_legal_city_id"
                 type="hidden"
                 value=""
         />
         <field
-                name="hidden_city_title"
+                name="hidden_legal_city_title"
                 type="hidden"
                 value=""
         />
         <field
-                name="hidden_city_fact_id"
+                name="hidden_fact_city_id"
                 type="hidden"
                 value=""
         />
         <field
-                name="hidden_city_fact_title"
+                name="hidden_fact_city_title"
                 type="hidden"
                 value=""
         />

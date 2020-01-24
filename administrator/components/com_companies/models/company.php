@@ -8,10 +8,19 @@ class CompaniesModelCompany extends AdminModel {
     public function getItem($pk = null)
     {
         $item = parent::getItem($pk);
+        //Роительская компания
         if ($item->id !== null && is_numeric($item->id)) {
             $item->hidden_parent_id = $this->loadParentID((int) $item->id);
             if ($item->hidden_parent_id !== '') $item->hidden_parent_title = $this->loadParentTitle($item->hidden_parent_id);
         }
+        //Города, по умолчанию - Москва
+        $legal_city = $this->loadCity(($item->legal_city !== null) ? $item->legal_city : 4400);
+        $item->hidden_legal_city_id = $legal_city->id;
+        $item->hidden_legal_city_title = sprintf("%s (%s)", $legal_city->city, $legal_city->region);
+        $fact_city = $this->loadCity(($item->fact_city !== null) ? $item->fact_city : 4400);
+        $item->hidden_fact_city_id = $fact_city->id;
+        $item->hidden_fact_city_title = sprintf("%s (%s)", $fact_city->city, $fact_city->region);
+
         return $item;
     }
 
@@ -80,6 +89,13 @@ class CompaniesModelCompany extends AdminModel {
     public function getScript()
     {
         return 'administrator/components/' . $this->option . '/models/forms/company.js';
+    }
+
+    private function loadCity(int $cityID)
+    {
+        $table = $this->getTable('Cities');
+        $table->load($cityID);
+        return $table;
     }
 
     private function loadParentID(int $companyID)

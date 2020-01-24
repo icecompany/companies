@@ -1,5 +1,6 @@
 'use strict';
 let url_exhibitors = "/index.php?option=com_projects&task=api.getExhibitors&api_key=4n98tpw49vtpw496npyww9p6by";
+let url_cities = "/index.php?option=com_projects&task=api.getCities&api_key=4n98tpw49vtpw496npyww9p6by";
 
 let Company = {
     searchByName: function (title) {
@@ -22,9 +23,61 @@ let Company = {
     },
 };
 
+let Legal_city = {
+    searchByName: function (title) {
+        jQuery.getJSON(`${url_cities}&q=${title}`, function (json) {
+            UI.Fields.legal_city.elem.empty();
+            jQuery.each(json, function (idx, obj) {
+                UI.Fields.legal_city.elem.append(`<option value="${obj.id}">${obj.name} (${obj.region})</option>`);
+                UI.Fields.unlock(UI.Fields.legal_city);
+                UI.Fields.legal_city.inp.value = title;
+            })
+        })
+    },
+    load: function () {
+        let id = document.querySelector("#jform_hidden_legal_city_id").value;
+        let value = document.querySelector("#jform_hidden_legal_city_title").value;
+        if (id !== '' && value !== '') {
+            UI.Fields.legal_city.elem.append(`<option value="${id}">${value}</option>`);
+            UI.Fields.unlock(UI.Fields.legal_city);
+        }
+    },
+};
+
+let Fact_city = {
+    searchByName: function (title) {
+        jQuery.getJSON(`${url_cities}&q=${title}`, function (json) {
+            UI.Fields.fact_city.elem.empty();
+            jQuery.each(json, function (idx, obj) {
+                UI.Fields.fact_city.elem.append(`<option value="${obj.id}">${obj.name} (${obj.region})</option>`);
+                UI.Fields.unlock(UI.Fields.fact_city);
+                UI.Fields.fact_city.inp.value = title;
+            })
+        })
+    },
+    load: function () {
+        let id = document.querySelector("#jform_hidden_fact_city_id").value;
+        let value = document.querySelector("#jform_hidden_fact_city_title").value;
+        if (id !== '' && value !== '') {
+            UI.Fields.fact_city.elem.append(`<option value="${id}">${value}</option>`);
+            UI.Fields.unlock(UI.Fields.fact_city);
+        }
+    },
+};
+
 let UI = {
     Fields: {
         par: {
+            chzn: '',
+            inp: '',
+            elem: ''
+        },
+        legal_city: {
+            chzn: '',
+            inp: '',
+            elem: ''
+        },
+        fact_city: {
             chzn: '',
             inp: '',
             elem: ''
@@ -42,12 +95,34 @@ window.onload = function () {
     UI.Fields.par.elem = jQuery("#jform_parentID");
     UI.Fields.par.chzn = document.querySelector("#jform_parentID_chzn");
     UI.Fields.par.inp = document.querySelector("#jform_parentID_chzn .chzn-drop .chzn-search input");
+    UI.Fields.legal_city.elem = jQuery("#jform_legal_city");
+    UI.Fields.legal_city.chzn = document.querySelector("#jform_legal_city_chzn");
+    UI.Fields.legal_city.inp = document.querySelector("#jform_legal_city_chzn .chzn-drop .chzn-search input");
+    UI.Fields.fact_city.elem = jQuery("#jform_fact_city");
+    UI.Fields.fact_city.chzn = document.querySelector("#jform_fact_city_chzn");
+    UI.Fields.fact_city.inp = document.querySelector("#jform_fact_city_chzn .chzn-drop .chzn-search input");
     UI.Fields.unlock(UI.Fields.par);
+    UI.Fields.unlock(UI.Fields.legal_city);
+    UI.Fields.unlock(UI.Fields.fact_city);
     Company.load();
+    Legal_city.load();
+    Fact_city.load();
     jQuery(UI.Fields.par.inp).autocomplete({source: function () {
             let val = UI.Fields.par.inp.value;
             if (val.length < 3) return;
             Company.searchByName(val);
+        }
+    });
+    jQuery(UI.Fields.legal_city.inp).autocomplete({source: function () {
+            let val = UI.Fields.legal_city.inp.value;
+            if (val.length < 3) return;
+            Legal_city.searchByName(val);
+        }
+    });
+    jQuery(UI.Fields.fact_city.inp).autocomplete({source: function () {
+            let val = UI.Fields.fact_city.inp.value;
+            if (val.length < 3) return;
+            Fact_city.searchByName(val);
         }
     });
 };
