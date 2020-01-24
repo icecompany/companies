@@ -125,4 +125,15 @@ window.onload = function () {
             Fact_city.searchByName(val);
         }
     });
+
+    //Сохранение активной вкладки на странице
+    jQuery('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        // save the latest tab; use cookies if you like 'em better:
+        localStorage.setItem('lastTab', jQuery(this).attr('href'));
+    });
+    var lastTab = localStorage.getItem('lastTab');
+    if (lastTab) {
+        jQuery('[href="' + lastTab + '"]').tab('show');
+    }
+
 };
