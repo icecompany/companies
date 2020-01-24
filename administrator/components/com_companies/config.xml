@@ -1,34 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-	<fieldset name="settings" label="COM_COMPANIES_SETTINGS_FIELDSET_SETTINGS_LABEL" description="COM_COMPANIES_SETTINGS_FIELDSET_SETTINGS_DESC">
-		<field name="spacer_search"
-			   type="spacer"
-			   label="COM_COMPANIES_SETTINGS_SPACER_SEARCH_LABEL"
-			   description="COM_COMPANIES_SETTINGS_SPACER_SEARCH_DESC"
-			   component="com_companies"
-			   section="component"
-		/>
-		<field
-				name="settings_search_algorithm"
-				type="list"
-				label="COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_LABEL"
-				description="COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_DESC"
-				required="true"
-				default="fulltext"
-				component="com_companies"
-				section="component"
-				>
-			<option value="simple">COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_SIMPLE</option>
-			<option value="fulltext">COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_FULLTEXT</option>
+    <fieldset name="settings" label="COM_COMPANIES_SETTINGS_FIELDSET_SETTINGS_LABEL"
+              description="COM_COMPANIES_SETTINGS_FIELDSET_SETTINGS_DESC">
+        <field name="spacer_search"
+               type="spacer"
+               label="COM_COMPANIES_SETTINGS_SPACER_SEARCH_LABEL"
+               description="COM_COMPANIES_SETTINGS_SPACER_SEARCH_DESC"
+               component="com_companies"
+               section="component"
+        />
+        <field
+                name="settings_search_algorithm"
+                type="list"
+                label="COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_LABEL"
+                description="COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_DESC"
+                required="true"
+                default="fulltext"
+                component="com_companies"
+                section="component"
+        >
+            <option value="simple">COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_SIMPLE</option>
+            <option value="fulltext">COM_COMPANIES_SETTINGS_FIELD_SETTING_ALGORITHM_FULLTEXT</option>
+        </field>
+        <field
+                name="spacer_company"
+                type="spacer"
+                label="COM_COMPANIES_SETTINGS_SPACER_COMPANY_LABEL"
+                description="COM_COMPANIES_SETTINGS_SPACER_COMPANY_DESC"
+                component="com_companies"
+                section="component"
+        />
+        <field
+                name="settings_company_required_fields"
+                type="list"
+                label="COM_COMPANIES_SETTINGS_FIELD_SETTING_COMPANY_REQUIRED_FIELDS_LABEL"
+                description="COM_COMPANIES_SETTINGS_FIELD_SETTING_COMPANY_REQUIRED_FIELDS_DESC"
+                multiple="true"
+                component="com_companies"
+                section="component"
+        >
+			<option value="director_name">COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_LABEL</option>
+			<option value="director_name">COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_LABEL</option>
+			<option value="form">COM_COMPANIES_FORM_COMPANY_FORM_LABEL</option>
+			<option value="title_full">COM_COMPANIES_FORM_COMPANY_TITLE_FULL_LABEL</option>
+			<option value="title_en">COM_COMPANIES_FORM_COMPANY_TITLE_EN_LABEL</option>
+			<option value="phone_1">COM_COMPANIES_FORM_COMPANY_PHONE_1_LABEL</option>
+			<option value="phone_1_comment">COM_COMPANIES_FORM_COMPANY_PHONE_1_COMMENT_DESC</option>
+			<option value="email">COM_COMPANIES_FORM_COMPANY_EMAIL_LABEL</option>
+			<option value="site">COM_COMPANIES_FORM_COMPANY_SITE_LABEL</option>
 		</field>
-	</fieldset>
-	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
-		<field name="rules"
-			   type="rules"
-			   label="JCONFIG_PERMISSIONS_LABEL"
-			   filter="rules"
-			   component="com_companies"
-			   section="component">
-		</field>
-	</fieldset>
+    </fieldset>
+    <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+        <field name="rules"
+               type="rules"
+               label="JCONFIG_PERMISSIONS_LABEL"
+               filter="rules"
+               component="com_companies"
+               section="component">
+        </field>
+    </fieldset>
 </config>

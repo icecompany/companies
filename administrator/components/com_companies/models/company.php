@@ -1,7 +1,6 @@
 <?php
 defined('_JEXEC') or die;
 use Joomla\CMS\MVC\Model\AdminModel;
-use Joomla\CMS\MVC\Model\ListModel;
 
 class CompaniesModelCompany extends AdminModel {
 
@@ -47,6 +46,11 @@ class CompaniesModelCompany extends AdminModel {
             return false;
         }
 
+        //Делаем необязательные поля для заполнения из настроек компонента необязательными в форме
+        $all = array('form', 'title_full', 'title_en', 'phone_1', 'phone_1_comment', 'director_name', 'director_post', 'email', 'site'); //Все поля, которые можно сделать необязательными
+        $required = $this->getRequiredFields();
+        foreach ($all as $item) if (!in_array($item, $required)) $form->setFieldAttribute($item, 'required', false);
+
         return $form;
     }
 
@@ -89,6 +93,12 @@ class CompaniesModelCompany extends AdminModel {
     public function getScript()
     {
         return 'administrator/components/' . $this->option . '/models/forms/company.js';
+    }
+
+    private function getRequiredFields()
+    {
+        $config = CompaniesHelper::getConfig('settings_company_required_fields');
+        return ($config !== null) ? $config : array();
     }
 
     private function loadCity(int $cityID)

@@ -4,5 +4,5 @@ defined('_JEXEC') or die;
 
 class JFormRuleKpp extends FormRule
 {
-    protected $regex = '^([0-9]{0,10})$';
+    protected $regex = '^([0-9]{0,12})$';
 }
