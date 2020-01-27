@@ -10,6 +10,16 @@
                 autocomplete="off"
                 class="js-stools-search-string"
         />
+        <field
+                name="state"
+                type="list"
+                label="JSTATUS"
+                description="JFIELD_PUBLISHED_DESC"
+                onchange="this.form.submit();"
+        >
+            <option value="">COM_COMPANIES_FILTER_SELECT_STATE</option>
+            <option value="-2">JTRASHED</option>
+        </field>
     </fields>
     <fields name="list">
         <field
@@ -19,7 +29,7 @@
                 description="COM_PROJECTS_FILTER_SELECT_FULL_ORDERING_DESC"
                 onchange="this.form.submit();"
                 default="title asc"
-                >
+        >
             <option value="">JGLOBAL_SORT_BY</option>
             <option value="e.title ASC">COM_COMPANIES_SORTING_COMPANIES_TITLE_ASC</option>
             <option value="e.title DESC">COM_COMPANIES_SORTING_COMPANIES_TITLE_DESC</option>

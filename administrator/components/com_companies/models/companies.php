@@ -16,6 +16,7 @@ class CompaniesModelCompanies extends ListModel
                 'search',
                 'city',
                 'manager',
+                'state',
             );
         }
         parent::__construct($config);
@@ -66,6 +67,16 @@ class CompaniesModelCompanies extends ListModel
                 }
             }
         }
+        //Фильтр по состоянию
+        $state = $this->getState('filter.state');
+        if (is_numeric($state))
+        {
+            $state = $db->q($state);
+            $query->where("e.published = {$state}");
+        }
+        else {
+            $query->where("e.published = 1");
+        }
 
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
@@ -111,7 +122,9 @@ class CompaniesModelCompanies extends ListModel
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
         $activity = $this->getUserStateFromRequest($this->context . '.filter.activity', 'filter_activity', '', 'string');
-        $this->setState('filter.state', $activity);
+        $this->setState('filter.activity', $activity);
+        $state = $this->getUserStateFromRequest($this->context . '.filter.state', 'filter_state', '', 'string');
+        $this->setState('filter.state', $state);
         $city = $this->getUserStateFromRequest($this->context . '.filter.city', 'filter_city', '', 'string');
         $this->setState('filter.city', $city);
         $projectinactive = $this->getUserStateFromRequest($this->context . '.filter.projectinactive', 'filter_projectinactive', '', 'string');
@@ -125,6 +138,7 @@ class CompaniesModelCompanies extends ListModel
     {
         $id .= ':' . $this->getState('filter.search');
         $id .= ':' . $this->getState('filter.activity');
+        $id .= ':' . $this->getState('filter.state');
         $id .= ':' . $this->getState('filter.city');
         $id .= ':' . $this->getState('filter.projectinactive');
         $id .= ':' . $this->getState('filter.projectactive');

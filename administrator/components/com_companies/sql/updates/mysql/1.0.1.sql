@@ -29,3 +29,9 @@ from `s7vi9_grph_cities` c
          left join `s7vi9_grph_regions` r on c.region_id = r.id
          left join `s7vi9_grph_countries` cntr on r.country_id = cntr.id;
 
+alter table `s7vi9_mkv_companies`
+    add published tinyint default 1 not null;
+
+create index `s7vi9_mkv_companies_published_index`
+    on `s7vi9_mkv_companies` (published);
+

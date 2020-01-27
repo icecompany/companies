@@ -18,6 +18,7 @@ class CompaniesViewCompanies extends HtmlView
 
         // Show the toolbar
         $this->toolbar();
+        $this->setFilters();
 
         // Show the sidebar
         CompaniesHelper::addSubmenu('companies');
@@ -25,6 +26,13 @@ class CompaniesViewCompanies extends HtmlView
 
         // Display it all
         return parent::display($tpl);
+    }
+
+    private function setFilters()
+    {
+        if (!CompaniesHelper::canDo('core.edit.state')) {
+            $this->filterForm->removeField('state', 'filter');
+        }
     }
 
     private function toolbar()
@@ -38,6 +46,11 @@ class CompaniesViewCompanies extends HtmlView
         if (CompaniesHelper::canDo('core.edit'))
         {
             JToolbarHelper::editList('company.edit');
+        }
+        JToolbarHelper::trash('companies.trash');
+        if (CompaniesHelper::canDo('core.edit.state'))
+        {
+            JToolbarHelper::publish('companies.publish');
         }
         if (CompaniesHelper::canDo('core.delete'))
         {

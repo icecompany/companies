@@ -51,6 +51,7 @@ class TableCompaniesCompanies extends Table
     var $bank = null;
     var $bik = null;
     var $comment = null;
+    var $published = null;
 	/**
 	 * Constructor
 	 *
