@@ -83,6 +83,9 @@ class CompaniesModelActivities extends ListModel
                 $params = array('title' => $item['title'] ?? '');
                 $item['title'] = JHtml::link($url, $title, $params);
             }
+            $url = JRoute::_("index.php?option={$this->option}&amp;view=companies&amp;filter_activity={$item['id']}&amp;filter_state=");
+            $options = array('target' => '_blank');
+            $item['link_find'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_ACTIVITIES_FIND_COMPANIES'), $options);
         }
         return $item;
     }

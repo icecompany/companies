@@ -15,6 +15,9 @@ foreach ($this->items['items'] as $i => $item) :
             <?php echo $item['title'];?>
         </td>
         <td>
+            <?php echo $item['link_find'];?>
+        </td>
+        <td>
             <?php echo $item['for_contractor'];?>
         </td>
         <td>

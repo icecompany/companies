@@ -20,7 +20,7 @@ class CompaniesViewActivities extends HtmlView
         $this->toolbar();
 
         // Show the sidebar
-        CompaniesHelper::addSubmenu('companies');
+        CompaniesHelper::addSubmenu('activities');
         $this->sidebar = JHtmlSidebar::render();
 
         // Display it all
