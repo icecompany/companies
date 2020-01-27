@@ -14,7 +14,7 @@ create table `s7vi9_mkv_companies_parents`
     constraint `s7vi9_mkv_companies_parents_s7vi9_mkv_companies_id_id_fk`
         foreign key (companyID, parentID) references `s7vi9_mkv_companies` (id, id)
             on update cascade on delete cascade
-)
+) character set utf8 collate utf8_general_ci
     comment 'Родительские компании';
 
 create index `s7vi9_mkv_companies_parents_companyID_index`
