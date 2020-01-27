@@ -6,15 +6,16 @@ create index `s7vi9_prj_user_action_log_itemID_action_section_index`
 
 create table `s7vi9_mkv_companies_parents`
 (
-    id int unsigned auto_increment,
+    id        int unsigned auto_increment,
     companyID int unsigned not null,
-    parentID int unsigned not null,
+    parentID  int unsigned not null,
     constraint `s7vi9_mkv_companies_parents_pk`
         primary key (id),
     constraint `s7vi9_mkv_companies_parents_s7vi9_mkv_companies_id_id_fk`
         foreign key (companyID, parentID) references `s7vi9_mkv_companies` (id, id)
             on update cascade on delete cascade
-) character set utf8 collate utf8_general_ci
+) character set utf8
+  collate utf8_general_ci
     comment 'Родительские компании';
 
 create index `s7vi9_mkv_companies_parents_companyID_index`
@@ -35,3 +36,14 @@ alter table `s7vi9_mkv_companies`
 create index `s7vi9_mkv_companies_published_index`
     on `s7vi9_mkv_companies` (published);
 
+drop table if exists `s7vi9_mkv_activities`;
+create table `s7vi9_mkv_activities` (
+                                      id int unsigned not null auto_increment primary key,
+                                      title varchar(255) not null default '' comment 'Название вида деятельности',
+                                      for_contractor boolean not null default 0 comment 'Используется для подрадчиков',
+                                      for_ndp boolean not null default 0 comment 'Используется для НДП'
+) character set utf8 collate utf8_general_ci;
+
+create index `s7vi9_mkv_activities_title_index` on `s7vi9_mkv_activities` (title);
+create index `s7vi9_mkv_activities_for_contractor_index` on `s7vi9_mkv_activities` (for_contractor);
+create index `s7vi9_mkv_activities_for_ndp_index` on `s7vi9_mkv_activities` (for_ndp);

@@ -25,8 +25,8 @@
         <field
                 name="fullordering"
                 type="list"
-                label="COM_PROJECTS_FILTER_SELECT_FULL_ORDERING"
-                description="COM_PROJECTS_FILTER_SELECT_FULL_ORDERING_DESC"
+                label="COM_COMPANIES_FILTER_SELECT_FULL_ORDERING"
+                description="COM_COMPANIES_FILTER_SELECT_FULL_ORDERING_DESC"
                 onchange="this.form.submit();"
                 default="title asc"
         >
