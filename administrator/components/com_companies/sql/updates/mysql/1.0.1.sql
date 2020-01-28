@@ -47,3 +47,23 @@ create table `s7vi9_mkv_activities` (
 create index `s7vi9_mkv_activities_title_index` on `s7vi9_mkv_activities` (title);
 create index `s7vi9_mkv_activities_for_contractor_index` on `s7vi9_mkv_activities` (for_contractor);
 create index `s7vi9_mkv_activities_for_ndp_index` on `s7vi9_mkv_activities` (for_ndp);
+
+drop table if exists `s7vi9_mkv_companies_activities`;
+create table `s7vi9_mkv_companies_activities`
+(
+    id         int unsigned not null auto_increment primary key,
+    companyID  int unsigned not null,
+    activityID int unsigned not null,
+    constraint `s7vi9_mkv_companies_activities_s7vi9_mkv_companies_companyID_fk`
+        foreign key (companyID)
+            references `s7vi9_mkv_companies` (id)
+            on update cascade
+            on delete restrict,
+    constraint `s7vi9_mkv_comp_activities_s7vi9_mkv_activities_activityID_fk`
+        foreign key (activityID)
+            references `s7vi9_mkv_activities` (id)
+            on update cascade
+            on delete restrict
+)
+    character set utf8
+    collate utf8_general_ci;

@@ -120,7 +120,7 @@
         />
         <field
                 name="activities"
-                type="text"
+                type="Activity"
                 multiple="true"
                 label="COM_COMPANIES_FORM_COMPANY_ACTIVITIES_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_ACTIVITIES_DESC"

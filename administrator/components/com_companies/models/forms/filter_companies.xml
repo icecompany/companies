@@ -11,6 +11,15 @@
                 class="js-stools-search-string"
         />
         <field
+                name="activity"
+                type="Activity"
+                label="COM_COMPANIES_FILTER_SELECT_ACTIVITY"
+                description="COM_COMPANIES_FILTER_SELECT_ACTIVITY"
+                onchange="this.form.submit();"
+        >
+            <option value="">COM_COMPANIES_FILTER_SELECT_ACTIVITY</option>
+        </field>
+        <field
                 name="state"
                 type="list"
                 label="JSTATUS"

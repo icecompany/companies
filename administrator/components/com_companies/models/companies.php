@@ -16,6 +16,7 @@ class CompaniesModelCompanies extends ListModel
                 'search',
                 'city',
                 'manager',
+                'activity',
                 'state',
             );
         }
@@ -66,6 +67,20 @@ class CompaniesModelCompanies extends ListModel
                     $query->where("(e.title like {$text} or e.title_full like {$text} or e.title_en like {$text} or e.inn like {$text})");
                 }
             }
+        }
+        //Фильтр по виду деятельности
+        $activity = $this->getState('filter.activity');
+        if (is_numeric($activity))
+        {
+            $params = array('activityID' => $activity);
+            $model = ListModel::getInstance('Companies_activities', 'CompaniesModel', $params);
+            $items = $model->getItems();
+            $ids = array();
+            foreach ($items as $item) {
+                $ids[] = $item['companyID'];
+            }
+            $ids = implode(', ', $ids);
+            $query->where("e.id in ({$ids})");
         }
         //Фильтр по состоянию
         $state = $this->getState('filter.state');

@@ -14,7 +14,7 @@ class JFormFieldActivity extends JFormFieldList
         $query = $db->getQuery(true);
         $query
             ->select("a.id, a.title")
-            ->from("`#__empl_functions` a")
+            ->from("`#__mkv_activities` a")
             ->order("a.title");
         $result = $db->setQuery($query)->loadObjectList();
 
