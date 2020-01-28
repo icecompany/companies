@@ -67,3 +67,5 @@ create table `s7vi9_mkv_companies_activities`
 )
     character set utf8
     collate utf8_general_ci;
+alter table `s7vi9_mkv_companies_activities` add unique index `s7vi9_mkv_companies_activities_companyID_activityID_uindex` (companyID, activityID);
+

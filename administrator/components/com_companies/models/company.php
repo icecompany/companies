@@ -33,7 +33,8 @@ class CompaniesModelCompany extends AdminModel {
         $s1 = parent::save($data);
         $companyID = $data['id'] ?? JFactory::getDbo()->insertid();
         $s2 = (!empty($data['parentID'])) ? $this->saveParentID((int) $companyID, (int) $data['parentID']) : true;
-        return $s1 && $s2;
+        $s3 = $this->saveActivities((int) $companyID, (array) $data['activities'] ?? array());
+        return $s1 && $s2 && $s3;
     }
 
     public function getTable($name = 'Companies', $prefix = 'TableCompanies', $options = array())
@@ -100,12 +101,6 @@ class CompaniesModelCompany extends AdminModel {
         return 'administrator/components/' . $this->option . '/models/forms/company.js';
     }
 
-    private function getRequiredFields()
-    {
-        $config = CompaniesHelper::getConfig('settings_company_required_fields');
-        return ($config !== null) ? $config : array();
-    }
-
     private function loadActivities(int $companyID)
     {
         $params = array('companyID' => $companyID);
@@ -116,6 +111,39 @@ class CompaniesModelCompany extends AdminModel {
             $ids[] = $item['activityID'];
         }
         return $ids;
+    }
+
+    private function saveActivities(int $companyID, array $activities = array()): bool
+    {
+        $current = $this->loadActivities($companyID);
+        if (empty($current)) {
+            if (empty($activities)) return true;
+            foreach ($activities as $activityID)
+                if (!$this->addActivity($companyID, $activityID)) return false;
+        }
+        else {
+            foreach ($activities as $item)
+                if (($key = array_search($item, $current)) === false)
+                    if (!$this->addActivity($companyID, $item)) return false;
+            foreach ($current as $item)
+                if (($key = array_search($item, $activities)) === false)
+                    if (!$this->deleteActivity($companyID, $item)) return false;
+        }
+        return true;
+    }
+
+    private function addActivity(int $companyID, int $activityID): bool
+    {
+        $table = $this->getTable('Companies_activities', 'TableCompanies');
+        $data = array('id' => null, 'companyID' => $companyID, 'activityID' => $activityID);
+        return $table->save($data);
+    }
+
+    private function deleteActivity(int $companyID, int $activityID): bool
+    {
+        $table = $this->getTable('Companies_activities', 'TableCompanies');
+        $table->load(array('companyID' => $companyID, 'activityID' => $activityID));
+        return $table->delete($table->id);
     }
 
     private function loadCity(int $cityID)
@@ -155,6 +183,12 @@ class CompaniesModelCompany extends AdminModel {
         $params = array('raw' => true, 'parentID' => $companyID);
         $model = ListModel::getInstance('Parents', 'CompaniesModel', $params);
         return $model->getItems();
+    }
+
+    private function getRequiredFields()
+    {
+        $config = CompaniesHelper::getConfig('settings_company_required_fields');
+        return ($config !== null) ? $config : array();
     }
 
 }
