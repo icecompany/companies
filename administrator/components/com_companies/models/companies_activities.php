@@ -29,8 +29,10 @@ class CompaniesModelCompanies_activities extends ListModel
             ->select("a.id, a.companyID, a.activityID")
             ->from("#__mkv_companies_activities a");
         if ($this->companyID == 0 && $this->activityID > 0) {
-            $query
-                ->where("a.activityID = {$this->activityID}");
+            $query->where("a.activityID = {$this->activityID}");
+        }
+        if ($this->companyID > 0 && $this->activityID == 0) {
+            $query->where("a.companyID = {$this->companyID}");
         }
         $this->setState('list.limit', 0);
 

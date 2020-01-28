@@ -14,6 +14,8 @@ class CompaniesModelCompany extends AdminModel {
             if ($item->hidden_parent_id !== '') $item->hidden_parent_title = $this->loadParentTitle($item->hidden_parent_id);
             //Дочерние компании
             $item->children = $this->loadChildren($item->id);
+            //Виды деятельности
+            $item->activities = $this->loadActivities($item->id);
         }
         //Города, по умолчанию - Москва
         $legal_city = $this->loadCity(($item->legal_city !== null) ? $item->legal_city : 4400);
@@ -102,6 +104,18 @@ class CompaniesModelCompany extends AdminModel {
     {
         $config = CompaniesHelper::getConfig('settings_company_required_fields');
         return ($config !== null) ? $config : array();
+    }
+
+    private function loadActivities(int $companyID)
+    {
+        $params = array('companyID' => $companyID);
+        $model = ListModel::getInstance('Companies_activities', 'CompaniesModel', $params);
+        $items = $model->getItems();
+        $ids = array();
+        foreach ($items as $item) {
+            $ids[] = $item['activityID'];
+        }
+        return $ids;
     }
 
     private function loadCity(int $cityID)
