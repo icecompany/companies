@@ -17,7 +17,7 @@ let Company = {
         let id = document.querySelector("#jform_hidden_parent_id").value;
         let value = document.querySelector("#jform_hidden_parent_title").value;
         if (id !== '' && value !== '') {
-            UI.Fields.par.elem.append(`<option value="${id}">${value}</option>`);
+            UI.Fields.par.elem.append(`<option value="${id}" selected>${value}</option>`);
             UI.Fields.unlock(UI.Fields.par);
         }
     },

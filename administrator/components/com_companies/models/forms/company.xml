@@ -37,7 +37,9 @@
                 label="COM_COMPANIES_FORM_COMPANY_PARENT_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_PARENT_DESC"
                 class="input-xlarge"
-        />
+        >
+            <option value=""></option>
+        </field>
     </fieldset>
     <fieldset name="general">
         <field

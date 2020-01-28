@@ -32,7 +32,7 @@ class CompaniesModelCompany extends AdminModel {
     {
         $s1 = parent::save($data);
         $companyID = $data['id'] ?? JFactory::getDbo()->insertid();
-        $s2 = (!empty($data['parentID'])) ? $this->saveParentID((int) $companyID, (int) $data['parentID']) : true;
+        $s2 = $this->saveParentID((int) $companyID, (int) $data['parentID'] ?? 0);
         $s3 = $this->saveActivities((int) $companyID, (array) $data['activities'] ?? array());
         return $s1 && $s2 && $s3;
     }
@@ -161,13 +161,18 @@ class CompaniesModelCompany extends AdminModel {
         return $table->parentID ?? '';
     }
 
-    private function saveParentID(int $companyID, int $parentID): bool
+    private function saveParentID(int $companyID, int $parentID = 0): bool
     {
-        if ($companyID === 0 || $parentID === 0) return true;
+        if ($companyID === 0) return true;
         $table = $this->getTable('Parents');
         $table->load(array('companyID' => $companyID));
-        $arr = array('id' => $table->id ?? null, 'companyID' => $companyID, 'parentID' => $parentID);
-        return $table->save($arr);
+        if ($parentID > 0) {
+            $arr = array('id' => $table->id ?? null, 'companyID' => $companyID, 'parentID' => $parentID);
+            return $table->save($arr);
+        }
+        else {
+            return ($table->id !== null) ? $table->delete($table->id) : true;
+        }
     }
 
     private function loadParentTitle(int $companyID): string
