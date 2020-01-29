@@ -36,7 +36,7 @@
                 type="list"
                 label="COM_COMPANIES_FORM_COMPANY_PARENT_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_PARENT_DESC"
-                class="input-xlarge"
+                class="span12"
         >
             <option value=""></option>
         </field>
@@ -51,7 +51,7 @@
                 value="varchar"
                 required="true"
                 maxlength="255"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="title"
@@ -63,7 +63,7 @@
                 required="true"
                 value="varchar"
                 maxlength="255"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="title_full"
@@ -74,7 +74,7 @@
                 autocomplete="off"
                 maxlength="255"
                 value="varchar"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="title_en"
@@ -85,7 +85,7 @@
                 value="varchar"
                 maxlength="255"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="director_name"
@@ -97,7 +97,7 @@
                 maxlength="255"
                 autocomplete="off"
                 required="true"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="director_post"
@@ -108,7 +108,7 @@
                 validate="varchar"
                 maxlength="255"
                 required="true"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="comment"
@@ -117,7 +117,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_COMMENT_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_COMMENT_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
                 rows="5"
         />
         <field
@@ -126,7 +126,7 @@
                 multiple="true"
                 label="COM_COMPANIES_FORM_COMPANY_ACTIVITIES_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_ACTIVITIES_DESC"
-                class="input-xlarge"
+                class="span12"
         />
     </fieldset>
     <fieldset name="bank">
@@ -139,7 +139,7 @@
                 autocomplete="off"
                 maxlength="12"
                 validate="inn"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="kpp"
@@ -150,7 +150,7 @@
                 autocomplete="off"
                 validate="kpp"
                 maxlength="12"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="rs"
@@ -161,7 +161,7 @@
                 autocomplete="off"
                 validate="rs"
                 maxlength="20"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="ks"
@@ -172,7 +172,7 @@
                 autocomplete="off"
                 validate="rs"
                 maxlength="20"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="bank"
@@ -181,7 +181,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_BANK_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_BANK_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="bik"
@@ -192,7 +192,7 @@
                 autocomplete="off"
                 validate="bik"
                 maxlength="10"
-                class="input-xlarge"
+                class="span12"
         />
     </fieldset>
     <fieldset name="legal_address">
@@ -202,7 +202,7 @@
                 label="COM_COMPANIES_FORM_COMPANY_LEGAL_CITY_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_LEGAL_CITY_DESC"
                 required="true"
-                class="input-xlarge"
+                class="span12"
                 filter="integer"
                 validate="city"
         />
@@ -214,7 +214,7 @@
                 hint="COM_COMPANIES_FORM_COMPANY_LEGAL_INDEX_HINT"
                 autocomplete="off"
                 maxlength="6"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="legal_street"
@@ -223,7 +223,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_LEGAL_STREET_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_LEGAL_STREET_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="legal_house"
@@ -232,7 +232,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_LEGAL_HOUSE_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_LEGAL_HOUSE_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
     </fieldset>
     <fieldset name="fact_address">
@@ -242,7 +242,7 @@
                 label="COM_COMPANIES_FORM_COMPANY_FACT_CITY_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_FACT_CITY_DESC"
                 required="true"
-                class="input-xlarge"
+                class="span12"
                 filter="integer"
                 validate="city"
         />
@@ -254,7 +254,7 @@
                 hint="COM_COMPANIES_FORM_COMPANY_FACT_INDEX_HINT"
                 autocomplete="off"
                 maxlength="6"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="fact_street"
@@ -263,7 +263,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_FACT_STREET_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_FACT_STREET_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="fact_house"
@@ -272,7 +272,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_FACT_HOUSE_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_FACT_HOUSE_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
     </fieldset>
     <fieldset name="contacts">
@@ -286,7 +286,7 @@
                 inputtype="tel"
                 filter="tel"
                 maxlength="255"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="phone_1_comment"
@@ -295,7 +295,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_PHONE_1_COMMENT_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_PHONE_1_COMMENT_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="phone_2"
@@ -307,7 +307,7 @@
                 inputtype="tel"
                 filter="tel"
                 maxlength="255"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="phone_2_comment"
@@ -316,7 +316,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_PHONE_2_COMMENT_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_PHONE_2_COMMENT_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="fax"
@@ -328,7 +328,7 @@
                 inputtype="tel"
                 filter="tel"
                 maxlength="255"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="email"
@@ -337,7 +337,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_EMAIL_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_EMAIL_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="site"
@@ -346,7 +346,7 @@
                 description="COM_COMPANIES_FORM_COMPANY_SITE_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_SITE_HINT"
                 autocomplete="off"
-                class="input-xlarge"
+                class="span12"
         />
         <field
                 name="hidden_legal_city_id"
