@@ -2,6 +2,9 @@
 defined('_JEXEC') or die;
 ?>
 <div class="center"><h2><?php echo JText::sprintf('COM_COMPANIES_LAYOUT_COMPANY_FACT_ADDRESS');?></h2></div>
+<div class="center">
+    <span id="copy_addr"><?php echo JText::sprintf('COM_COMPANIES_FORM_COMPANY_LINK_COPY_ADDRESS');?></span>
+</div>
 <fieldset class="adminform">
     <div class="control-group form-inline">
         <?php foreach ($this->form->getFieldset('fact_address') as $field) : ?>

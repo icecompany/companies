@@ -89,6 +89,22 @@ let UI = {
             e.inp.removeAttribute('readonly');
         }
     },
+    Links: {
+        copy_addr: '',
+    },
+    copy_addr: function () {
+        document.querySelector("#jform_fact_index").value = document.querySelector("#jform_legal_index").value;
+        document.querySelector("#jform_fact_street").value = document.querySelector("#jform_legal_street").value;
+        document.querySelector("#jform_fact_house").value = document.querySelector("#jform_legal_house").value;
+        UI.Fields.fact_city.elem.empty();
+        UI.Fields.unlock(UI.Fields.fact_city);
+        let legal = document.querySelector("#jform_legal_city");
+        let id = legal.options[legal.selectedIndex].value;
+        let city = legal.options[legal.selectedIndex].innerText;
+        let fact = jQuery("#jform_fact_city");
+        fact.append(`<option value="${id}" selected>${city}</option>`);
+        fact.trigger("liszt:updated");
+    }
 };
 
 window.onload = function () {
@@ -101,6 +117,8 @@ window.onload = function () {
     UI.Fields.fact_city.elem = jQuery("#jform_fact_city");
     UI.Fields.fact_city.chzn = document.querySelector("#jform_fact_city_chzn");
     UI.Fields.fact_city.inp = document.querySelector("#jform_fact_city_chzn .chzn-drop .chzn-search input");
+    UI.Links.copy_addr = document.querySelector("#copy_addr");
+    UI.Links.copy_addr.addEventListener('click', UI.copy_addr);
     UI.Fields.unlock(UI.Fields.par);
     UI.Fields.unlock(UI.Fields.legal_city);
     UI.Fields.unlock(UI.Fields.fact_city);
