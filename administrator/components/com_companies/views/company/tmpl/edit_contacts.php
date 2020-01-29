@@ -5,6 +5,9 @@ defined('_JEXEC') or die;
 <fieldset class="adminform">
     <div class="control-group form-inline">
         <?php foreach ($this->form->getFieldset('contacts') as $field) : ?>
+        <?php if ($field->name == 'jform[phone_2]' || $field->name == 'jform[fax]'): ?>
+                <hr class="hr_contacts">
+        <?php endif;?>
             <div class="control-label">
                 <?php echo $field->label;?>
             </div>

@@ -11,4 +11,8 @@ div.copy_addr {
   text-decoration: underline;
 }
 
+hr.hr_contacts {
+  margin-top: -3px;
+}
+
 /*# sourceMappingURL=style.css.map */
