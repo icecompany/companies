@@ -1,0 +1,14 @@
+div.copy_addr {
+  vertical-align: top;
+  padding: 2px;
+}
+
+#copy_addr {
+  cursor: pointer;
+  color: #2a67a7;
+}
+#copy_addr:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=style.css.map */
