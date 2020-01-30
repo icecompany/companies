@@ -54,8 +54,8 @@ class CompaniesModelContacts extends ListModel
             $arr['phone_work'] = $item->phone_work;
             $arr['phone_mobile'] = $item->phone_mobile;
             $arr['email'] = $item->email;
-            $arr['for_accreditation'] = $item->for_accreditation;
-            $arr['for_building'] = $item->for_building;
+            $arr['for_accreditation'] = JText::sprintf(($item->for_accreditation) ? 'JYES' : 'JNO');
+            $arr['for_building'] = JText::sprintf(($item->for_building) ? 'JYES' : 'JNO');
             $arr['comment'] = $item->comment;
             $url = JRoute::_("index.php?option=com_companies&amp;task=contact.edit&amp;id={$item->id}&amp;return={$return}");
             $params = array('target' => '_blank');
