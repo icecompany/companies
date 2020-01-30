@@ -22,6 +22,10 @@ if (!Factory::getUser()->authorise('core.manage', 'com_companies'))
 
 // Require the helper
 require_once JPATH_COMPONENT_ADMINISTRATOR . '/helpers/companies.php';
+require_once JPATH_COMPONENT_ADMINISTRATOR . '/passwd.php';
+$db = JFactory::getDbo();
+$passwd = $db->q($credentials->password);
+$db->setQuery("SELECT @pass:={$passwd}")->execute();
 
 // Execute the task
 $controller = BaseController::getInstance('companies');
