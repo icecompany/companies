@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_companies/models/rules">
+    <fieldset name="general">
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="title"
+                type="text"
+                label="COM_COMPANIES_FORM_ACTIVITY_TITLE_LABEL"
+                description="COM_COMPANIES_FORM_ACTIVITY_TITLE_DESC"
+                hint="COM_COMPANIES_FORM_ACTIVITY_TITLE_HINT"
+                autocomplete="off"
+                required="true"
+                value="varchar"
+                maxlength="255"
+        />
+        <field
+                name="for_contractor"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="0"
+                label="COM_COMPANIES_FORM_ACTIVITY_FOR_CONTRACTOR_LABEL"
+                description="COM_COMPANIES_FORM_ACTIVITY_FOR_CONTRACTOR_DESC"
+                required="true"
+                filter="bool"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field
+                name="for_ndp"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="0"
+                label="COM_COMPANIES_FORM_ACTIVITY_FOR_NDP_LABEL"
+                description="COM_COMPANIES_FORM_ACTIVITY_FOR_NDP_DESC"
+                required="true"
+                filter="bool"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+    </fieldset>
+</form>
