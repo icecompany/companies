@@ -69,3 +69,25 @@ create table `s7vi9_mkv_companies_activities`
     collate utf8_general_ci;
 alter table `s7vi9_mkv_companies_activities` add unique index `s7vi9_mkv_companies_activities_companyID_activityID_uindex` (companyID, activityID);
 
+create table if not exists  `s7vi9_mkv_companies_contacts`
+(
+    id int unsigned not null auto_increment primary key,
+    companyID int unsigned not null,
+    fio varchar(255) not null comment 'ФИО контакта',
+    post varchar(255) not null comment 'Должность',
+    phone_work varbinary(255) null default null comment 'Рабочий телефон',
+    phone_mobile varbinary(255) null default null comment 'Мобильный телефон',
+    email varbinary(255) null default null comment 'Email',
+    for_accreditation boolean not null default 0 comment 'Ответственный за аккредитацию',
+    for_building boolean not null default 0 comment 'Ответственный за застройку',
+    `comment` text null default null,
+    constraint `s7vi9_mkv_companies_contacts_s7vi9_mkv_companies_companyID_id`
+        foreign key (companyID)
+            references `s7vi9_mkv_companies` (id)
+            on delete cascade on update cascade
+) character set utf8 collate utf8_general_ci;
+
+alter table `s7vi9_mkv_companies_contacts`
+    add index `s7vi9_mkv_companies_contacts_fio_index` (fio),
+    add index `s7vi9_mkv_companies_contacts_for_accreditation` (for_accreditation),
+    add index `s7vi9_mkv_companies_contacts_for_building` (for_building);
