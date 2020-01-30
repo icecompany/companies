@@ -16,6 +16,8 @@ class CompaniesModelCompany extends AdminModel {
             $item->children = $this->loadChildren($item->id);
             //Виды деятельности
             $item->activities = $this->loadActivities($item->id);
+            //Контакты
+            $item->contacts = $this->loadContacts($item->id);
         }
         //Города, по умолчанию - Москва
         $legal_city = $this->loadCity(($item->legal_city !== null) ? $item->legal_city : 4400);
@@ -99,6 +101,13 @@ class CompaniesModelCompany extends AdminModel {
     public function getScript()
     {
         return 'administrator/components/' . $this->option . '/models/forms/company.js';
+    }
+
+    private function loadContacts(int $companyID): array
+    {
+        $params = array('companyID' => $companyID);
+        $model = ListModel::getInstance('Contacts', 'CompaniesModel', $params);
+        return $model->getItems();
     }
 
     private function loadActivities(int $companyID)

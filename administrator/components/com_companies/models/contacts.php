@@ -59,7 +59,7 @@ class CompaniesModelContacts extends ListModel
             $arr['comment'] = $item->comment;
             $url = JRoute::_("index.php?option=com_companies&amp;task=contact.edit&amp;id={$item->id}&amp;return={$return}");
             $params = array('target' => '_blank');
-            $arr['edit_link'] = JHtml::link($url, $item->ашщ, $params);
+            $arr['edit_link'] = JHtml::link($url, $item->fio, $params);
             $result[] = $arr;
         }
         return $result;
