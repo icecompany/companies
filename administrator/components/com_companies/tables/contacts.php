@@ -42,7 +42,35 @@ class TableCompaniesContacts extends Table
 		parent::__construct('#__mkv_companies_contacts', 'id', $db);
 	}
 
-	public function store($updateNulls = true)
+	public function load($keys = null, $reset = true)
+    {
+        if (empty($keys)) return true;
+        if ($reset) $this->reset();
+
+        $keys = array($this->getKeyName() => $keys);
+
+        $query = $this->_db->getQuery(true)
+            ->select('id, companyID, fio, post, for_accreditation, for_building, comment')
+            ->select("IF(phone_work is not null, AES_DECRYPT(phone_work, @pass), null) as phone_work")
+            ->select("IF(phone_mobile is not null, AES_DECRYPT(phone_mobile, @pass), null) as phone_mobile")
+            ->select("IF(email is not null, AES_DECRYPT(email, @pass), null) as email")
+            ->from("#__mkv_companies_contacts");
+
+        $fields = array_keys($this->getProperties());
+        foreach ($keys as $field => $value) {
+            if (!in_array($field, $fields)) {
+                throw new \UnexpectedValueException(sprintf('Missing field in database: %s &#160; %s.', get_class($this), $field));
+            }
+            $query->where($this->_db->qn($field) . ' = ' . $this->_db->q($value));
+        }
+
+        $this->_db->setQuery($query);
+        $row = $this->_db->loadAssoc();
+
+        return (!empty($row)) ? $this->bind($row) : false;
+    }
+
+    public function store($updateNulls = true)
     {
         return parent::store($updateNulls);
     }

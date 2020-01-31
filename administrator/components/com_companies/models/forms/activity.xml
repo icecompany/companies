@@ -13,7 +13,7 @@
                 hint="COM_COMPANIES_FORM_ACTIVITY_TITLE_HINT"
                 autocomplete="off"
                 required="true"
-                value="varchar"
+                validate="varchar"
                 maxlength="255"
         />
         <field

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_companies/models/rules">
+    <fieldset name="general">
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="companyID"
+                type="hidden"
+        />
+        <field
+                name="company"
+                type="text"
+                label="COM_COMPANIES_FORM_CONTACT_COMPANY_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_COMPANY_DESC"
+                readonly="true"
+                class="span12"
+        />
+        <field
+                name="fio"
+                type="text"
+                label="COM_COMPANIES_FORM_CONTACT_FIO_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_FIO_DESC"
+                hint="COM_COMPANIES_FORM_CONTACT_FIO_HINT"
+                autocomplete="off"
+                required="true"
+                validate="fio"
+                maxlength="255"
+                class="span12"
+        />
+        <field
+                name="post"
+                type="text"
+                label="COM_COMPANIES_FORM_CONTACT_POST_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_POST_DESC"
+                hint="COM_COMPANIES_FORM_CONTACT_POST_HINT"
+                required="true"
+                validate="fio"
+                maxlength="255"
+                class="span12"
+        />
+        <field
+                name="phone_work"
+                type="text"
+                label="COM_COMPANIES_FORM_CONTACT_PHONE_WORK_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_PHONE_WORK_DESC"
+                hint="COM_COMPANIES_FORM_CONTACT_PHONE_HINT"
+                maxlength="255"
+                autocomplete="false"
+                class="span12"
+        />
+        <field
+                name="phone_mobile"
+                type="text"
+                label="COM_COMPANIES_FORM_CONTACT_PHONE_MOBILE_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_PHONE_MOBILE_DESC"
+                hint="COM_COMPANIES_FORM_CONTACT_PHONE_HINT"
+                maxlength="255"
+                autocomplete="false"
+                class="span12"
+        />
+        <field
+                name="email"
+                type="text"
+                label="COM_COMPANIES_FORM_CONTACT_EMAIL_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_EMAIL_DESC"
+                hint="COM_COMPANIES_FORM_CONTACT_EMAIL_HINT"
+                validate="email"
+                autocomplete="false"
+                class="span12"
+                maxlength="255"
+        />
+        <field
+                name="comment"
+                type="textarea"
+                label="COM_COMPANIES_FORM_CONTACT_COMMENT_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_COMMENT_DESC"
+                hint="COM_COMPANIES_FORM_CONTACT_COMMENT_HINT"
+                class="span12"
+                autocomplete="false"
+                rows="5"
+        />
+    </fieldset>
+    <fieldset name="advanced">
+        <field
+                name="for_accreditation"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="0"
+                label="COM_COMPANIES_FORM_CONTACT_FOR_ACCREDITATION_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_FOR_ACCREDITATION_DESC"
+                required="true"
+                filter="bool"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field
+                name="for_building"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="0"
+                label="COM_COMPANIES_FORM_CONTACT_FOR_BUILDING_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_FOR_BUILDING_DESC"
+                required="true"
+                filter="bool"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+    </fieldset>
+</form>

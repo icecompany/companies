@@ -58,8 +58,7 @@ class CompaniesModelContacts extends ListModel
             $arr['for_building'] = JText::sprintf(($item->for_building) ? 'JYES' : 'JNO');
             $arr['comment'] = $item->comment;
             $url = JRoute::_("index.php?option=com_companies&amp;task=contact.edit&amp;id={$item->id}&amp;return={$return}");
-            $params = array('target' => '_blank');
-            $arr['edit_link'] = JHtml::link($url, $item->fio, $params);
+            $arr['edit_link'] = JHtml::link($url, $item->fio);
             $result[] = $arr;
         }
         return $result;

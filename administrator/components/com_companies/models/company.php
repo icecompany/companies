@@ -39,6 +39,18 @@ class CompaniesModelCompany extends AdminModel {
         return $s1 && $s2 && $s3;
     }
 
+    public function getLinks(): array
+    {
+        $item = parent::getItem();
+        $links = array('contact_add', 'children_add');
+        if ($item->id === null) return $links;
+        $return = CompaniesHelper::getReturnUrl();
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=contact.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['contact_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_CONTACT'));
+
+        return $links;
+    }
+
     public function getTable($name = 'Companies', $prefix = 'TableCompanies', $options = array())
     {
         return JTable::getInstance($name, $prefix, $options);
