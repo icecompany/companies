@@ -11,5 +11,6 @@ defined('_JEXEC') or die;
     <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_CONTACTS_FOR_ACCREDITATION');?></th>
     <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_CONTACTS_FOR_BUILDING');?></th>
     <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_CONTACTS_COMMENT');?></th>
+    <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_CONTACTS_DELETE');?></th>
     <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_ACTIVITIES_ID');?></th>
 </tr>
