@@ -45,6 +45,7 @@ class CompaniesModelContacts extends ListModel
         $items = parent::getItems();
         $result = array();
         $return = CompaniesHelper::getReturnUrl();
+        $token = JSession::getFormToken();
         foreach ($items as $item) {
             $arr = array();
             $arr['id'] = $item->id;
@@ -57,10 +58,13 @@ class CompaniesModelContacts extends ListModel
             $arr['for_accreditation'] = JText::sprintf(($item->for_accreditation) ? 'JYES' : 'JNO');
             $arr['for_building'] = JText::sprintf(($item->for_building) ? 'JYES' : 'JNO');
             $arr['comment'] = $item->comment;
-            $url = JRoute::_("index.php?option=com_companies&amp;task=contact.edit&amp;id={$item->id}&amp;return={$return}");
+            $url = JRoute::_("index.php?option={$this->option}&amp;task=contact.edit&amp;id={$item->id}&amp;return={$return}");
             $arr['edit_link'] = JHtml::link($url, $item->fio);
+            $url = JRoute::_("index.php?option={$this->option}&amp;{$token}=1&amp;task=contacts.delete&amp;cid[]={$item->id}");
+            $arr['delete_link'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_DELETE_CONTACT'));
             $result[] = $arr;
         }
+
         return $result;
     }
 

@@ -13,6 +13,7 @@ $ii = 0;
         <td><?php echo $person['for_accreditation']; ?></td>
         <td><?php echo $person['for_building']; ?></td>
         <td><?php echo $person['comment']; ?></td>
+        <td><?php echo $person['delete_link']; ?></td>
         <td><?php echo $person['id']; ?></td>
     </tr>
 <?php endforeach; ?>

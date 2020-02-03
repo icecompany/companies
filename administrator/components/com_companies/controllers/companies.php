@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\MVC\Controller\AdminController;
+use Joomla\Utilities\ArrayHelper;
 
 defined('_JEXEC') or die;
 
