@@ -26,7 +26,7 @@ class CompaniesModelParents extends ListModel
         $db = $this->getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select("p.id, p.companyID, p.parentID")
+            ->select("p.id as itemID, p.companyID, p.parentID")
             ->select("c.*")
             ->from("#__mkv_companies_parents p")
             ->leftJoin("#__mkv_companies c on c.id = p.companyID");
@@ -45,15 +45,18 @@ class CompaniesModelParents extends ListModel
         $items = parent::getItems();
         $result = array();
         $return = CompaniesHelper::getReturnUrl();
+        $token = JSession::getFormToken();
         foreach ($items as $item) {
             $arr = array();
-            $arr['id'] = $item->id;
+            $arr['id'] = $item->itemID;
             $arr['companyID'] = $item->companyID;
             $arr['parentID'] = $item->parentID;
             $arr['title'] = $item->title;
-            $url = JRoute::_("index.php?option=com_companies&amp;task=company.edit&amp;id={$item->id}&amp;return={$return}");
+            $url = JRoute::_("index.php?option=com_companies&amp;task=company.edit&amp;id={$item->companyID}&amp;return={$return}");
             $params = array('target' => '_blank');
             $arr['edit_link'] = JHtml::link($url, $item->title, $params);
+            $url = JRoute::_("index.php?option=com_companies&amp;{$token}=1&amp;task=parents.delete&amp;cid[]={$item->itemID}");
+            $arr['delete_link'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_DELETE_CHILD'));
             $result[] = $arr;
         }
         return $result;

@@ -17,7 +17,6 @@ class CompaniesViewParent extends HtmlView {
     }
 
     protected function addToolbar() {
-	    JToolBarHelper::apply('parent.apply', 'JTOOLBAR_APPLY');
         JToolbarHelper::save('parent.save', 'JTOOLBAR_SAVE');
         JToolbarHelper::cancel('parent.cancel', 'JTOOLBAR_CLOSE');
     }

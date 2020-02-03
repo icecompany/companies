@@ -6,6 +6,7 @@ $ii = 0;
     <tr>
         <td><?php echo ++$ii; ?></td>
         <td><?php echo $child['edit_link']; ?></td>
+        <td><?php echo $child['delete_link']; ?></td>
         <td><?php echo $child['id']; ?></td>
     </tr>
 <?php endforeach; ?>
