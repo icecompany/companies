@@ -10,9 +10,6 @@ class CompaniesModelContact extends AdminModel {
         if ($item->id === null) {
             $item->companyID = $this->getState('contact.companyID');
         }
-        else {
-
-        }
         $item->company = $this->getCompanyTitle($item->companyID);
 
         return $item;

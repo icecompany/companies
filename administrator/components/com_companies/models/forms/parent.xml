@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_companies/models/rules">
+    <fieldset name="general">
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="parentID"
+                type="hidden"
+        />
+        <field
+                name="companyID"
+                type="list"
+                label="COM_COMPANIES_FORM_CHILDREN_COMPANY_LABEL"
+                description="COM_COMPANIES_FORM_CHILDREN_COMPANY_DESC"
+                required="true"
+                class="span12"
+        >
+        </field>
+    </fieldset>
+</form>
