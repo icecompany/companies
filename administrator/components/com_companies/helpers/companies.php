@@ -12,6 +12,12 @@ class CompaniesHelper
 		HTMLHelper::_('sidebar.addEntry', JText::sprintf('COM_COMPANIES_MENU_ACTIVITIES'), 'index.php?option=com_companies&amp;view=activities', $vName === 'activities');
 	}
 
+    public static function getItemID(): int
+    {
+        $uri = JUri::getInstance($_SERVER['HTTP_REFERER']);
+        return (int) $uri->getVar('id') ?? 0;
+	}
+
     /**
      * Возвращает URL для обработки формы
      * @return string

@@ -12,8 +12,7 @@ class CompaniesControllerContacts extends AdminController
 
     public function delete()
     {
-        $uri = JUri::getInstance($_SERVER['HTTP_REFERER']);
-        $itemID = $uri->getVar('id');
+        $itemID = CompaniesHelper::getItemID();
         $this->view_list = "company&layout=edit&id={$itemID}";
         parent::delete();
     }
