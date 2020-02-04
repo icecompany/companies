@@ -23,8 +23,8 @@ class CompaniesViewContact extends HtmlView {
     }
 
     protected function setDocument() {
-        if ($this->item->title !== null) {
-            $title = JText::sprintf('COM_COMPANIES_TITLE_EDIT_CONTACT', $this->item->company);
+        if ($this->item->id !== null) {
+            $title = JText::sprintf('COM_COMPANIES_TITLE_EDIT_CONTACT', $this->item->fio);
         }
         else {
             $title = JText::sprintf('COM_COMPANIES_TITLE_ADD_CONTACT', $this->item->company);

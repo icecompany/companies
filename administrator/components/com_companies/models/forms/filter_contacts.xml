@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field
+                name="search"
+                type="text"
+                label="COM_COMPANIES_FILTER_CONTACTS"
+                description="COM_COMPANIES_FILTER_CONTACTS"
+                hint="COM_COMPANIES_FILTER_CONTACTS"
+                autocomplete="off"
+                class="js-stools-search-string"
+        />
+        <field
+                name="for_accreditation"
+                type="list"
+                label="COM_COMPANIES_FILTER_SELECT_FOR_ACCREDITATION"
+                description="COM_COMPANIES_FILTER_SELECT_FOR_ACCREDITATION"
+                onchange="this.form.submit();"
+        >
+            <option value="">COM_COMPANIES_FILTER_SELECT_FOR_ACCREDITATION</option>
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field
+                name="for_building"
+                type="list"
+                label="COM_COMPANIES_FILTER_SELECT_FOR_BUILDING"
+                description="COM_COMPANIES_FILTER_SELECT_FOR_BUILDING"
+                onchange="this.form.submit();"
+        >
+            <option value="">COM_COMPANIES_FILTER_SELECT_FOR_BUILDING</option>
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+    </fields>
+    <fields name="list">
+        <field
+                name="fullordering"
+                type="list"
+                label="COM_COMPANIES_FILTER_SELECT_FULL_ORDERING"
+                description="COM_COMPANIES_FILTER_SELECT_FULL_ORDERING_DESC"
+                onchange="this.form.submit();"
+                default="title asc"
+        >
+            <option value="">JGLOBAL_SORT_BY</option>
+            <option value="c.fio ASC">COM_COMPANIES_SORTING_CONTACTS_FIO_ASC</option>
+            <option value="c.fio DESC">COM_COMPANIES_SORTING_CONTACTS_FIO_DESC</option>
+            <option value="company ASC">COM_COMPANIES_SORTING_CONTACTS_COMPANY_ASC</option>
+            <option value="company DESC">COM_COMPANIES_SORTING_CONTACTS_COMPANY_DESC</option>
+            <option value="c.for_accreditation ASC">COM_COMPANIES_SORTING_CONTACTS_FOR_ACCREDITATION_ASC</option>
+            <option value="c.for_accreditation DESC">COM_COMPANIES_SORTING_CONTACTS_FOR_ACCREDITATION_DESC</option>
+            <option value="c.for_building ASC">COM_COMPANIES_SORTING_CONTACTS_FOR_BUILDING_ASC</option>
+            <option value="c.for_building DESC">COM_COMPANIES_SORTING_CONTACTS_FOR_BUILDING_DESC</option>
+            <option value="c.id ASC">COM_COMPANIES_SORTING_COMPANIES_ID_ASC</option>
+            <option value="c.id DESC">COM_COMPANIES_SORTING_COMPANIES_ID_DESC</option>
+        </field>
+        <field
+                name="limit"
+                type="limitbox"
+                class="input-mini"
+                default="0"
+                label="COM_COMPANIES_FILTER_LIMIT"
+                description="COM_COMPANIES_FILTER_LIMIT_DESC"
+                onchange="this.form.submit();"
+        />
+    </fields>
+</form>
