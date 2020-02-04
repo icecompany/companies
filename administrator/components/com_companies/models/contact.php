@@ -53,13 +53,15 @@ class CompaniesModelContact extends AdminModel {
     {
         $all = get_class_vars($table);
         unset($all['_errors']);
-        $nulls = array(); //Поля, которые NULL
-        foreach ($nulls as $field)
-        {
-            if (!strlen($table->$field)) $table->$field = NULL;
-        }
-        foreach ($all as $field) {
+        $nulls = array('phone_work', 'phone_mobile', 'email', 'comment'); //Поля, которые NULL
+        foreach ($all as $field => $v) {
+            if (empty($field)) continue;
+            if (in_array($field, $nulls)) {
+                if (!strlen($table->$field)) $table->$field = NULL;
+                continue;
+            }
             if (!empty($field)) $table->$field = trim($table->$field);
+            if ($field === 'fio' || $field === 'post') $table->$field = mb_convert_case($table->$field, MB_CASE_TITLE, "UTF-8");
         }
 
         parent::prepareTable($table);
