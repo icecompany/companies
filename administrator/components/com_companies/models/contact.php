@@ -53,7 +53,7 @@ class CompaniesModelContact extends AdminModel {
     {
         $all = get_class_vars($table);
         unset($all['_errors']);
-        $nulls = array('phone_work', 'phone_mobile', 'email', 'comment'); //Поля, которые NULL
+        $nulls = array('phone_work', 'phone_work_additional', 'phone_mobile', 'phone_mobile_additional', 'email', 'comment'); //Поля, которые NULL
         foreach ($all as $field => $v) {
             if (empty($field)) continue;
             if (in_array($field, $nulls)) {

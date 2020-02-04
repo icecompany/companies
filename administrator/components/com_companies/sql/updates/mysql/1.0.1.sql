@@ -91,3 +91,8 @@ alter table `s7vi9_mkv_companies_contacts`
     add index `s7vi9_mkv_companies_contacts_fio_index` (fio),
     add index `s7vi9_mkv_companies_contacts_for_accreditation` (for_accreditation),
     add index `s7vi9_mkv_companies_contacts_for_building` (for_building);
+
+alter table `s7vi9_mkv_companies_contacts`
+    add phone_work_additional varchar(10) null default null after phone_work,
+    add phone_mobile_additional varchar(10) null default null after phone_mobile;
+

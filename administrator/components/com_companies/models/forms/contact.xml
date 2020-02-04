@@ -52,6 +52,16 @@
                 class="span12"
         />
         <field
+                name="phone_work_additional"
+                type="text"
+                label="COM_COMPANIES_FORM_CONTACT_PHONE_WORK_ADDITIONAL_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_PHONE_WORK_ADDITIONAL_DESC"
+                hint="COM_COMPANIES_FORM_CONTACT_PHONE_ADDITIONAL_HINT"
+                maxlength="10"
+                autocomplete="false"
+                class="span12"
+        />
+        <field
                 name="phone_mobile"
                 type="text"
                 label="COM_COMPANIES_FORM_CONTACT_PHONE_MOBILE_LABEL"
@@ -59,6 +69,16 @@
                 hint="COM_COMPANIES_FORM_CONTACT_PHONE_HINT"
                 validate="phone"
                 maxlength="255"
+                autocomplete="false"
+                class="span12"
+        />
+        <field
+                name="phone_mobile_additional"
+                type="text"
+                label="COM_COMPANIES_FORM_CONTACT_PHONE_MOBILE_ADDITIONAL_LABEL"
+                description="COM_COMPANIES_FORM_CONTACT_PHONE_MOBILE_ADDITIONAL_DESC"
+                hint="COM_COMPANIES_FORM_CONTACT_PHONE_ADDITIONAL_HINT"
+                maxlength="10"
                 autocomplete="false"
                 class="span12"
         />
