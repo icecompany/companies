@@ -29,6 +29,7 @@ class CompaniesModelContacts extends ListModel
         $query = $db->getQuery(true);
         $query
             ->select("c.id, c.companyID, c.fio, c.post, c.for_accreditation, c.for_building, c.comment")
+            ->select("c.phone_work_additional, phone_mobile_additional")
             ->select("aes_decrypt(c.phone_work,@pass) as phone_work")
             ->select("aes_decrypt(c.phone_mobile,@pass) as phone_mobile")
             ->select("aes_decrypt(c.email,@pass) as email")
@@ -87,10 +88,10 @@ class CompaniesModelContacts extends ListModel
             $arr['company_link'] = JHtml::link($url, $item->company);
             $arr['phone_work'] = $item->phone_work;
             $url = JRoute::_("tel:{$item->phone_work}");
-            $arr['phone_work_link'] = JHtml::link($url, $item->phone_work);
+            $arr['phone_work_link'] = JHtml::link($url, ($item->phone_work_additional !== null) ? JText::sprintf('COM_COMPANIES_HEAD_CONTACTS_PHONE_ADDITIONAL_SHORT', $item->phone_work, $item->phone_work_additional) : $item->phone_work);
             $arr['phone_mobile'] = $item->phone_mobile;
             $url = JRoute::_("tel:{$item->phone_mobile}");
-            $arr['phone_mobile_link'] = JHtml::link($url, $item->phone_mobile);
+            $arr['phone_mobile_link'] = JHtml::link($url, ($item->phone_mobile_additional !== null) ? JText::sprintf('COM_COMPANIES_HEAD_CONTACTS_PHONE_ADDITIONAL_SHORT', $item->phone_mobile, $item->phone_mobile_additional) : $item->phone_mobile);
             $arr['email'] = $item->email;
             $url = JRoute::_("mailto:{$item->email}");
             $arr['email_link'] = JHtml::link($url, $item->email);
