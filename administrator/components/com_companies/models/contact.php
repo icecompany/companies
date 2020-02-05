@@ -57,8 +57,10 @@ class CompaniesModelContact extends AdminModel {
         foreach ($all as $field => $v) {
             if (empty($field)) continue;
             if (in_array($field, $nulls)) {
-                if (!strlen($table->$field)) $table->$field = NULL;
-                continue;
+                if (!strlen($table->$field)) {
+                    $table->$field = NULL;
+                    continue;
+                }
             }
             if (!empty($field)) $table->$field = trim($table->$field);
             if ($field === 'fio' || $field === 'post') $table->$field = mb_convert_case($table->$field, MB_CASE_TITLE, "UTF-8");

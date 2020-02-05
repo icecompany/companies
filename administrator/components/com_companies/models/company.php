@@ -89,12 +89,22 @@ class CompaniesModelCompany extends AdminModel {
 
     protected function prepareTable($table)
     {
+        $all = get_class_vars($table);
+        unset($all['_errors']);
         $nulls = array('form', 'title_full', 'title_en', 'director_name', 'director_post', 'legal_index', 'legal_street', 'legal_house', 'fact_index', 'fact_street', 'fact_house',
-            'phone_1', 'phone_1_comment', 'phone_2', 'phone_2_comment', 'fax', 'email', 'site', 'inn', 'kpp', 'rs', 'ks', 'bank', 'bik', 'comment'); //Поля, которые NULL
-        foreach ($nulls as $field)
-        {
-            if (!strlen($table->$field)) $table->$field = NULL;
+            'phone_1', 'phone_1_additional', 'phone_1_comment', 'phone_2', 'phone_2_additional', 'phone_2_comment', 'fax', 'email', 'site', 'inn', 'kpp', 'rs', 'ks', 'bank', 'bik', 'comment'); //Поля, которые NULL
+        foreach ($all as $field => $v) {
+            if (empty($field)) continue;
+            if (in_array($field, $nulls)) {
+                if (!strlen($table->$field)) {
+                    $table->$field = NULL;
+                    continue;
+                }
+            }
+            if (!empty($field)) $table->$field = trim($table->$field);
+            if ($field === 'director_name' || $field === 'director_post') $table->$field = mb_convert_case($table->$field, MB_CASE_TITLE, "UTF-8");
         }
+
         parent::prepareTable($table);
     }
 

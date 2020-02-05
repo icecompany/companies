@@ -96,3 +96,6 @@ alter table `s7vi9_mkv_companies_contacts`
     add phone_work_additional varchar(10) null default null after phone_work,
     add phone_mobile_additional varchar(10) null default null after phone_mobile;
 
+alter table `s7vi9_mkv_companies`
+    add phone_1_additional varchar(10) null default null after phone_1,
+    add phone_2_additional varchar(10) null default null after phone_2;

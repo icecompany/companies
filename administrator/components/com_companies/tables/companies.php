@@ -38,8 +38,10 @@ class TableCompaniesCompanies extends Table
     var $fact_street = null;
     var $fact_house = null;
     var $phone_1 = null;
+    var $phone_1_additional = null;
     var $phone_1_comment = null;
     var $phone_2 = null;
+    var $phone_2_additional = null;
     var $phone_2_comment = null;
     var $fax = null;
     var $email = null;

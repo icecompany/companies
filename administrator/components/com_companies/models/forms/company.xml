@@ -284,8 +284,18 @@
                 hint="COM_COMPANIES_FORM_COMPANY_PHONE_HINT"
                 autocomplete="off"
                 inputtype="tel"
-                filter="tel"
+                validate="phone"
                 maxlength="255"
+                class="span12"
+        />
+        <field
+                name="phone_1_additional"
+                type="text"
+                label="COM_COMPANIES_FORM_COMPANY_PHONE_1_ADDITIONAL_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_PHONE_1_ADDITIONAL_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_PHONE_ADDITIONAL_HINT"
+                maxlength="10"
+                autocomplete="false"
                 class="span12"
         />
         <field
@@ -305,8 +315,18 @@
                 hint="COM_COMPANIES_FORM_COMPANY_PHONE_HINT"
                 autocomplete="off"
                 inputtype="tel"
-                filter="tel"
+                validate="phone"
                 maxlength="255"
+                class="span12"
+        />
+        <field
+                name="phone_2_additional"
+                type="text"
+                label="COM_COMPANIES_FORM_COMPANY_PHONE_2_ADDITIONAL_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_PHONE_2_ADDITIONAL_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_PHONE_ADDITIONAL_HINT"
+                maxlength="10"
+                autocomplete="false"
                 class="span12"
         />
         <field

@@ -40,7 +40,7 @@
                 section="component"
         >
 			<option value="director_name">COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_LABEL</option>
-			<option value="director_name">COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_LABEL</option>
+			<option value="director_post">COM_COMPANIES_FORM_COMPANY_DIRECTOR_POST_LABEL</option>
 			<option value="form">COM_COMPANIES_FORM_COMPANY_FORM_LABEL</option>
 			<option value="title_full">COM_COMPANIES_FORM_COMPANY_TITLE_FULL_LABEL</option>
 			<option value="title_en">COM_COMPANIES_FORM_COMPANY_TITLE_EN_LABEL</option>
