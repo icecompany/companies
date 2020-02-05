@@ -47,10 +47,13 @@ class CompaniesViewCompanies extends HtmlView
         {
             JToolbarHelper::editList('company.edit');
         }
-        JToolbarHelper::trash('companies.trash');
-        if (CompaniesHelper::canDo('core.edit.state'))
+        if (CompaniesHelper::canDo('core.edit.state') && $this->state->get('filter.state') !== '-2')
         {
-            JToolbarHelper::publish('companies.publish');
+            JToolbarHelper::trash('companies.trash');
+        }
+        if (CompaniesHelper::canDo('core.edit.state') && $this->state->get('filter.state') === '-2')
+        {
+            JToolbarHelper::publish('companies.publish', JText::sprintf('COM_COMPANIES_LINK_COMPANY_PUBLISH'));
         }
         if (CompaniesHelper::canDo('core.delete'))
         {
