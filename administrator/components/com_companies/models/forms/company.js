@@ -1,13 +1,14 @@
 'use strict';
-let url_exhibitors = "/index.php?option=com_projects&task=api.getExhibitors&api_key=4n98tpw49vtpw496npyww9p6by";
+let url_exhibitors = "index.php?option=com_companies&task=companies.execute&format=json";
 let url_cities = "/index.php?option=com_projects&task=api.getCities&api_key=4n98tpw49vtpw496npyww9p6by";
 
 let Company = {
     searchByName: function (title) {
-        jQuery.getJSON(`${url_exhibitors}&q=${title}`, function (json) {
+        let id = getURLParam(location.search, 'id');
+        jQuery.getJSON(`${url_exhibitors}&search=${title}&not=${id}`, function (json) {
             UI.Fields.par.elem.empty();
-            jQuery.each(json, function (idx, obj) {
-                UI.Fields.par.elem.append(`<option value="${obj.id}">${obj.exhibitor} (${obj.city})</option>`);
+            jQuery.each(json.data, function (idx, obj) {
+                UI.Fields.par.elem.append(`<option value="${obj.id}">${obj.title} (${obj.city})</option>`);
                 UI.Fields.unlock(UI.Fields.par);
                 UI.Fields.par.inp.value = title;
             })
@@ -153,5 +154,8 @@ window.onload = function () {
     if (lastTab) {
         jQuery('[href="' + lastTab + '"]').tab('show');
     }
-
 };
+
+function getURLParam (oTarget, sVar) {
+    return decodeURI(oTarget.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+}

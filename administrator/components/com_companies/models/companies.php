@@ -22,7 +22,8 @@ class CompaniesModelCompanies extends ListModel
         }
         parent::__construct($config);
         $input = JFactory::getApplication()->input;
-        $this->export = ($input->getString('task', 'display') !== 'export') ? false : true;
+        $this->export = ($input->getString('format', 'html') === 'html') ? false : true;
+        $this->not = (int) $input->getInt('not', 0);
     }
 
     protected function _getListQuery()
@@ -43,7 +44,7 @@ class CompaniesModelCompanies extends ListModel
             ->leftJoin("#__users u on u.id = l.userID")
             ->leftJoin("#__grph_cities as r ON r.id = e.legal_city");
         /* Поиск */
-        $search = $this->getState('filter.search');
+        $search = (!$this->export) ? $this->getState('filter.search') : JFactory::getApplication()->input->getString('search', '');
         if (!empty($search)) {
             if (stripos($search, 'id:') !== false) { //Поиск по ID
                 $id = explode(':', $search);
@@ -76,9 +77,7 @@ class CompaniesModelCompanies extends ListModel
             $model = ListModel::getInstance('Companies_activities', 'CompaniesModel', $params);
             $items = $model->getItems();
             $ids = array();
-            foreach ($items as $item) {
-                $ids[] = $item['companyID'];
-            }
+            foreach ($items as $item) $ids[] = $item['companyID'];
             $ids = implode(', ', $ids);
             $query->where("e.id in ({$ids})");
         }
@@ -92,6 +91,16 @@ class CompaniesModelCompanies extends ListModel
         else {
             $query->where("e.published = 1");
         }
+        //Отсеиваем текущую компанию (для AJAX-запросов)
+        if ($this->export) {
+            if ($this->not > 0){
+                $not = $db->q($this->not);
+                $query->where("e.id <> {$not}");
+            }
+        }
+        //Ограничение длины списка
+        $limit = (!$this->export) ? $this->getState('list.limit') : 0;
+        $this->setState('list.limit', $limit);
 
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
@@ -128,6 +137,10 @@ class CompaniesModelCompanies extends ListModel
                 $item['title'] = JHtml::link($url, $title, $params);
             }
         }
+        else {
+            $remove = array('title_full', 'title_en', 'managerID', 'manager'); //Удаляемые поля
+            foreach ($remove as $param) unset($item[$param]);
+        }
         return $item;
     }
 
@@ -160,5 +173,5 @@ class CompaniesModelCompanies extends ListModel
         return parent::getStoreId($id);
     }
 
-    private $export;
+    private $export, $not;
 }
