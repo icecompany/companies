@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.formvalidation');
+JHtml::_('behavior.formvalidator');
 JHtml::_('behavior.keepalive');
 JHtml::_('formbehavior.chosen', 'select');
 
@@ -11,8 +11,12 @@ HTMLHelper::_('script', $this->script);
 ?>
 <script type="text/javascript">
     Joomla.submitbutton = function (task) {
-        if (task === 'contact.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
-            Joomla.submitform(task, document.getElementById('adminForm'));
+        if (task === 'contact.cancel' || document.formvalidator.isValid(document.querySelector('#adminForm'))) {
+            let fields = document.querySelectorAll("#adminForm input[type='text']");
+            fields.forEach(function(elem) {
+                elem.value = elem.value.trim();
+            });
+            Joomla.submitform(task, document.querySelector('#adminForm'));
         }
     }
 </script>
