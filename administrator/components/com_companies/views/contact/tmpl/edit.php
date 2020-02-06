@@ -4,22 +4,9 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.formvalidator');
 JHtml::_('behavior.keepalive');
 JHtml::_('formbehavior.chosen', 'select');
-
 use Joomla\CMS\HTML\HTMLHelper;
-
 HTMLHelper::_('script', $this->script);
 ?>
-<script type="text/javascript">
-    Joomla.submitbutton = function (task) {
-        if (task === 'contact.cancel' || document.formvalidator.isValid(document.querySelector('#adminForm'))) {
-            let fields = document.querySelectorAll("#adminForm input[type='text']");
-            fields.forEach(function(elem) {
-                elem.value = elem.value.trim();
-            });
-            Joomla.submitform(task, document.querySelector('#adminForm'));
-        }
-    }
-</script>
 <form action="<?php echo CompaniesHelper::getActionUrl(); ?>"
       method="post" name="adminForm" id="adminForm" xmlns="http://www.w3.org/1999/html" class="form-validate">
     <div class="row-fluid">

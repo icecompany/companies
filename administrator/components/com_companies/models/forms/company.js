@@ -159,3 +159,16 @@ window.onload = function () {
 function getURLParam (oTarget, sVar) {
     return decodeURI(oTarget.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
 }
+
+Joomla.submitbutton = function (task) {
+    let form = document.querySelector('#adminForm');
+    let valid = document.formvalidator.isValid(form);
+    if (task === 'company.cancel' || valid) {
+        let fields = document.querySelectorAll("#adminForm input[type='text']");
+        fields.forEach(function(elem) {
+            elem.value = elem.value.trim();
+            elem.value = elem.value.replace(/\s+/g, ' ');
+        });
+        Joomla.submitform(task, form);
+    }
+};

@@ -7,18 +7,10 @@ JHtml::_('formbehavior.chosen', 'select');
 
 use Joomla\CMS\HTML\HTMLHelper;
 
-HTMLHelper::_('script', $this->script);
 HTMLHelper::_('script', 'https://code.jquery.com/ui/1.11.4/jquery-ui.min.js', array('relative' => true));
-HTMLHelper::_('script', 'com_companies/company.js', array('version' => 'auto', 'relative' => true));
+HTMLHelper::_('script', $this->script);
 HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto', 'relative' => true));
 ?>
-<script type="text/javascript">
-    Joomla.submitbutton = function (task) {
-        if (task === 'company.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
-            Joomla.submitform(task, document.getElementById('adminForm'));
-        }
-    }
-</script>
 <form action="<?php echo CompaniesHelper::getActionUrl(); ?>"
       method="post" name="adminForm" id="adminForm" xmlns="http://www.w3.org/1999/html" class="form-validate">
     <div class="row-fluid">

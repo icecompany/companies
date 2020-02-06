@@ -11,10 +11,12 @@
                 label="COM_COMPANIES_FORM_ACTIVITY_TITLE_LABEL"
                 description="COM_COMPANIES_FORM_ACTIVITY_TITLE_DESC"
                 hint="COM_COMPANIES_FORM_ACTIVITY_TITLE_HINT"
+                message="COM_COMPANIES_FORM_ACTIVITY_TITLE_MESSAGE"
                 autocomplete="off"
                 required="true"
                 validate="varchar"
                 maxlength="255"
+                class="span12"
         />
         <field
                 name="for_contractor"

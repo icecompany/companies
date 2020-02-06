@@ -93,6 +93,7 @@
                 label="COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_HINT"
+                message="COM_COMPANIES_FORM_COMPANY_DIRECTOR_NAME_MESSAGE"
                 validate="fio"
                 maxlength="255"
                 autocomplete="off"
@@ -105,6 +106,7 @@
                 label="COM_COMPANIES_FORM_COMPANY_DIRECTOR_POST_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_DIRECTOR_POST_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_DIRECTOR_POST_HINT"
+                message="COM_COMPANIES_FORM_COMPANY_DIRECTOR_POST_MESSAGE"
                 validate="varchar"
                 maxlength="255"
                 required="true"
@@ -212,9 +214,11 @@
                 label="COM_COMPANIES_FORM_COMPANY_LEGAL_INDEX_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_LEGAL_INDEX_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_LEGAL_INDEX_HINT"
+                message="COM_COMPANIES_FORM_COMPANY_INDEX_MESSAGE"
                 autocomplete="off"
                 maxlength="6"
                 class="span12"
+                validate="index"
         />
         <field
                 name="legal_street"
@@ -252,9 +256,11 @@
                 label="COM_COMPANIES_FORM_COMPANY_FACT_INDEX_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_FACT_INDEX_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_FACT_INDEX_HINT"
+                message="COM_COMPANIES_FORM_COMPANY_INDEX_MESSAGE"
                 autocomplete="off"
                 maxlength="6"
                 class="span12"
+                validate="index"
         />
         <field
                 name="fact_street"
@@ -282,6 +288,7 @@
                 label="COM_COMPANIES_FORM_COMPANY_PHONE_1_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_PHONE_1_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_PHONE_HINT"
+                message="COM_COMPANIES_FORM_COMPANY_PHONE_1_MESSAGE"
                 autocomplete="off"
                 inputtype="tel"
                 validate="phone"
@@ -313,6 +320,7 @@
                 label="COM_COMPANIES_FORM_COMPANY_PHONE_2_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_PHONE_2_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_PHONE_HINT"
+                message="COM_COMPANIES_FORM_COMPANY_PHONE_2_MESSAGE"
                 autocomplete="off"
                 inputtype="tel"
                 validate="phone"
@@ -344,9 +352,10 @@
                 label="COM_COMPANIES_FORM_COMPANY_FAX_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_FAX_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_PHONE_HINT"
+                message="COM_COMPANIES_FORM_COMPANY_FAX_MESSAGE"
                 autocomplete="off"
                 inputtype="tel"
-                filter="tel"
+                validate="phone"
                 maxlength="255"
                 class="span12"
         />
@@ -356,8 +365,9 @@
                 label="COM_COMPANIES_FORM_COMPANY_EMAIL_LABEL"
                 description="COM_COMPANIES_FORM_COMPANY_EMAIL_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_EMAIL_HINT"
+                validate="email"
                 autocomplete="off"
-                class="span12"
+                class="span12 validate-email"
         />
         <field
                 name="site"
@@ -366,7 +376,8 @@
                 description="COM_COMPANIES_FORM_COMPANY_SITE_DESC"
                 hint="COM_COMPANIES_FORM_COMPANY_SITE_HINT"
                 autocomplete="off"
-                class="span12"
+                validate="url"
+                class="span12 validate-url"
         />
         <field
                 name="hidden_legal_city_id"

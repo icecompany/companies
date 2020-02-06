@@ -4,5 +4,5 @@ defined('_JEXEC') or die;
 
 class JFormRuleIndex extends FormRule
 {
-    protected $regex = '^([A-Za-z-]{0,6})$';
+    protected $regex = '^([A-Za-z0-9-]{0,6})$';
 }
