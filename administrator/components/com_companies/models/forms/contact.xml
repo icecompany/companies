@@ -23,6 +23,7 @@
                 label="COM_COMPANIES_FORM_CONTACT_FIO_LABEL"
                 description="COM_COMPANIES_FORM_CONTACT_FIO_DESC"
                 hint="COM_COMPANIES_FORM_CONTACT_FIO_HINT"
+                message="COM_COMPANIES_FORM_CONTACT_FIO_MESSAGE"
                 autocomplete="off"
                 required="true"
                 validate="fio"
@@ -47,6 +48,7 @@
                 description="COM_COMPANIES_FORM_CONTACT_PHONE_WORK_DESC"
                 hint="COM_COMPANIES_FORM_CONTACT_PHONE_HINT"
                 validate="phone"
+                message="COM_COMPANIES_FORM_CONTACT_PHONE_WORK_MESSAGE"
                 maxlength="255"
                 autocomplete="false"
                 class="span12"
@@ -68,6 +70,7 @@
                 description="COM_COMPANIES_FORM_CONTACT_PHONE_MOBILE_DESC"
                 hint="COM_COMPANIES_FORM_CONTACT_PHONE_HINT"
                 validate="phone"
+                message="COM_COMPANIES_FORM_CONTACT_PHONE_MOBILE_MESSAGE"
                 maxlength="255"
                 autocomplete="false"
                 class="span12"
@@ -90,7 +93,7 @@
                 hint="COM_COMPANIES_FORM_CONTACT_EMAIL_HINT"
                 validate="email"
                 autocomplete="false"
-                class="span12"
+                class="span12 validate-email"
                 maxlength="255"
         />
         <field
