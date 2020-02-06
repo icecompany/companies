@@ -15,7 +15,7 @@ class JFormFieldActivity extends JFormFieldList
         $query
             ->select("a.id, a.title")
             ->from("`#__mkv_activities` a")
-            ->order("a.title");
+            ->order("a.weight");
         $result = $db->setQuery($query)->loadObjectList();
 
         $options = array();

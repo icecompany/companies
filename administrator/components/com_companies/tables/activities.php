@@ -24,6 +24,7 @@ class TableCompaniesActivities extends Table
     var $title = null;
     var $for_contractor = null;
     var $for_ndp = null;
+    var $weight = null;
 	/**
 	 * Constructor
 	 *

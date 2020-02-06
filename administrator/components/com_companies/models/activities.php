@@ -13,6 +13,7 @@ class CompaniesModelActivities extends ListModel
                 'title',
                 'for_contractor', 'contractor',
                 'for_ndp', 'ndp',
+                'weight',
             );
         }
         parent::__construct($config);
@@ -30,7 +31,7 @@ class CompaniesModelActivities extends ListModel
         $orderDirn = $this->state->get('list.direction');
 
         $query
-            ->select("id, title, for_contractor, for_ndp")
+            ->select("id, title, for_contractor, for_ndp, weight")
             ->from("#__mkv_activities");
         /* Поиск */
         $search = $this->getState('filter.search');
@@ -66,6 +67,7 @@ class CompaniesModelActivities extends ListModel
             $arr = array();
             $arr['id'] = $item->id;
             $arr['title'] = $item->title;
+            $arr['weight'] = $item->weight;
             $arr['for_contractor'] = JText::sprintf((!$item->for_contractor) ? 'JNO' : 'JYES');
             $arr['for_ndp'] = JText::sprintf((!$item->for_ndp) ? 'JNO' : 'JYES');
             $result['items'][] = $this->prepare($arr);
@@ -91,7 +93,7 @@ class CompaniesModelActivities extends ListModel
     }
 
     /* Сортировка по умолчанию */
-    protected function populateState($ordering = 'title', $direction = 'asc')
+    protected function populateState($ordering = 'weight', $direction = 'asc')
     {
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);

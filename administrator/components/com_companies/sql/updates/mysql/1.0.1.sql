@@ -99,3 +99,9 @@ alter table `s7vi9_mkv_companies_contacts`
 alter table `s7vi9_mkv_companies`
     add phone_1_additional varchar(10) null default null after phone_1,
     add phone_2_additional varchar(10) null default null after phone_2;
+
+alter table `s7vi9_mkv_activities`
+    add `weight` tinyint unsigned not null default 0 after for_ndp;
+
+alter table `s7vi9_mkv_activities` add index `s7vi9_mkv_activities_weight_index` (weight);
+

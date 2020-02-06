@@ -23,6 +23,9 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
         <?php echo JHtml::_('searchtools.sort', 'COM_COMPANIES_HEAD_ACTIVITIES_FOR_NDP', 'for_ndp', $listDirn, $listOrder); ?>
     </th>
     <th>
+        <?php echo JHtml::_('searchtools.sort', 'COM_COMPANIES_HEAD_ACTIVITIES_WEIGHT', 'weight', $listDirn, $listOrder); ?>
+    </th>
+    <th>
         <?php echo JHtml::_('searchtools.sort', 'COM_COMPANIES_HEAD_ACTIVITIES_ID', 'id', $listDirn, $listOrder); ?>
     </th>
 </tr>
