@@ -40,6 +40,6 @@ create table if not exists `#__mkv_companies`
 ) character set utf8 collate utf8_general_ci
     comment 'Компании';
 
-create index `#__mkv_companies_tip_index`
-    on `#__mkv_companies` (tip);
+create index `#__mkv_companies_form_index`
+    on `#__mkv_companies` (form);
 
