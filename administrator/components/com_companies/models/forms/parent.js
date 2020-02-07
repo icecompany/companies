@@ -1,12 +1,13 @@
 'use strict';
-let url_exhibitors = "/index.php?option=com_projects&task=api.getExhibitors&api_key=4n98tpw49vtpw496npyww9p6by";
+let url_exhibitors = "index.php?option=com_companies&task=companies.execute&format=json";
 
 let Company = {
     searchByName: function (title) {
-        jQuery.getJSON(`${url_exhibitors}&q=${title}`, function (json) {
+        let id = getURLParam(location.search, 'id');
+        jQuery.getJSON(`${url_exhibitors}&search=${title}&not=${id}`, function (json) {
             UI.Fields.company.elem.empty();
-            jQuery.each(json, function (idx, obj) {
-                UI.Fields.company.elem.append(`<option value="${obj.id}">${obj.exhibitor} (${obj.city})</option>`);
+            jQuery.each(json.data, function (idx, obj) {
+                UI.Fields.company.elem.append(`<option value="${obj.id}">${obj.title} (${obj.city})</option>`);
                 UI.Fields.unlock(UI.Fields.company);
                 UI.Fields.company.inp.value = title;
             })
@@ -55,3 +56,7 @@ Joomla.submitbutton = function (task) {
         Joomla.submitform(task, form);
     }
 };
+
+function getURLParam (oTarget, sVar) {
+    return decodeURI(oTarget.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+}
