@@ -44,6 +44,7 @@ class TableCompaniesCompanies extends Table
     var $phone_2_additional = null;
     var $phone_2_comment = null;
     var $fax = null;
+    var $fax_additional = null;
     var $email = null;
     var $site = null;
     var $inn = null;

@@ -360,6 +360,16 @@
                 class="span12"
         />
         <field
+                name="fax_additional"
+                type="text"
+                label="COM_COMPANIES_FORM_COMPANY_FAX_ADDITIONAL_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_FAX_ADDITIONAL_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_PHONE_ADDITIONAL_HINT"
+                maxlength="10"
+                autocomplete="false"
+                class="span12"
+        />
+        <field
                 name="email"
                 type="email"
                 label="COM_COMPANIES_FORM_COMPANY_EMAIL_LABEL"

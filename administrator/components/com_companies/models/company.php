@@ -92,7 +92,7 @@ class CompaniesModelCompany extends AdminModel {
         $all = get_class_vars($table);
         unset($all['_errors']);
         $nulls = array('form', 'title_full', 'title_en', 'director_name', 'director_post', 'legal_index', 'legal_street', 'legal_house', 'fact_index', 'fact_street', 'fact_house',
-            'phone_1', 'phone_1_additional', 'phone_1_comment', 'phone_2', 'phone_2_additional', 'phone_2_comment', 'fax', 'email', 'site', 'inn', 'kpp', 'rs', 'ks', 'bank', 'bik', 'comment'); //Поля, которые NULL
+            'phone_1', 'phone_1_additional', 'phone_1_comment', 'phone_2', 'phone_2_additional', 'phone_2_comment', 'fax', 'fax_additional', 'email', 'site', 'inn', 'kpp', 'rs', 'ks', 'bank', 'bik', 'comment'); //Поля, которые NULL
         foreach ($all as $field => $v) {
             if (empty($field)) continue;
             if (in_array($field, $nulls)) {

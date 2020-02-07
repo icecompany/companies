@@ -105,3 +105,5 @@ alter table `s7vi9_mkv_activities`
 
 alter table `s7vi9_mkv_activities` add index `s7vi9_mkv_activities_weight_index` (weight);
 
+alter table `s7vi9_mkv_companies`
+    add fax_additional varchar(10) null default null after fax;
