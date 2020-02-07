@@ -62,6 +62,7 @@
 		<!-- Core files -->
 		<files folder="administrator/components/com_companies">
 			<filename>companies.php</filename>
+			<filename>passwd.php</filename>
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
 			<filename>controller.php</filename>
