@@ -53,6 +53,16 @@ class TableCompaniesCompanies extends Table
     var $ks = null;
     var $bank = null;
     var $bik = null;
+    var $associations = null;
+    var $representations = null;
+    var $branches = null;
+    var $main_office_city = null;
+    var $main_office_index = null;
+    var $main_office_street = null;
+    var $main_office_house = null;
+    var $moscow_office_index = null;
+    var $moscow_office_street = null;
+    var $moscow_office_house = null;
     var $comment = null;
     var $published = null;
 	/**
