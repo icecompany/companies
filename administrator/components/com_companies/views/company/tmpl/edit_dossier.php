@@ -15,3 +15,6 @@ defined('_JEXEC') or die;
         <?php endforeach; ?>
     </div>
 </fieldset>
+<div style="overflow: auto; max-height: 360px;">
+    <?php echo $this->loadTemplate('sisters');?>
+</div>

@@ -31,15 +31,6 @@
             <option value="0">JNO</option>
             <option value="1">JYES</option>
         </field>
-        <field
-                name="parentID"
-                type="list"
-                label="COM_COMPANIES_FORM_COMPANY_PARENT_LABEL"
-                description="COM_COMPANIES_FORM_COMPANY_PARENT_DESC"
-                class="span12"
-        >
-            <option value=""></option>
-        </field>
     </fieldset>
     <fieldset name="general">
         <field
@@ -419,5 +410,16 @@
                 type="hidden"
                 value=""
         />
+    </fieldset>
+    <fieldset name="dossier">
+        <field
+                name="parentID"
+                type="list"
+                label="COM_COMPANIES_FORM_COMPANY_PARENT_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_PARENT_DESC"
+                class="span12"
+        >
+            <option value=""></option>
+        </field>
     </fieldset>
 </form>

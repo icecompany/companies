@@ -18,6 +18,8 @@ class CompaniesModelCompany extends AdminModel {
             $item->activities = $this->loadActivities($item->id);
             //Контакты
             $item->contacts = $this->loadContacts($item->id);
+            //Компании-сёстры
+            $item->sisters = $this->loadSisters($item->id);
         }
         //Города, по умолчанию - Москва
         $legal_city = $this->loadCity(($item->legal_city !== null) ? $item->legal_city : 4400);
@@ -60,8 +62,10 @@ class CompaniesModelCompany extends AdminModel {
 
     public function getForm($data = array(), $loadData = true)
     {
+        $name = "company";
+        if (CompaniesHelper::canDo('core.access.dossier')) $name .= "_dossier";
         $form = $this->loadForm(
-            $this->option.'.company', 'company', array('control' => 'jform', 'load_data' => $loadData)
+            "{$this->option}.company", $name, array('control' => 'jform', 'load_data' => $loadData)
         );
         if (empty($form))
         {
@@ -177,6 +181,12 @@ class CompaniesModelCompany extends AdminModel {
         $table = $this->getTable('Companies_activities', 'TableCompanies');
         $table->load(array('companyID' => $companyID, 'activityID' => $activityID));
         return $table->delete($table->id);
+    }
+
+    public function loadSisters(int $companyID): array
+    {
+        $parentID = $this->loadParentID($companyID);
+        return (!is_numeric($parentID)) ? array() : $this->loadChildren($parentID);
     }
 
     private function loadCity(int $cityID)

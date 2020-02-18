@@ -28,8 +28,10 @@ class CompaniesModelParents extends ListModel
         $query
             ->select("p.id as itemID, p.companyID, p.parentID")
             ->select("c.*")
+            ->select("ct.name as city")
             ->from("#__mkv_companies_parents p")
-            ->leftJoin("#__mkv_companies c on c.id = p.companyID");
+            ->leftJoin("#__mkv_companies c on c.id = p.companyID")
+            ->leftJoin("#__grph_cities ct on ct.id = c.legal_city");
         if ($this->companyID == 0 && $this->parentID > 0) {
             $query
                 ->where("p.parentID = {$this->parentID}")
@@ -52,6 +54,7 @@ class CompaniesModelParents extends ListModel
             $arr['companyID'] = $item->companyID;
             $arr['parentID'] = $item->parentID;
             $arr['title'] = $item->title;
+            $arr['city'] = $item->city;
             $url = JRoute::_("index.php?option=com_companies&amp;task=company.edit&amp;id={$item->companyID}&amp;return={$return}");
             $params = array('target' => '_blank');
             $arr['edit_link'] = JHtml::link($url, $item->title, $params);
