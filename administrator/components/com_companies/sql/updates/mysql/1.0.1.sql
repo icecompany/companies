@@ -96,12 +96,12 @@ alter table `s7vi9_mkv_companies_contacts`
     add index `s7vi9_mkv_companies_contacts_for_building` (for_building);
 
 alter table `s7vi9_mkv_companies_contacts`
-    add phone_work_additional varchar(10) null default null after phone_work,
-    add phone_mobile_additional varchar(10) null default null after phone_mobile;
+    add phone_work_additional varchar(15) null default null after phone_work,
+    add phone_mobile_additional varchar(15) null default null after phone_mobile;
 
 alter table `s7vi9_mkv_companies`
-    add phone_1_additional varchar(10) null default null after phone_1,
-    add phone_2_additional varchar(10) null default null after phone_2;
+    add phone_1_additional varchar(15) null default null after phone_1,
+    add phone_2_additional varchar(15) null default null after phone_2;
 
 alter table `s7vi9_mkv_activities`
     add `weight` tinyint unsigned not null default 0 after for_ndp;
@@ -109,4 +109,4 @@ alter table `s7vi9_mkv_activities`
 alter table `s7vi9_mkv_activities` add index `s7vi9_mkv_activities_weight_index` (weight);
 
 alter table `s7vi9_mkv_companies`
-    add fax_additional varchar(10) null default null after fax;
+    add fax_additional varchar(15) null default null after fax;
