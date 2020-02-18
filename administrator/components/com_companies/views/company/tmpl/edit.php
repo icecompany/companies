@@ -52,6 +52,15 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                     </div>
                     <?php echo JHtml::_('bootstrap.endTab'); ?>
                 <?php endif;?>
+                <?php if ($this->item->id !== null && CompaniesHelper::canDo('core.access.dossier')): ?>
+                    <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'dossier', JText::sprintf('COM_COMPANIES_TAB_COMPANY_DOSSIER')); ?>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div><?php echo $this->loadTemplate('dossier'); ?></div>
+                        </div>
+                    </div>
+                    <?php echo JHtml::_('bootstrap.endTab'); ?>
+                <?php endif;?>
             </div>
             <?php echo JHtml::_('bootstrap.endTabSet'); ?>
         </div>

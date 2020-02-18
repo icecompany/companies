@@ -420,4 +420,7 @@
                 value=""
         />
     </fieldset>
+    <fieldset name="dossier">
+        
+    </fieldset>
 </form>
