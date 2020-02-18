@@ -26,6 +26,7 @@ require_once JPATH_COMPONENT_ADMINISTRATOR . '/passwd.php';
 $db = JFactory::getDbo();
 $passwd = $db->q($credentials->password);
 $db->setQuery("SELECT @pass:={$passwd}")->execute();
+$db->setQuery("set @TRIGGER_CHECKS=true")->execute();
 
 // Execute the task
 $controller = BaseController::getInstance('companies');
