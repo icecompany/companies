@@ -1,10 +1,10 @@
 <?php
 defined('_JEXEC') or die;
 ?>
-<div class="center"><h2><?php echo JText::sprintf('COM_COMPANIES_LAYOUT_COMPANY_DOSSIER_DESCRIPTION'); ?></h2></div>
+<div class="center"><h2><?php echo JText::sprintf('COM_COMPANIES_LAYOUT_COMPANY_DOSSIER_OFFICE_MOSCOW'); ?></h2></div>
 <fieldset class="adminform">
     <div class="control-group form-inline">
-        <?php foreach ($this->form->getFieldset('dossier') as $field) : ?>
+        <?php foreach ($this->form->getFieldset('dossier_moscow_office') as $field) : ?>
             <div class="control-label">
                 <?php echo $field->label; ?>
             </div>
@@ -15,6 +15,3 @@ defined('_JEXEC') or die;
         <?php endforeach; ?>
     </div>
 </fieldset>
-<div style="overflow: auto; max-height: 360px;">
-    <?php echo $this->loadTemplate('sisters');?>
-</div>

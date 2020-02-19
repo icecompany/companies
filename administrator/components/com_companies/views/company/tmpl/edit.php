@@ -56,10 +56,11 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                     <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'dossier', JText::sprintf('COM_COMPANIES_TAB_COMPANY_DOSSIER')); ?>
                     <div class="row-fluid">
                         <div class="span6">
-                            <div><?php echo $this->loadTemplate('dossier'); ?></div>
+                            <div><?php echo $this->loadTemplate('dossier_description'); ?></div>
                         </div>
                         <div class="span6">
-
+                            <div><?php echo $this->loadTemplate('dossier_main_office'); ?></div>
+                            <div><?php echo $this->loadTemplate('dossier_moscow_office'); ?></div>
                         </div>
                     </div>
                     <?php echo JHtml::_('bootstrap.endTab'); ?>

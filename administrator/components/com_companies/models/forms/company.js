@@ -66,6 +66,28 @@ let Fact_city = {
     },
 };
 
+let Main_office_city = {
+    searchByName: function (title) {
+        jQuery.getJSON(`${url_cities}&q=${title}`, function (json) {
+            UI.Fields.main_office_city.elem.empty();
+            jQuery.each(json, function (idx, obj) {
+                UI.Fields.main_office_city.elem.append(`<option value="${obj.id}">${obj.name} (${obj.region})</option>`);
+                UI.Fields.unlock(UI.Fields.main_office_city);
+                UI.Fields.main_office_city.inp.value = title;
+            })
+        })
+    },
+    load: function () {
+        let id = document.querySelector("#jform_hidden_main_office_city_id").value;
+        let value = document.querySelector("#jform_hidden_main_office_city_title").value;
+        if (id !== '' && value !== '') {
+            UI.Fields.main_office_city.elem.append(`<option value="${id}">${value}</option>`);
+            UI.Fields.unlock(UI.Fields.main_office_city);
+        }
+    },
+};
+
+
 let UI = {
     Fields: {
         par: {
@@ -79,6 +101,11 @@ let UI = {
             elem: ''
         },
         fact_city: {
+            chzn: '',
+            inp: '',
+            elem: ''
+        },
+        main_office_city: {
             chzn: '',
             inp: '',
             elem: ''
@@ -118,14 +145,19 @@ window.onload = function () {
     UI.Fields.fact_city.elem = jQuery("#jform_fact_city");
     UI.Fields.fact_city.chzn = document.querySelector("#jform_fact_city_chzn");
     UI.Fields.fact_city.inp = document.querySelector("#jform_fact_city_chzn .chzn-drop .chzn-search input");
+    UI.Fields.main_office_city.elem = jQuery("#jform_main_office_city");
+    UI.Fields.main_office_city.chzn = document.querySelector("#jform_main_office_city_chzn");
+    UI.Fields.main_office_city.inp = document.querySelector("#jform_main_office_city_chzn .chzn-drop .chzn-search input");
     UI.Links.copy_addr = document.querySelector("#copy_addr");
     UI.Links.copy_addr.addEventListener('click', UI.copy_addr);
     UI.Fields.unlock(UI.Fields.par);
     UI.Fields.unlock(UI.Fields.legal_city);
     UI.Fields.unlock(UI.Fields.fact_city);
+    UI.Fields.unlock(UI.Fields.main_office_city);
     Company.load();
     Legal_city.load();
     Fact_city.load();
+    Main_office_city.load();
     jQuery(UI.Fields.par.inp).autocomplete({source: function () {
             let val = UI.Fields.par.inp.value;
             if (val.length < 3) return;
@@ -142,6 +174,12 @@ window.onload = function () {
             let val = UI.Fields.fact_city.inp.value;
             if (val.length < 3) return;
             Fact_city.searchByName(val);
+        }
+    });
+    jQuery(UI.Fields.main_office_city.inp).autocomplete({source: function () {
+            let val = UI.Fields.main_office_city.inp.value;
+            if (val.length < 3) return;
+            Main_office_city.searchByName(val);
         }
     });
 

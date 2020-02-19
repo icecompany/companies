@@ -28,6 +28,9 @@ class CompaniesModelCompany extends AdminModel {
         $fact_city = $this->loadCity(($item->fact_city !== null) ? $item->fact_city : 4400);
         $item->hidden_fact_city_id = $fact_city->id;
         $item->hidden_fact_city_title = sprintf("%s (%s)", $fact_city->city, $fact_city->region);
+        $main_office_city = $this->loadCity(($item->main_office_city !== null) ? $item->main_office_city : 4400);
+        $item->hidden_main_office_city_id = $main_office_city->id;
+        $item->hidden_main_office_city_title = sprintf("%s (%s)", $main_office_city->city, $main_office_city->region);
 
         return $item;
     }
