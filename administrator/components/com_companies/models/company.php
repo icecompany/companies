@@ -20,6 +20,8 @@ class CompaniesModelCompany extends AdminModel {
             $item->contacts = $this->loadContacts($item->id);
             //Компании-сёстры
             $item->sisters = $this->loadSisters($item->id);
+            //История участия в форумах
+            $item->armies = $this->loadArmies($item->id);
         }
         //Города, по умолчанию - Москва
         $legal_city = $this->loadCity(($item->legal_city !== null) ? $item->legal_city : 4400);
@@ -42,6 +44,12 @@ class CompaniesModelCompany extends AdminModel {
         $s2 = $this->saveParentID((int) $companyID, (int) $data['parentID'] ?? 0);
         $s3 = $this->saveActivities((int) $companyID, (array) $data['activities'] ?? array());
         return $s1 && $s2 && $s3;
+    }
+
+    public function loadArmies(int $companyID)
+    {
+        $model = ListModel::getInstance('Armies', 'CompaniesModel', array('companyID' => $companyID));
+        return $model->getItems();
     }
 
     public function getLinks(): array

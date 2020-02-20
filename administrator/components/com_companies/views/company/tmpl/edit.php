@@ -61,7 +61,7 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                         <div class="span6">
                             <div><?php echo $this->loadTemplate('dossier_main_office'); ?></div>
                             <div><?php echo $this->loadTemplate('dossier_moscow_office'); ?></div>
-                            <div><?php echo $this->loadTemplate('dossier_army'); ?></div>
+                            <div><?php echo $this->loadTemplate('armies'); ?></div>
                         </div>
                     </div>
                     <?php echo JHtml::_('bootstrap.endTab'); ?>
