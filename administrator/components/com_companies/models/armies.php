@@ -29,7 +29,8 @@ class CompaniesModelArmies extends ListModel
 
         $query
             ->select("id, companyID, army_year, square_type, square_value, targets, thematics, stand, exposition, diversification, forum_new_items, full_new_items, is_ndp, is_report, comment")
-            ->from("#__mkv_companies_army_history");
+            ->from("#__mkv_companies_army_history")
+            ->order("army_year");
         $this->setState('list.limit', 0);
 
         if (is_numeric($this->companyID)) $query->where("companyID = {$this->companyID}");
