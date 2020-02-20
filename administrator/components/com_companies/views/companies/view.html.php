@@ -55,6 +55,10 @@ class CompaniesViewCompanies extends HtmlView
         {
             JToolbarHelper::publish('companies.publish', JText::sprintf('COM_COMPANIES_LINK_COMPANY_PUBLISH'));
         }
+        if (CompaniesHelper::canDo('core.access.dossier'))
+        {
+            JToolbarHelper::custom('companies.sync', 'loop', 'refresh', JText::sprintf('COM_COMPANIES_LINK_SYNC_OLD_AND_NEW_DATA'), false);
+        }
         if (CompaniesHelper::canDo('core.delete'))
         {
             JToolbarHelper::deleteList('COM_COMPANIES_CONFIRM_REMOVE_COMPANY', 'companies.delete');

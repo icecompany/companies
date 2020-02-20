@@ -10,4 +10,14 @@ class CompaniesControllerCompanies extends AdminController
     {
         return parent::getModel($name, $prefix, $config);
     }
+
+    public function sync()
+    {
+        $db = JFactory::getDbo();
+        $db->setQuery("call #__sync_old_and_new_data()")->execute();
+        $url = "index.php?option={$this->option}&view=companies";
+        $msg = JText::sprintf("COM_COMPANIES_MESSAGE_SYNC_COMPLETED");
+        $this->setRedirect($url, $msg);
+        $this->redirect();
+    }
 }
