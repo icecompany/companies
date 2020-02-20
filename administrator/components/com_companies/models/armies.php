@@ -50,7 +50,12 @@ class CompaniesModelArmies extends ListModel
             $arr['square'] = ((int)$item->square_type !== 0) ? sprintf("%s (%s)", $arr['square_type'], $arr['square_value']) : $arr['square_type'];
             $arr['targets'] = $item->targets;
             $arr['thematics'] = $item->thematics;
-            $arr['stand'] = $item->stand;
+            if ((int) $item->army_year !== 2020) {
+                $arr['stand'] = $item->stand;
+            }
+            else {
+                if (!empty($result['2020']['stand'])) $arr['stand'] .= "{$result['2020']['stand']}, {$item->stand}"; else $arr['stand'] = $item->stand;
+            }
             $arr['exposition'] = $item->exposition;
             $arr['diversification'] = $item->diversification;
             $arr['forum_new_items'] = $item->forum_new_items;
