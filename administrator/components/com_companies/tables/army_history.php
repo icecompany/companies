@@ -18,6 +18,7 @@ class TableCompaniesArmy_history extends Table
     var $forum_new_items = null;
     var $full_new_items = null;
     var $is_ndp = null;
+    var $is_report = null;
     var $comment = null;
 	public function __construct(JDatabaseDriver $db)
 	{

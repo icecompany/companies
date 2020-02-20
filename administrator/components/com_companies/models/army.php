@@ -53,7 +53,7 @@ class CompaniesModelArmy extends AdminModel {
     {
         $all = get_class_vars($table);
         unset($all['_errors']);
-        $nulls = array('square_type', 'square_value', 'targets', 'thematics', 'stand', 'exposition', 'diversification', 'forum_new_items', 'full_new_items', 'is_ndp', 'comment'); //Поля, которые NULL
+        $nulls = array('square_type', 'square_value', 'targets', 'thematics', 'stand', 'exposition', 'diversification', 'forum_new_items', 'full_new_items', 'is_ndp', 'is_report', 'comment'); //Поля, которые NULL
         foreach ($all as $field => $v) {
             if (empty($field)) continue;
             if (in_array($field, $nulls)) {
