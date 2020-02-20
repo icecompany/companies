@@ -54,6 +54,8 @@ class CompaniesModelCompany extends AdminModel {
         $links['contact_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_CONTACT'));
         $url = JRoute::_("index.php?option={$this->option}&amp;task=parent.add&amp;parentID={$item->id}&amp;return={$return}");
         $links['parent_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_CHILD'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=army.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['army_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_ARMY'));
 
         return $links;
     }

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_companies/models/rules">
+    <fieldset name="general">
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="companyID"
+                type="hidden"
+        />
+        <field
+                name="company"
+                type="text"
+                label="COM_COMPANIES_FORM_ARMY_COMPANY_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_COMPANY_DESC"
+                readonly="true"
+                class="span12"
+        />
+        <field
+                name="army_year"
+                type="Year"
+                label="COM_COMPANIES_FORM_ARMY_YEAR_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_YEAR_DESC"
+                filter="integer"
+                class="span12"
+        />
+        <field
+                name="square_type"
+                type="list"
+                label="COM_COMPANIES_FORM_ARMY_SQUARE_TYPE_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_SQUARE_TYPE_DESC"
+                class="span12"
+                default="0"
+        >
+            <option value="0">COM_COMPANIES_FORM_ARMY_SQUARE_TYPE_0</option>
+            <option value="1">COM_COMPANIES_FORM_ARMY_SQUARE_TYPE_1</option>
+            <option value="2">COM_COMPANIES_FORM_ARMY_SQUARE_TYPE_2</option>
+            <option value="3">COM_COMPANIES_FORM_ARMY_SQUARE_TYPE_3</option>
+            <option value="4">COM_COMPANIES_FORM_ARMY_SQUARE_TYPE_4</option>
+            <option value="5">COM_COMPANIES_FORM_ARMY_SQUARE_TYPE_5</option>
+            <option value="6">COM_COMPANIES_FORM_ARMY_SQUARE_TYPE_6</option>
+        </field>
+        <field
+                name="square_value"
+                type="text"
+                filter="double"
+                label="COM_COMPANIES_FORM_ARMY_SQUARE_VALUE_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_SQUARE_VALUE_DESC"
+                hint="COM_COMPANIES_FORM_ARMY_SQUARE_VALUE_HINT"
+                class="span12"
+        />
+        <field
+                name="stand"
+                type="text"
+                label="COM_COMPANIES_FORM_ARMY_STAND_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_STAND_DESC"
+                hint="COM_COMPANIES_FORM_ARMY_STAND_HINT"
+                class="span12"
+        />
+        <field
+                name="exposition"
+                type="textarea"
+                label="COM_COMPANIES_FORM_ARMY_EXPOSITION_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_EXPOSITION_DESC"
+                hint="COM_COMPANIES_FORM_ARMY_EXPOSITION_HINT"
+                class="span12"
+                rows="3"
+        />
+        <field
+                name="thematics"
+                type="textarea"
+                label="COM_COMPANIES_FORM_ARMY_THEMATICS_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_THEMATICS_DESC"
+                hint="COM_COMPANIES_FORM_ARMY_THEMATICS_HINT"
+                class="span12"
+                rows="3"
+        />
+    </fieldset>
+    <fieldset name="info">
+        <field
+                name="is_ndp"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="0"
+                label="COM_COMPANIES_FORM_ARMY_IS_NDP_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_IS_NDP_DESC"
+                required="true"
+                filter="bool"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field
+                name="targets"
+                type="textarea"
+                label="COM_COMPANIES_FORM_ARMY_TARGETS_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_TARGETS_DESC"
+                hint="COM_COMPANIES_FORM_ARMY_TARGETS_HINT"
+                class="span12"
+                rows="3"
+        />
+        <field
+                name="diversification"
+                type="textarea"
+                label="COM_COMPANIES_FORM_ARMY_DIVERSIFICATION_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_DIVERSIFICATION_DESC"
+                hint="COM_COMPANIES_FORM_ARMY_DIVERSIFICATION_HINT"
+                class="span12"
+                rows="3"
+        />
+        <field
+                name="forum_new_items"
+                type="textarea"
+                label="COM_COMPANIES_FORM_ARMY_FORUM_NEW_ITEMS_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_FORUM_NEW_ITEMS_DESC"
+                hint="COM_COMPANIES_FORM_ARMY_FORUM_NEW_ITEMS_HINT"
+                class="span12"
+                rows="3"
+        />
+        <field
+                name="full_new_items"
+                type="textarea"
+                label="COM_COMPANIES_FORM_ARMY_FULL_NEW_ITEMS_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_FULL_NEW_ITEMS_DESC"
+                hint="COM_COMPANIES_FORM_ARMY_FULL_NEW_ITEMS_HINT"
+                class="span12"
+                rows="3"
+        />
+        <field
+                name="comment"
+                type="textarea"
+                label="COM_COMPANIES_FORM_ARMY_COMMENT_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_COMMENT_DESC"
+                hint="COM_COMPANIES_FORM_ARMY_COMMENT_HINT"
+                class="span12"
+                rows="3"
+        />
+    </fieldset>
+</form>
