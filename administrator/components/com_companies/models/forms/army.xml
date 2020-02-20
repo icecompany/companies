@@ -49,6 +49,7 @@
                 description="COM_COMPANIES_FORM_ARMY_SQUARE_VALUE_DESC"
                 hint="COM_COMPANIES_FORM_ARMY_SQUARE_VALUE_HINT"
                 class="span12"
+                autocomplete="off"
         />
         <field
                 name="stand"
@@ -57,6 +58,7 @@
                 description="COM_COMPANIES_FORM_ARMY_STAND_DESC"
                 hint="COM_COMPANIES_FORM_ARMY_STAND_HINT"
                 class="span12"
+                autocomplete="off"
         />
         <field
                 name="exposition"
@@ -66,6 +68,7 @@
                 hint="COM_COMPANIES_FORM_ARMY_EXPOSITION_HINT"
                 class="span12"
                 rows="3"
+                autocomplete="off"
         />
         <field
                 name="thematics"
@@ -75,6 +78,7 @@
                 hint="COM_COMPANIES_FORM_ARMY_THEMATICS_HINT"
                 class="span12"
                 rows="3"
+                autocomplete="off"
         />
     </fieldset>
     <fieldset name="info">
@@ -92,6 +96,18 @@
             <option value="1">JYES</option>
         </field>
         <field
+                name="is_report"
+                type="list"
+                default=""
+                label="COM_COMPANIES_FORM_ARMY_IS_REPORT_LABEL"
+                description="COM_COMPANIES_FORM_ARMY_IS_REPORT_DESC"
+                class="span12"
+        >
+            <option value="">COM_COMPANIES_FORM_ARMY_IS_REPORT_</option>
+            <option value="0">COM_COMPANIES_FORM_ARMY_IS_REPORT_0</option>
+            <option value="1">COM_COMPANIES_FORM_ARMY_IS_REPORT_1</option>
+        </field>
+        <field
                 name="targets"
                 type="textarea"
                 label="COM_COMPANIES_FORM_ARMY_TARGETS_LABEL"
@@ -99,6 +115,7 @@
                 hint="COM_COMPANIES_FORM_ARMY_TARGETS_HINT"
                 class="span12"
                 rows="3"
+                autocomplete="off"
         />
         <field
                 name="diversification"
@@ -108,6 +125,7 @@
                 hint="COM_COMPANIES_FORM_ARMY_DIVERSIFICATION_HINT"
                 class="span12"
                 rows="3"
+                autocomplete="off"
         />
         <field
                 name="forum_new_items"
@@ -117,6 +135,7 @@
                 hint="COM_COMPANIES_FORM_ARMY_FORUM_NEW_ITEMS_HINT"
                 class="span12"
                 rows="3"
+                autocomplete="off"
         />
         <field
                 name="full_new_items"
@@ -126,6 +145,7 @@
                 hint="COM_COMPANIES_FORM_ARMY_FULL_NEW_ITEMS_HINT"
                 class="span12"
                 rows="3"
+                autocomplete="off"
         />
         <field
                 name="comment"
@@ -135,6 +155,7 @@
                 hint="COM_COMPANIES_FORM_ARMY_COMMENT_HINT"
                 class="span12"
                 rows="3"
+                autocomplete="off"
         />
     </fieldset>
 </form>

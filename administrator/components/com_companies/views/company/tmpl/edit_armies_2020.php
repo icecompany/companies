@@ -42,5 +42,9 @@ if (empty($this->item->armies['2020'])) {
             <td><?php echo JText::sprintf('COM_COMPANIES_HEAD_ARMY_FORUM_IS_NDP');?></td>
             <td><?php echo $this->item->armies['2020']['is_ndp'];?></td>
         </tr>
+        <tr>
+            <td><?php echo JText::sprintf('COM_COMPANIES_HEAD_ARMY_FORUM_IS_REPORT');?></td>
+            <td><?php echo $this->item->armies['2020']['is_report'];?></td>
+        </tr>
     </tbody>
 </table>

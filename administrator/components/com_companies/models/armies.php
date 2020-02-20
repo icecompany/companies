@@ -28,7 +28,7 @@ class CompaniesModelArmies extends ListModel
         $query = $db->getQuery(true);
 
         $query
-            ->select("id, companyID, army_year, square_type, square_value, targets, thematics, stand, exposition, diversification, forum_new_items, full_new_items, is_ndp, comment")
+            ->select("id, companyID, army_year, square_type, square_value, targets, thematics, stand, exposition, diversification, forum_new_items, full_new_items, is_ndp, is_report, comment")
             ->from("#__mkv_companies_army_history");
         $this->setState('list.limit', 0);
 
@@ -56,6 +56,7 @@ class CompaniesModelArmies extends ListModel
             $arr['forum_new_items'] = $item->forum_new_items;
             $arr['full_new_items'] = $item->full_new_items;
             $arr['is_ndp'] = JText::sprintf((!$item->is_ndp) ? 'JNO' : 'JYES');
+            $arr['is_report'] = JText::sprintf("COM_COMPANIES_FORM_ARMY_IS_REPORT_{$item->is_report}");
             $arr['comment'] = $item->comment;
             $result['items'][] = $this->prepare($arr);
             if ((int) $item->army_year === 2020) $result['2020'] = $this->prepare($arr);
