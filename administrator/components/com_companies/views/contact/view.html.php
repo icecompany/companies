@@ -17,9 +17,12 @@ class CompaniesViewContact extends HtmlView {
     }
 
     protected function addToolbar() {
-	    JToolBarHelper::apply('contact.apply', 'JTOOLBAR_APPLY');
-        JToolbarHelper::save('contact.save', 'JTOOLBAR_SAVE');
+        if ($this->item->canSave) {
+            JToolBarHelper::apply('contact.apply', 'JTOOLBAR_APPLY');
+            JToolbarHelper::save('contact.save', 'JTOOLBAR_SAVE');
+        }
         JToolbarHelper::cancel('contact.cancel', 'JTOOLBAR_CLOSE');
+        JFactory::getApplication()->input->set('hidemainmenu', true);
     }
 
     protected function setDocument() {

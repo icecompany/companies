@@ -116,7 +116,7 @@
                 label="COM_COMPANIES_FORM_CONTACT_FOR_ACCREDITATION_LABEL"
                 description="COM_COMPANIES_FORM_CONTACT_FOR_ACCREDITATION_DESC"
                 required="true"
-                filter="bool"
+                filter="integer"
         >
             <option value="0">JNO</option>
             <option value="1">JYES</option>
@@ -129,7 +129,7 @@
                 label="COM_COMPANIES_FORM_CONTACT_FOR_BUILDING_LABEL"
                 description="COM_COMPANIES_FORM_CONTACT_FOR_BUILDING_DESC"
                 required="true"
-                filter="bool"
+                filter="integer"
         >
             <option value="0">JNO</option>
             <option value="1">JYES</option>

@@ -36,7 +36,7 @@ class CompaniesModelCompanies extends ListModel
         $orderDirn = $this->state->get('list.direction');
 
         $query
-            ->select("e.id, e.title, e.title_full, e.title_en")
+            ->select("e.id, e.title, e.title_full, e.title_en, e.checked_out")
             ->select("u.name as manager, l.userID as managerID")
             ->select("r.name as city")
             ->from("#__mkv_companies e")
@@ -119,6 +119,7 @@ class CompaniesModelCompanies extends ListModel
             $arr['title_en'] = $item->title_en;
             $arr['city'] = $item->city;
             $arr['managerID'] = $item->managerID;
+            $arr['checked_out'] = $item->checked_out;
             $arr['manager'] = $item->manager ?? JText::sprintf('COM_COMPANIES_MESSAGE_UNKNOWN');
             $result['items'][] = $this->prepare($arr);
         }
@@ -131,10 +132,18 @@ class CompaniesModelCompanies extends ListModel
             $managerID = JFactory::getUser()->id;
             $canDo = (CompaniesHelper::canDo('core.edit.value') || (!CompaniesHelper::canDo('core.edit.value') && CompaniesHelper::canDo('core.edit.own') && $item['managerID'] == $managerID));
             if ($canDo) {
-                $url = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item['id']}");
-                $title = $item['title'];
-                $params = array('title' => $item['title_full'] ?? '');
-                $item['title'] = JHtml::link($url, $title, $params);
+                if ((int) $item['checked_out'] === 0 || (int) $item['checked_out'] === (int) JFactory::getUser()->id) {
+                    $url = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item['id']}");
+                    $title = $item['title'];
+                    $params = array('title' => $item['title_full'] ?? '');
+                    $item['title'] = JHtml::link($url, $title, $params);
+                }
+                else {
+                    $user = JFactory::getUser($item['checked_out']);
+                    $msg = JText::sprintf('COM_COMPANIES_MESSAGE_ENTRY_IS_CHECKED_OUT', $user->name);
+                    $title = JText::sprintf('COM_COMPANIES_MESSAGE_ENTRY_IS_CHECKED_OUT_TITLE');
+                    $item['title'] = JHtml::tooltip($msg, $title, '', $item['title']);
+                }
             }
         }
         else {
@@ -160,6 +169,7 @@ class CompaniesModelCompanies extends ListModel
         $projectactive = $this->getUserStateFromRequest($this->context . '.filter.projectactive', 'filter_projectactive', '', 'string');
         $this->setState('filter.projectactive', $projectactive);
         parent::populateState($ordering, $direction);
+        CompaniesHelper::check_refresh();
     }
 
     protected function getStoreId($id = '')

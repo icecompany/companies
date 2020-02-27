@@ -118,6 +118,7 @@ class CompaniesModelContacts extends ListModel
         $for_building = $this->getUserStateFromRequest($this->context . '.filter.for_building', 'filter_for_building', '', 'string');
         $this->setState('filter.for_building', $for_building);
         parent::populateState($ordering, $direction);
+        CompaniesHelper::check_refresh();
     }
 
     protected function getStoreId($id = '')

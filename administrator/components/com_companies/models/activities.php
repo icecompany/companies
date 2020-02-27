@@ -102,6 +102,7 @@ class CompaniesModelActivities extends ListModel
         $ndp = $this->getUserStateFromRequest($this->context . '.filter.ndp', 'filter_ndp', '', 'string');
         $this->setState('filter.ndp', $ndp);
         parent::populateState($ordering, $direction);
+        CompaniesHelper::check_refresh();
     }
 
     protected function getStoreId($id = '')

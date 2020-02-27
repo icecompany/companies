@@ -10,6 +10,7 @@ class CompaniesModelContact extends AdminModel {
         if ($item->id === null) {
             $item->companyID = $this->getState('contact.companyID');
         }
+        $item->canSave = $this->canSave($item->companyID ?? 0);
         $item->company = $this->getCompanyTitle($item->companyID);
 
         return $item;
@@ -36,6 +37,14 @@ class CompaniesModelContact extends AdminModel {
         }
 
         return $form;
+    }
+
+    public function canSave(int $companyID = 0): bool
+    {
+        if ($companyID === 0) return true;
+        $table = JTable::getInstance('Companies', 'TableCompanies');
+        $table->load($companyID);
+        return !$table->isCheckedOut(JFactory::getUser()->id);
     }
 
     protected function loadFormData()

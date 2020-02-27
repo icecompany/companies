@@ -20,6 +20,7 @@ class CompaniesViewActivity extends HtmlView {
 	    JToolBarHelper::apply('activity.apply', 'JTOOLBAR_APPLY');
         JToolbarHelper::save('activity.save', 'JTOOLBAR_SAVE');
         JToolbarHelper::cancel('activity.cancel', 'JTOOLBAR_CLOSE');
+        JFactory::getApplication()->input->set('hidemainmenu', true);
     }
 
     protected function setDocument() {
