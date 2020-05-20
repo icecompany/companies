@@ -20,6 +20,7 @@ class CompaniesModelContacts extends ListModel
         }
         $this->export = false;
         $this->companyID = (!isset($config['companyID'])) ? 0 : $config['companyID'];
+        $this->companyIDs = (!isset($config['companyIDs'])) ? [] : $config['companyIDs'];
         parent::__construct($config);
     }
 
@@ -39,33 +40,40 @@ class CompaniesModelContacts extends ListModel
             $this->setState('list.limit', 0);
         }
         else {
-            $query
-                ->select("e.title as company")
-                ->leftJoin("#__mkv_companies e on e.id = c.companyID");
-
-            /* Поиск */
-            $search = $this->getState('filter.search');
-            if (!empty($search)) {
-                $search = $this->_db->q("%{$search}%");
-                $query->where("(c.fio LIKE {$search} OR e.title LIKE {$search})");
+            if (!empty($this->companyIDs)) {
+                $ids = implode(', ', $this->companyIDs);
+                $query->where("c.companyID in ({$ids})");
+                $this->setState('list.limit', 0);
             }
+            else {
+                $query
+                    ->select("e.title as company")
+                    ->leftJoin("#__mkv_companies e on e.id = c.companyID");
 
-            /* Фильтры */
-            $for_accreditation = $this->getState('filter.for_accreditation');
-            if (is_numeric($for_accreditation)) {
-                $for_accreditation = $this->_db->q($for_accreditation);
-                $query->where("c.for_accreditation = {$for_accreditation}");
-            }
-            $for_building = $this->getState('filter.for_building');
-            if (is_numeric($for_building)) {
-                $for_building = $this->_db->q($for_building);
-                $query->where("c.for_building = {$for_building}");
-            }
+                /* Поиск */
+                $search = $this->getState('filter.search');
+                if (!empty($search)) {
+                    $search = $this->_db->q("%{$search}%");
+                    $query->where("(c.fio LIKE {$search} OR e.title LIKE {$search})");
+                }
 
-            /* Сортировка */
-            $orderCol = $this->state->get('list.ordering');
-            $orderDirn = $this->state->get('list.direction');
-            $query->order($db->escape($orderCol . ' ' . $orderDirn));
+                /* Фильтры */
+                $for_accreditation = $this->getState('filter.for_accreditation');
+                if (is_numeric($for_accreditation)) {
+                    $for_accreditation = $this->_db->q($for_accreditation);
+                    $query->where("c.for_accreditation = {$for_accreditation}");
+                }
+                $for_building = $this->getState('filter.for_building');
+                if (is_numeric($for_building)) {
+                    $for_building = $this->_db->q($for_building);
+                    $query->where("c.for_building = {$for_building}");
+                }
+
+                /* Сортировка */
+                $orderCol = $this->state->get('list.ordering');
+                $orderDirn = $this->state->get('list.direction');
+                $query->order($db->escape($orderCol . ' ' . $orderDirn));
+            }
         }
 
         return $query;
@@ -87,6 +95,9 @@ class CompaniesModelContacts extends ListModel
             $url = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item->companyID}&amp;return={$return}");
             $arr['company_link'] = JHtml::link($url, $item->company);
             $arr['phone_work'] = $item->phone_work;
+            if ($item->phone_work_additional !== null) {
+                $arr['phone_work'] .= " доб. {$item->phone_work_additional}";
+            }
             $url = JRoute::_("tel:{$item->phone_work}");
             $arr['phone_work_link'] = JHtml::link($url, ($item->phone_work_additional !== null) ? JText::sprintf('COM_COMPANIES_HEAD_CONTACTS_PHONE_ADDITIONAL_SHORT', $item->phone_work, $item->phone_work_additional) : $item->phone_work);
             $arr['phone_mobile'] = $item->phone_mobile;
@@ -129,6 +140,6 @@ class CompaniesModelContacts extends ListModel
         return parent::getStoreId($id);
     }
 
-    private $export, $companyID;
+    private $export, $companyID, $companyIDs;
 
 }
