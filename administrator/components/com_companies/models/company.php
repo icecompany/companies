@@ -75,8 +75,9 @@ class CompaniesModelCompany extends AdminModel {
 
     public function getForm($data = array(), $loadData = true)
     {
+        $id = JFactory::getApplication()->input->getInt('id', 0);
         $name = "company";
-        if (CompaniesHelper::canDo('core.access.dossier')) $name .= "_dossier";
+        if (CompaniesHelper::canDo('core.access.dossier') && $id > 0) $name .= "_dossier";
         $form = $this->loadForm(
             "{$this->option}.company", $name, array('control' => 'jform', 'load_data' => $loadData)
         );

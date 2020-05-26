@@ -78,11 +78,13 @@ let Main_office_city = {
         })
     },
     load: function () {
-        let id = document.querySelector("#jform_hidden_main_office_city_id").value;
-        let value = document.querySelector("#jform_hidden_main_office_city_title").value;
-        if (id !== '' && value !== '') {
-            UI.Fields.main_office_city.elem.append(`<option value="${id}">${value}</option>`);
-            UI.Fields.unlock(UI.Fields.main_office_city);
+        if (document.querySelector("#jform_hidden_main_office_city_id") !== null && document.querySelector("#jform_hidden_main_office_city_title") !== null) {
+            let id = document.querySelector("#jform_hidden_main_office_city_id").value;
+            let value = document.querySelector("#jform_hidden_main_office_city_title").value;
+            if (id !== '' && value !== '') {
+                UI.Fields.main_office_city.elem.append(`<option value="${id}">${value}</option>`);
+                UI.Fields.unlock(UI.Fields.main_office_city);
+            }
         }
     },
 };
@@ -153,7 +155,7 @@ window.onload = function () {
     UI.Fields.unlock(UI.Fields.par);
     UI.Fields.unlock(UI.Fields.legal_city);
     UI.Fields.unlock(UI.Fields.fact_city);
-    UI.Fields.unlock(UI.Fields.main_office_city);
+    if (document.querySelector("#jform_main_office_city") !== null) UI.Fields.unlock(UI.Fields.main_office_city);
     Company.load();
     Legal_city.load();
     Fact_city.load();
