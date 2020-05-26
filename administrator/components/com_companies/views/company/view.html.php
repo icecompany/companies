@@ -20,6 +20,9 @@ class CompaniesViewCompany extends HtmlView {
     protected function addToolbar() {
         JToolBarHelper::apply('company.apply', 'JTOOLBAR_APPLY');
         JToolbarHelper::save('company.save', 'JTOOLBAR_SAVE');
+        if ($this->item->id !== null) {
+            JToolbarHelper::custom('company.add_contract', 'briefcase', 'briefcase', JText::sprintf('COM_COMPANIES_BUTTON_ADD_CONTRACT'), false);
+        }
         JToolbarHelper::cancel('company.cancel', 'JTOOLBAR_CLOSE');
         JFactory::getApplication()->input->set('hidemainmenu', true);
     }
