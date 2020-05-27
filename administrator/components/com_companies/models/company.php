@@ -128,6 +128,25 @@ class CompaniesModelCompany extends AdminModel {
         parent::prepareTable($table);
     }
 
+    public function saveActivities(int $companyID, array $activities = array()): bool
+    {
+        $current = $this->loadActivities($companyID);
+        if (empty($current)) {
+            if (empty($activities)) return true;
+            foreach ($activities as $activityID)
+                if (!$this->addActivity($companyID, $activityID)) return false;
+        }
+        else {
+            foreach ($activities as $item)
+                if (($key = array_search($item, $current)) === false)
+                    if (!$this->addActivity($companyID, $item)) return false;
+            foreach ($current as $item)
+                if (($key = array_search($item, $activities)) === false)
+                    if (!$this->deleteActivity($companyID, $item)) return false;
+        }
+        return true;
+    }
+
     protected function canEditState($record)
     {
         $user = JFactory::getUser();
@@ -164,25 +183,6 @@ class CompaniesModelCompany extends AdminModel {
             $ids[] = $item['activityID'];
         }
         return $ids;
-    }
-
-    private function saveActivities(int $companyID, array $activities = array()): bool
-    {
-        $current = $this->loadActivities($companyID);
-        if (empty($current)) {
-            if (empty($activities)) return true;
-            foreach ($activities as $activityID)
-                if (!$this->addActivity($companyID, $activityID)) return false;
-        }
-        else {
-            foreach ($activities as $item)
-                if (($key = array_search($item, $current)) === false)
-                    if (!$this->addActivity($companyID, $item)) return false;
-            foreach ($current as $item)
-                if (($key = array_search($item, $activities)) === false)
-                    if (!$this->deleteActivity($companyID, $item)) return false;
-        }
-        return true;
     }
 
     private function addActivity(int $companyID, int $activityID): bool
