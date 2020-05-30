@@ -14,6 +14,12 @@ foreach ($this->items['items'] as $i => $item) :
         <td>
             <?php echo $item['title'];?>
         </td>
+        <?php if (is_numeric($this->state->get('filter.in_project'))): ?>
+            <td>
+                <?php echo $item['in_project'];?>
+            </td>
+        <?php endif;?>
+
         <td>
             <?php echo $item['manager'];?>
         </td>

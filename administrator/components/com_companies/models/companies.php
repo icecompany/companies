@@ -17,6 +17,7 @@ class CompaniesModelCompanies extends ListModel
                 'city',
                 'manager',
                 'activity',
+                'in_project',
                 'state',
             );
         }
@@ -98,6 +99,18 @@ class CompaniesModelCompanies extends ListModel
                 $query->where("e.id <> {$not}");
             }
         }
+        else {
+            $in_project = $this->getState('filter.in_project');
+            if (is_numeric($in_project)) {
+                $query
+                    ->select("cip.id as contractID_in_project")
+                    ->select("sip.title as status_in_project")
+                    ->leftJoin("#__mkv_contracts cip on cip.companyID = e.id")
+                    ->leftJoin("#__mkv_contract_statuses sip on sip.code = cip.status")
+                    ->where("cip.projectID = {$this->_db->q($in_project)}")
+                    ->where("cip.id is not null");
+            }
+        }
         //Ограничение длины списка
         $limit = (!$this->export) ? $this->getState('list.limit') : 0;
         $this->setState('list.limit', $limit);
@@ -111,6 +124,7 @@ class CompaniesModelCompanies extends ListModel
     {
         $items = parent::getItems();
         $result = array('items' => array());
+        $return = CompaniesHelper::getReturnUrl();
         foreach ($items as $item) {
             $arr = array();
             $arr['id'] = $item->id;
@@ -120,6 +134,10 @@ class CompaniesModelCompanies extends ListModel
             $arr['city'] = $item->city;
             $arr['managerID'] = $item->managerID;
             $arr['checked_out'] = $item->checked_out;
+            if (is_numeric($this->state->get('filter.in_project'))) {
+                $url = JRoute::_("index.php?option=com_contracts&amp;task=contract.edit&amp;id={$item->contractID_in_project}&amp;return={$return}");
+                $arr['in_project'] = JHtml::link($url, $item->status_in_project ?? JText::sprintf('COM_MKV_STATUS_IN_PROJECT'));
+            }
             $arr['manager'] = $item->manager ?? JText::sprintf('COM_COMPANIES_MESSAGE_UNKNOWN');
             $result['items'][] = $this->prepare($arr);
         }
@@ -164,8 +182,8 @@ class CompaniesModelCompanies extends ListModel
         $this->setState('filter.state', $state);
         $city = $this->getUserStateFromRequest($this->context . '.filter.city', 'filter_city', '', 'string');
         $this->setState('filter.city', $city);
-        $projectinactive = $this->getUserStateFromRequest($this->context . '.filter.projectinactive', 'filter_projectinactive', '', 'string');
-        $this->setState('filter.projectinactive', $projectinactive);
+        $in_project = $this->getUserStateFromRequest($this->context . '.filter.in_project', 'filter_in_project', '', 'string');
+        $this->setState('filter.in_project', $in_project);
         $projectactive = $this->getUserStateFromRequest($this->context . '.filter.projectactive', 'filter_projectactive', '', 'string');
         $this->setState('filter.projectactive', $projectactive);
         parent::populateState($ordering, $direction);
@@ -178,7 +196,7 @@ class CompaniesModelCompanies extends ListModel
         $id .= ':' . $this->getState('filter.activity');
         $id .= ':' . $this->getState('filter.state');
         $id .= ':' . $this->getState('filter.city');
-        $id .= ':' . $this->getState('filter.projectinactive');
+        $id .= ':' . $this->getState('filter.in_project');
         $id .= ':' . $this->getState('filter.projectactive');
         return parent::getStoreId($id);
     }

@@ -11,6 +11,13 @@
                 class="js-stools-search-string"
         />
         <field
+                name="in_project"
+                type="Project"
+                onchange="this.form.submit();"
+                >
+            <option value="">COM_COMPANIES_FILTER_SELECT_IN_PROJECT</option>
+        </field>
+        <field
                 name="activity"
                 type="Activity"
                 label="COM_COMPANIES_FILTER_SELECT_ACTIVITY"

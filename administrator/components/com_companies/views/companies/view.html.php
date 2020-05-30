@@ -15,6 +15,7 @@ class CompaniesViewCompanies extends HtmlView
         $this->state = $this->get('State');
         $this->filterForm = $this->get('FilterForm');
         $this->activeFilters = $this->get('ActiveFilters');
+        $this->filterForm->addFieldPath(JPATH_ADMINISTRATOR . "/components/com_prj/models/fields");
 
         // Show the toolbar
         $this->toolbar();

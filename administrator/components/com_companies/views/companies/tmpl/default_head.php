@@ -13,6 +13,11 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
     <th>
         <?php echo JHtml::_('searchtools.sort', 'COM_COMPANIES_HEAD_COMPANIES_TITLE', 'e.title', $listDirn, $listOrder); ?>
     </th>
+    <?php if (is_numeric($this->state->get('filter.in_project'))): ?>
+        <th>
+            <?php echo JText::sprintf('COM_COMPANIES_HEAD_COMPANIES_IN_PROJECT');?>
+        </th>
+    <?php endif;?>
     <th>
         <?php echo JHtml::_('searchtools.sort', 'COM_COMPANIES_HEAD_COMPANIES_AUTHOR', 'manager', $listDirn, $listOrder); ?>
     </th>
