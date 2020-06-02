@@ -31,6 +31,9 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                     <div class="span4">
                         <div><?php echo $this->loadTemplate('active_contracts'); ?></div>
                         <div><?php echo $this->loadTemplate('bank'); ?></div>
+                        <?php if ($this->item->id !== null): ?>
+                            <div><?php echo $this->loadTemplate('contracts'); ?></div>
+                        <?php endif;?>
                     </div>
                 </div>
                 <?php echo JHtml::_('bootstrap.endTab'); ?>

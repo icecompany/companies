@@ -147,6 +147,15 @@ class CompaniesModelCompany extends AdminModel {
         return true;
     }
 
+    public function getContracts(): array
+    {
+        $item = parent::getItem();
+        if ($item->id === null) return [];
+        JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . "/components/com_contracts/models", "ContractsModel");
+        $model = JModelLegacy::getInstance('Contracts', 'ContractsModel', ['companyID' => $item->id, 'ignore_request' => true]);
+        return $model->getItems();
+    }
+
     protected function canEditState($record)
     {
         $user = JFactory::getUser();
