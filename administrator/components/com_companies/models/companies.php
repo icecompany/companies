@@ -107,8 +107,7 @@ class CompaniesModelCompanies extends ListModel
                     ->select("sip.title as status_in_project")
                     ->leftJoin("#__mkv_contracts cip on cip.companyID = e.id")
                     ->leftJoin("#__mkv_contract_statuses sip on sip.code = cip.status")
-                    ->where("cip.projectID = {$this->_db->q($in_project)}")
-                    ->where("cip.id is not null");
+                    ->where("(cip.projectID = {$this->_db->q($in_project)} and cip.id is not null)");
             }
         }
         //Ограничение длины списка
@@ -184,8 +183,6 @@ class CompaniesModelCompanies extends ListModel
         $this->setState('filter.city', $city);
         $in_project = $this->getUserStateFromRequest($this->context . '.filter.in_project', 'filter_in_project', '', 'string');
         $this->setState('filter.in_project', $in_project);
-        $projectactive = $this->getUserStateFromRequest($this->context . '.filter.projectactive', 'filter_projectactive', '', 'string');
-        $this->setState('filter.projectactive', $projectactive);
         parent::populateState($ordering, $direction);
         CompaniesHelper::check_refresh();
     }
@@ -197,7 +194,6 @@ class CompaniesModelCompanies extends ListModel
         $id .= ':' . $this->getState('filter.state');
         $id .= ':' . $this->getState('filter.city');
         $id .= ':' . $this->getState('filter.in_project');
-        $id .= ':' . $this->getState('filter.projectactive');
         return parent::getStoreId($id);
     }
 
