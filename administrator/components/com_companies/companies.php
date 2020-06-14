@@ -24,12 +24,12 @@ if (!Factory::getUser()->authorise('core.manage', 'com_companies'))
 JFactory::getLanguage()->load('com_mkv', JPATH_ADMINISTRATOR . "/components/com_mkv", 'ru-RU', true);
 require_once JPATH_ADMINISTRATOR . "/components/com_mkv/helpers/mkv.php";
 require_once JPATH_ADMINISTRATOR . "/components/com_prj/helpers/prj.php";
+require_once JPATH_ADMINISTRATOR . "/components/com_contracts/helpers/contracts.php";
 require_once JPATH_COMPONENT_ADMINISTRATOR . '/helpers/companies.php';
 require_once JPATH_COMPONENT_ADMINISTRATOR . '/passwd.php';
 $db = JFactory::getDbo();
 $passwd = $db->q($credentials->password);
 $db->setQuery("SELECT @pass:={$passwd}")->execute();
-$db->setQuery("set @TRIGGER_CHECKS=true")->execute();
 
 // Execute the task
 $controller = BaseController::getInstance('companies');
