@@ -37,7 +37,7 @@ class CompaniesModelCompanies extends ListModel
         $orderDirn = $this->state->get('list.direction');
 
         $query
-            ->select("e.id, e.title, e.title_full, e.title_en, e.checked_out")
+            ->select("e.id, e.title, e.title_full, e.title_en")
             ->select("u.name as manager, l.userID as managerID")
             ->select("r.name as city")
             ->from("#__mkv_companies e")
@@ -132,7 +132,6 @@ class CompaniesModelCompanies extends ListModel
             $arr['title_en'] = $item->title_en;
             $arr['city'] = $item->city;
             $arr['managerID'] = $item->managerID;
-            $arr['checked_out'] = $item->checked_out;
             if (is_numeric($this->state->get('filter.in_project'))) {
                 $url = JRoute::_("index.php?option=com_contracts&amp;task=contract.edit&amp;id={$item->contractID_in_project}&amp;return={$return}");
                 $arr['in_project'] = JHtml::link($url, $item->status_in_project ?? JText::sprintf('COM_MKV_STATUS_IN_PROJECT'));
@@ -146,22 +145,10 @@ class CompaniesModelCompanies extends ListModel
     private function prepare(array $item): array
     {
         if (!$this->export) {
-            $managerID = JFactory::getUser()->id;
-            $canDo = (CompaniesHelper::canDo('core.edit.value') || (!CompaniesHelper::canDo('core.edit.value') && CompaniesHelper::canDo('core.edit.own') && $item['managerID'] == $managerID));
-            if ($canDo) {
-                if ((int) $item['checked_out'] === 0 || (int) $item['checked_out'] === (int) JFactory::getUser()->id) {
-                    $url = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item['id']}");
-                    $title = $item['title'];
-                    $params = array('title' => $item['title_full'] ?? '');
-                    $item['title'] = JHtml::link($url, $title, $params);
-                }
-                else {
-                    $user = JFactory::getUser($item['checked_out']);
-                    $msg = JText::sprintf('COM_COMPANIES_MESSAGE_ENTRY_IS_CHECKED_OUT', $user->name);
-                    $title = JText::sprintf('COM_COMPANIES_MESSAGE_ENTRY_IS_CHECKED_OUT_TITLE');
-                    $item['title'] = JHtml::tooltip($msg, $title, '', $item['title']);
-                }
-            }
+            $url = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item['id']}");
+            $title = $item['title'];
+            $params = array('title' => $item['title_full'] ?? '');
+            $item['title'] = JHtml::link($url, $title, $params);
         }
         else {
             $remove = array('title_full', 'title_en', 'managerID', 'manager'); //Удаляемые поля

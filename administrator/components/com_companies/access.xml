@@ -11,6 +11,5 @@
 		<action name="core.edit.own" title="JACTION_EDITOWN" description="JACTION_EDITOWN_COMPONENT_DESC" />
 		<action name="core.edit.value" title="JACTION_EDITVALUE" description="JACTION_EDITVALUE_COMPONENT_DESC" />
 		<action name="core.access.dossier" title="COM_COMPANIES_ACCESS_DOSSIER_LABEL" description="COM_COMPANIES_ACCESS_DOSSIER_DESC" />
-		<action name="core.unlock" title="COM_COMPANIES_ACCESS_UNLOCK_LABEL" description="COM_COMPANIES_ACCESS_UNLOCK_DESC" />
 	</section>
 </access>

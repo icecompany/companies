@@ -64,10 +64,6 @@ class CompaniesViewCompanies extends HtmlView
         {
             JToolbarHelper::deleteList('COM_COMPANIES_CONFIRM_REMOVE_COMPANY', 'companies.delete');
         }
-        if (CompaniesHelper::canDo('core.unlock'))
-        {
-            JToolbarHelper::checkin('companies.checkin');
-        }
         if (CompaniesHelper::canDo('core.admin'))
         {
             JToolBarHelper::preferences('com_companies');
