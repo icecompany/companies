@@ -7,6 +7,7 @@ class CompaniesHelper
 {
 	public function addSubmenu($vName)
 	{
+	    PrjHelper::addNotifies();
 		HTMLHelper::_('sidebar.addEntry', JText::sprintf('COM_COMPANIES_MENU_COMPANIES'), 'index.php?option=com_companies&amp;view=companies', $vName === 'companies');
 		HTMLHelper::_('sidebar.addEntry', JText::sprintf('COM_COMPANIES_MENU_CONTACTS'), 'index.php?option=com_companies&amp;view=contacts', $vName === 'contacts');
 		HTMLHelper::_('sidebar.addEntry', JText::sprintf('COM_COMPANIES_MENU_ACTIVITIES'), 'index.php?option=com_companies&amp;view=activities', $vName === 'activities');
