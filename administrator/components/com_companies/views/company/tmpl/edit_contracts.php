@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
             <td><?php echo $contract['status_link'];?></td>
             <td><?php echo $contract['manager'];?></td>
             <td><?php echo $contract['number'];?></td>
-            <td><?php echo $this->contracts['stands'][$contract['id']];?></td>
+            <td><?php echo $contract['stands'];?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
