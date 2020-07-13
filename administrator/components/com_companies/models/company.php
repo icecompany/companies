@@ -203,6 +203,7 @@ class CompaniesModelCompany extends AdminModel {
 
     private function deleteActivity(int $companyID, int $activityID): bool
     {
+        if ($companyID == 0 || $activityID == 0) return true;
         $table = $this->getTable('Companies_activities', 'TableCompanies');
         $table->load(array('companyID' => $companyID, 'activityID' => $activityID));
         return $table->delete($table->id);
