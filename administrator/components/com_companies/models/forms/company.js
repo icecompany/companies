@@ -1,6 +1,6 @@
 'use strict';
 let url_exhibitors = "index.php?option=com_companies&task=companies.execute&format=json";
-let url_cities = "/index.php?option=com_projects&task=api.getCities&api_key=4n98tpw49vtpw496npyww9p6by";
+let url_cities = "index.php?option=com_companies&task=cities.execute&format=json";
 
 let Company = {
     searchByName: function (title) {
@@ -28,7 +28,7 @@ let Legal_city = {
     searchByName: function (title) {
         jQuery.getJSON(`${url_cities}&q=${title}`, function (json) {
             UI.Fields.legal_city.elem.empty();
-            jQuery.each(json, function (idx, obj) {
+            jQuery.each(json.data, function (idx, obj) {
                 UI.Fields.legal_city.elem.append(`<option value="${obj.id}">${obj.name} (${obj.region})</option>`);
                 UI.Fields.unlock(UI.Fields.legal_city);
                 UI.Fields.legal_city.inp.value = title;
@@ -49,7 +49,7 @@ let Fact_city = {
     searchByName: function (title) {
         jQuery.getJSON(`${url_cities}&q=${title}`, function (json) {
             UI.Fields.fact_city.elem.empty();
-            jQuery.each(json, function (idx, obj) {
+            jQuery.each(json.data, function (idx, obj) {
                 UI.Fields.fact_city.elem.append(`<option value="${obj.id}">${obj.name} (${obj.region})</option>`);
                 UI.Fields.unlock(UI.Fields.fact_city);
                 UI.Fields.fact_city.inp.value = title;
@@ -70,7 +70,7 @@ let Main_office_city = {
     searchByName: function (title) {
         jQuery.getJSON(`${url_cities}&q=${title}`, function (json) {
             UI.Fields.main_office_city.elem.empty();
-            jQuery.each(json, function (idx, obj) {
+            jQuery.each(json.data, function (idx, obj) {
                 UI.Fields.main_office_city.elem.append(`<option value="${obj.id}">${obj.name} (${obj.region})</option>`);
                 UI.Fields.unlock(UI.Fields.main_office_city);
                 UI.Fields.main_office_city.inp.value = title;
