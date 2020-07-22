@@ -38,11 +38,8 @@ class CompaniesModelCompanies extends ListModel
 
         $query
             ->select("e.id, e.title, e.title_full, e.title_en")
-            ->select("u.name as manager, l.userID as managerID")
             ->select("r.name as city")
             ->from("#__mkv_companies e")
-            ->leftJoin("#__prj_user_action_log l on l.itemID = e.id and l.action = 'add' and l.section = 'exhibitor'")
-            ->leftJoin("#__users u on u.id = l.userID")
             ->leftJoin("#__grph_cities as r ON r.id = e.legal_city");
         /* Поиск */
         $search = (!$this->export) ? $this->getState('filter.search') : JFactory::getApplication()->input->getString('search', '');
