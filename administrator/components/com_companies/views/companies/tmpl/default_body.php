@@ -19,10 +19,6 @@ foreach ($this->items['items'] as $i => $item) :
                 <?php echo $item['in_project'];?>
             </td>
         <?php endif;?>
-
-        <td>
-            <?php echo $item['manager'];?>
-        </td>
         <td>
             <?php echo $item['city'];?>
         </td>

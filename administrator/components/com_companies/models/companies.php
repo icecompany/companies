@@ -128,7 +128,6 @@ class CompaniesModelCompanies extends ListModel
             $arr['title_full'] = $item->title_full;
             $arr['title_en'] = $item->title_en;
             $arr['city'] = $item->city;
-            $arr['managerID'] = $item->managerID;
             if (is_numeric($this->state->get('filter.in_project'))) {
                 $url = JRoute::_("index.php?option=com_contracts&amp;task=contract.edit&amp;id={$item->contractID_in_project}&amp;return={$return}");
                 $arr['in_project'] = JHtml::link($url, $item->status_in_project ?? JText::sprintf('COM_MKV_STATUS_IN_PROJECT'));
@@ -155,7 +154,7 @@ class CompaniesModelCompanies extends ListModel
     }
 
     /* Сортировка по умолчанию */
-    protected function populateState($ordering = 'e.id', $direction = 'asc')
+    protected function populateState($ordering = 'e.id', $direction = 'DESC')
     {
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
