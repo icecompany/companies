@@ -10,6 +10,7 @@ $ii = 0;
         <td><?php echo $person['phone_work_link']; ?></td>
         <td><?php echo $person['phone_mobile_link']; ?></td>
         <td><?php echo $person['email_link']; ?></td>
+        <td><?php echo $person['main']; ?></td>
         <td><?php echo $person['for_accreditation']; ?></td>
         <td><?php echo $person['for_building']; ?></td>
         <td><?php echo $person['comment']; ?></td>

@@ -14,6 +14,7 @@ class CompaniesModelContacts extends ListModel
                 'companyID',
                 'c.fio',
                 'company',
+                'c.main',
                 'c.for_building', 'for_building',
                 'c.for_accreditation', 'for_accreditation',
             );
@@ -29,7 +30,7 @@ class CompaniesModelContacts extends ListModel
         $db = $this->getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select("c.id, c.companyID, c.fio, c.post, c.for_accreditation, c.for_building, c.comment")
+            ->select("c.id, c.companyID, c.fio, c.post, c.for_accreditation, c.for_building, c.main, c.comment")
             ->select("c.phone_work_additional, phone_mobile_additional")
             ->select("aes_decrypt(c.phone_work,@pass) as phone_work")
             ->select("aes_decrypt(c.phone_mobile,@pass) as phone_mobile")
@@ -108,6 +109,7 @@ class CompaniesModelContacts extends ListModel
             $arr['email_link'] = JHtml::link($url, $item->email);
             $arr['for_accreditation'] = JText::sprintf(($item->for_accreditation) ? 'JYES' : 'JNO');
             $arr['for_building'] = JText::sprintf(($item->for_building) ? 'JYES' : 'JNO');
+            $arr['main'] = JText::sprintf(($item->main) ? 'JYES' : 'JNO');
             $arr['comment'] = $item->comment;
             $url = JRoute::_("index.php?option={$this->option}&amp;task=contact.edit&amp;id={$item->id}&amp;return={$return}");
             $arr['edit_link'] = JHtml::link($url, $item->fio);

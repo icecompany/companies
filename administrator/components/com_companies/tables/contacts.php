@@ -22,6 +22,7 @@ class TableCompaniesContacts extends Table
 {
     var $id = null;
     var $companyID = null;
+    var $main = null;
     var $fio = null;
     var $post = null;
     var $phone_work = null;
@@ -52,7 +53,7 @@ class TableCompaniesContacts extends Table
         $keys = array($this->getKeyName() => $keys);
 
         $query = $this->_db->getQuery(true)
-            ->select('id, companyID, fio, post, for_accreditation, for_building, phone_work_additional, phone_mobile_additional, comment')
+            ->select('id, companyID, `main`, fio, post, for_accreditation, for_building, phone_work_additional, phone_mobile_additional, comment')
             ->select("IF(phone_work is not null, AES_DECRYPT(phone_work, @pass), null) as phone_work")
             ->select("IF(phone_mobile is not null, AES_DECRYPT(phone_mobile, @pass), null) as phone_mobile")
             ->select("IF(email is not null, AES_DECRYPT(email, @pass), null) as email")

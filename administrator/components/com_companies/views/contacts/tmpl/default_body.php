@@ -30,6 +30,9 @@ foreach ($this->items as $i => $item) :
             <?php echo $item['email_link'];?>
         </td>
         <td>
+            <?php echo $item['main'];?>
+        </td>
+        <td>
             <?php echo $item['for_accreditation'];?>
         </td>
         <td>
