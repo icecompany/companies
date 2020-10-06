@@ -39,12 +39,14 @@ class CompaniesModelContacts extends ListModel
         if ($this->companyID > 0) {
             $query->where("c.companyID = {$this->companyID}");
             $this->setState('list.limit', 0);
+            $query->order("c.main desc");
         }
         else {
             if (!empty($this->companyIDs)) {
                 $ids = implode(', ', $this->companyIDs);
                 $query->where("c.companyID in ({$ids})");
                 $this->setState('list.limit', 0);
+                $query->order("c.main desc");
             }
             else {
                 $query
@@ -122,7 +124,7 @@ class CompaniesModelContacts extends ListModel
     }
 
     /* Сортировка по умолчанию */
-    protected function populateState($ordering = 'c.fio', $direction = 'asc')
+    protected function populateState($ordering = 'c.main', $direction = 'desc')
     {
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
