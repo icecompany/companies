@@ -173,6 +173,29 @@ class CompaniesModelCompany extends AdminModel {
         return $model->getItems();
     }
 
+    public function delete(&$pks)
+    {
+        //Пишем историю
+        JTable::addIncludePath(JPATH_ADMINISTRATOR . "/components/com_mkv/tables");
+        foreach ($pks as $pk) {
+            $item = parent::getItem($pk);
+            $d = parent::delete($pk);
+            if ($d) {
+                $hst = [];
+                $hst['managerID'] = JFactory::getUser()->id;
+                $hst['itemID'] = $item->id;
+                $hst['section'] = 'company';
+                $hst['action'] = 'delete';
+                $hst['old_data'] = json_encode($item);
+                $hst['new_data'] = '';
+                $history = JTable::getInstance('History', 'TableMkv');
+                $history->save($hst);
+            }
+            else return false;
+        }
+        return true;
+    }
+
     protected function canEditState($record)
     {
         $user = JFactory::getUser();
