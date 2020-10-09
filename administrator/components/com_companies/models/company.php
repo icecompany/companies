@@ -43,6 +43,23 @@ class CompaniesModelCompany extends AdminModel {
         $companyID = $data['id'] ?? JFactory::getDbo()->insertid();
         $s2 = $this->saveParentID((int) $companyID, (int) $data['parentID'] ?? 0);
         $s3 = $this->saveActivities((int) $companyID, (array) $data['activities'] ?? array());
+        //Пишем в историю
+        if ($s1 && $s2 && $s3) {
+            $hst = [];
+            $hst['managerID'] = JFactory::getUser()->id;
+            $hst['itemID'] = $companyID;
+            $hst['action'] = ($data['id'] !== null) ? 'update' : 'add';
+            $hst['section'] = 'company';
+            $hst['new_data'] = json_encode($data);
+            $hst['old_data'] = '';
+            if ($hst['action'] === 'update') {
+                $item = parent::getItem($data['id']);
+                $hst['old_data'] = json_encode($item);
+            }
+            JTable::addIncludePath(JPATH_ADMINISTRATOR . "/components/com_mkv/tables");
+            $history = JTable::getInstance('History', 'TableMkv');
+            $history->save($hst);
+        }
         return $s1 && $s2 && $s3;
     }
 
