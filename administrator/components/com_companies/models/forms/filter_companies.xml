@@ -18,6 +18,13 @@
             <option value="">COM_COMPANIES_FILTER_SELECT_IN_PROJECT</option>
         </field>
         <field
+                name="not_in_project"
+                type="Project"
+                onchange="this.form.submit();"
+                >
+            <option value="">COM_COMPANIES_FILTER_SELECT_NOT_IN_PROJECT</option>
+        </field>
+        <field
                 name="activity"
                 type="Activity"
                 label="COM_COMPANIES_FILTER_SELECT_ACTIVITY"

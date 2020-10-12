@@ -18,6 +18,7 @@ class CompaniesModelCompanies extends ListModel
                 'manager',
                 'activity',
                 'in_project',
+                'not_in_project',
                 'state',
             );
         }
@@ -106,6 +107,11 @@ class CompaniesModelCompanies extends ListModel
                     ->leftJoin("#__mkv_contract_statuses sip on sip.code = cip.status")
                     ->where("(cip.projectID = {$this->_db->q($in_project)} and cip.id is not null)");
             }
+            $not_in_project = $this->getState('filter.not_in_project');
+            if (is_numeric($not_in_project)) {
+                $ids = $this->getCompaniesInProject($not_in_project);
+                if (!empty($ids)) $query->where("e.id not in ({$ids})");
+            }
         }
         //Ограничение длины списка
         $limit = (!$this->export) ? $this->getState('list.limit') : 0;
@@ -138,6 +144,18 @@ class CompaniesModelCompanies extends ListModel
         return $result;
     }
 
+    private function getCompaniesInProject(int $projectID): string
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
+            ->select("distinct companyID")
+            ->from("#__mkv_contracts")
+            ->where("projectID = {$db->q($projectID)}");
+        $result = $db->setQuery($query)->loadColumn();
+        return (!empty($result)) ? implode(', ', $result) : '';
+    }
+
     private function prepare(array $item): array
     {
         if (!$this->export) {
@@ -166,6 +184,8 @@ class CompaniesModelCompanies extends ListModel
         $this->setState('filter.city', $city);
         $in_project = $this->getUserStateFromRequest($this->context . '.filter.in_project', 'filter_in_project', '', 'string');
         $this->setState('filter.in_project', $in_project);
+        $not_in_project = $this->getUserStateFromRequest($this->context . '.filter.not_in_project', 'filter_not_in_project', '', 'string');
+        $this->setState('filter.not_in_project', $not_in_project);
         parent::populateState($ordering, $direction);
         CompaniesHelper::check_refresh();
     }
@@ -177,6 +197,7 @@ class CompaniesModelCompanies extends ListModel
         $id .= ':' . $this->getState('filter.state');
         $id .= ':' . $this->getState('filter.city');
         $id .= ':' . $this->getState('filter.in_project');
+        $id .= ':' . $this->getState('filter.not_in_project');
         return parent::getStoreId($id);
     }
 
