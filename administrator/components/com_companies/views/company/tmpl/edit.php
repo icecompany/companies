@@ -20,8 +20,8 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                 <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general', JText::sprintf('COM_COMPANIES_TAB_COMPANY_GENERAL')); ?>
                 <div class="row-fluid">
                     <div class="span4">
-                        <div><?php echo $this->loadTemplate('params'); ?></div>
                         <div><?php echo $this->loadTemplate('general'); ?></div>
+                        <div><?php echo $this->loadTemplate('params'); ?></div>
                     </div>
                     <div class="span4">
                         <div><?php echo $this->loadTemplate('legal_address'); ?></div>
@@ -29,7 +29,6 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                         <div><?php echo $this->loadTemplate('contacts'); ?></div>
                     </div>
                     <div class="span4">
-                        <div><?php echo $this->loadTemplate('active_contracts'); ?></div>
                         <div><?php echo $this->loadTemplate('bank'); ?></div>
                         <?php if ($this->item->id !== null): ?>
                             <div><?php echo $this->loadTemplate('contracts'); ?></div>

@@ -2,10 +2,6 @@
 <form addrulepath="/administrator/components/com_companies/models/rules">
     <fieldset name="params">
         <field
-                name="id"
-                type="hidden"
-        />
-        <field
                 name="is_contractor"
                 type="radio"
                 class="btn-group btn-group-yesno"
@@ -20,17 +16,9 @@
         </field>
         <field
                 name="is_ndp"
-                type="radio"
-                class="btn-group btn-group-yesno"
+                type="hidden"
                 default="0"
-                label="COM_COMPANIES_FORM_COMPANY_NDP_LABEL"
-                description="COM_COMPANIES_FORM_COMPANY_NDP_DESC"
-                required="true"
-                filter="bool"
-        >
-            <option value="0">JNO</option>
-            <option value="1">JYES</option>
-        </field>
+        />
         <field
                 name="parentID"
                 type="list"
@@ -40,6 +28,10 @@
         >
             <option value=""></option>
         </field>
+        <field
+                name="id"
+                type="hidden"
+        />
     </fieldset>
     <fieldset name="general">
         <field
