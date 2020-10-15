@@ -56,7 +56,7 @@ class CompaniesModelCompany extends AdminModel {
         $complainID = $app->getUserState("company.complainID", 0);
         if ($s1 && $data['id'] === null && $complainID > 0) {
             $table = JTable::getInstance('Complain', 'TableCompanies');
-            $table->delete($complainID);
+            if ($table->delete($complainID)) $app->setUserState("company.complainID", '');
         }
         //Пишем в историю
         if ($s1 && $s2 && $s3) {
