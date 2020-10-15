@@ -20,7 +20,7 @@ foreach ($this->items as $i => $item) :
                     <thead>
                         <tr>
                             <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_COMPANIES_TITLE');?></th>
-                            <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_COMPLAIN_PERCENT');?></th>
+                            <th style="width: 5%;"><?php echo JText::sprintf('COM_COMPANIES_HEAD_COMPLAIN_PERCENT');?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +32,13 @@ foreach ($this->items as $i => $item) :
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            <?php } else echo JText::sprintf('COM_COMPANIES_MESSAGE_NOT_COMPLAIN'); ?>
+            <?php } else {
+                $title = urlencode($item['old_title']);
+                $url = JRoute::_("index.php?option=com_companies&amp;task=company.add&amp;title={$title}&amp;complainID={$item['id']}&amp;return={$this->return}");
+                $link = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_COMPANY_WITH_NAME'));
+                echo sprintf("%s. %s", JText::sprintf('COM_COMPANIES_MESSAGE_NOT_COMPLAIN'), $link);
+            }
+            ?>
         </td>
         <td>
             <?php echo $item['id'];?>

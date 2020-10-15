@@ -6,7 +6,7 @@ defined('_JEXEC') or die;
 class CompaniesViewComplain extends HtmlView
 {
     protected $sidebar = '';
-    public $items, $pagination, $state, $filterForm, $activeFilters;
+    public $items, $pagination, $state, $filterForm, $activeFilters, $return;
 
     public function display($tpl = null)
     {
@@ -15,6 +15,7 @@ class CompaniesViewComplain extends HtmlView
         $this->state = $this->get('State');
         $this->filterForm = $this->get('FilterForm');
         $this->activeFilters = $this->get('ActiveFilters');
+        $this->return = CompaniesHelper::getReturnUrl();
 
         // Show the toolbar
         $this->toolbar();

@@ -8,6 +8,18 @@ class CompaniesControllerCompany extends FormController {
         return parent::display($cachable, $urlparams);
     }
 
+    public function add()
+    {
+        $app = JFactory::getApplication();
+        $title = $app->input->getString('title');
+        $complainID = $app->input->getInt('complainID', 0);
+        if (!empty($title)) {
+            $app->setUserState($this->context . ".title", urldecode($title));
+            if ($complainID > 0) $app->setUserState($this->context . ".complainID", $complainID);
+        }
+        return parent::add();
+    }
+
     public function add_contract()
     {
         $referer = JUri::getInstance($_SERVER['HTTP_REFERER']);

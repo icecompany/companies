@@ -23,6 +23,14 @@ class CompaniesModelCompany extends AdminModel {
             //История участия в форумах
             $item->armies = $this->loadArmies($item->id);
         }
+        else {
+            $app = JFactory::getApplication();
+            $title = $app->getUserState("company.title");
+            if (!empty($title)) {
+                $item->title = $title;
+                $app->setUserState("company.title", "");
+            }
+        }
         //Города, по умолчанию - Москва
         $legal_city = $this->loadCity(($item->legal_city !== null) ? $item->legal_city : 4400);
         $item->hidden_legal_city_id = $legal_city->id;
@@ -43,6 +51,13 @@ class CompaniesModelCompany extends AdminModel {
         $companyID = $data['id'] ?? JFactory::getDbo()->insertid();
         $s2 = $this->saveParentID((int) $companyID, (int) $data['parentID'] ?? 0);
         $s3 = $this->saveActivities((int) $companyID, (array) $data['activities'] ?? array());
+        //Удаляем компанию из списка для сравнения
+        $app = JFactory::getApplication();
+        $complainID = $app->getUserState("company.complainID", 0);
+        if ($data['id'] === null && $complainID > 0) {
+            $table = JTable::getInstance('Complain', 'TableCompanies');
+            $table->delete($complainID);
+        }
         //Пишем в историю
         if ($s1 && $s2 && $s3) {
             $hst = [];
