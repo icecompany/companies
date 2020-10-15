@@ -54,7 +54,7 @@ class CompaniesModelCompany extends AdminModel {
         //Удаляем компанию из списка для сравнения
         $app = JFactory::getApplication();
         $complainID = $app->getUserState("company.complainID", 0);
-        if ($data['id'] === null && $complainID > 0) {
+        if ($s1 && $data['id'] === null && $complainID > 0) {
             $table = JTable::getInstance('Complain', 'TableCompanies');
             $table->delete($complainID);
         }
