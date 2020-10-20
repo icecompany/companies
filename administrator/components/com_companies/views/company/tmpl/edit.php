@@ -26,18 +26,24 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                     <div class="span4">
                         <div><?php echo $this->loadTemplate('legal_address'); ?></div>
                         <div><?php echo $this->loadTemplate('fact_address'); ?></div>
-                        <div><?php echo $this->loadTemplate('contacts'); ?></div>
                     </div>
                     <div class="span4">
                         <?php if ($this->item->id === null): ?>
                             <div><?php echo $this->loadTemplate('search'); ?></div>
                         <?php endif;?>
-                        <?php if ($this->item->id !== null): ?>
-                            <div><?php echo $this->loadTemplate('contracts'); ?></div>
-                        <?php endif;?>
+                        <div><?php echo $this->loadTemplate('contacts'); ?></div>
                     </div>
                 </div>
                 <?php echo JHtml::_('bootstrap.endTab'); ?>
+                <?php if ($this->item->id !== null): ?>
+                    <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'contracts', JText::sprintf('COM_COMPANIES_TAB_COMPANY_CONTRACTS')); ?>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div><?php echo $this->loadTemplate('contracts'); ?></div>
+                        </div>
+                    </div>
+                    <?php echo JHtml::_('bootstrap.endTab'); ?>
+                <?php endif;?>
                 <?php if ($this->item->id !== null): ?>
                     <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'children', JText::sprintf('COM_COMPANIES_TAB_COMPANY_CHILDREN')); ?>
                     <div class="row-fluid">

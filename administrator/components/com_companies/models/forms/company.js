@@ -35,6 +35,7 @@ let Company = {
                 url.href = `index.php?option=com_companies&task=company.edit&id=${obj.id}`;
                 url.target = "_blank";
                 url.text = obj.title;
+                url.style.color = 'red';
                 td1.appendChild(url);
                 let td2 = document.createElement('td');
                 td2.innerText = obj.city;
