@@ -7,9 +7,9 @@ defined('_JEXEC') or die;
     <tr>
         <th><?php echo JText::sprintf('COM_MKV_HEAD_PROJECT');?></th>
         <th><?php echo JText::sprintf('COM_MKV_HEAD_STATUS');?></th>
-        <th><?php echo JText::sprintf('COM_MKV_HEAD_MANAGER');?></th>
-        <th><?php echo JText::sprintf('COM_MKV_HEAD_CONTRACT_NUMBER');?></th>
         <th><?php echo JText::sprintf('COM_MKV_HEAD_STANDS');?></th>
+        <th><?php echo JText::sprintf('COM_MKV_HEAD_AMOUNT');?></th>
+        <th><?php echo JText::sprintf('COM_MKV_HEAD_MANAGER');?></th>
     </tr>
     </thead>
     <tbody>
@@ -17,9 +17,9 @@ defined('_JEXEC') or die;
         <tr>
             <td><?php echo $contract['project'];?></td>
             <td><?php echo $contract['status_link'];?></td>
-            <td><?php echo $contract['manager'];?></td>
-            <td><?php echo $contract['number'];?></td>
             <td><?php echo $contract['stands'];?></td>
+            <td><?php echo $contract['amount_full'];?></td>
+            <td><?php echo $contract['manager'];?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
