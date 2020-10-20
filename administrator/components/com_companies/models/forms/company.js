@@ -22,6 +22,28 @@ let Company = {
             UI.Fields.unlock(UI.Fields.par);
         }
     },
+    searchDuplicate: function (title) {
+        let id = document.querySelector("#jform_hidden_parent_id").value;
+        if (id !== '') return true;
+        jQuery.getJSON(`${url_exhibitors}&search=${title}`, function (json) {
+            let tbl = document.querySelector("#search-result > tbody");
+            jQuery(tbl).empty();
+            jQuery.each(json.data, function (idx, obj) {
+                let tr = document.createElement('tr');
+                let td1 = document.createElement('td');
+                let url = document.createElement('a');
+                url.href = `index.php?option=com_companies&task=company.edit&id=${obj.id}`;
+                url.target = "_blank";
+                url.text = obj.title;
+                td1.appendChild(url);
+                let td2 = document.createElement('td');
+                td2.innerText = obj.city;
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tbl.appendChild(tr);
+            })
+        })
+    },
 };
 
 let Legal_city = {

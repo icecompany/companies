@@ -47,6 +47,7 @@
                 value="varchar"
                 maxlength="255"
                 class="span12"
+                onchange="Company.searchDuplicate(this.value)"
         />
         <field
                 name="title_en"
@@ -405,6 +406,7 @@
                 maxlength="255"
                 value="varchar"
                 class="span12"
+                onchange="Company.searchDuplicate(this.value)"
         />
         <field
                 name="associations"

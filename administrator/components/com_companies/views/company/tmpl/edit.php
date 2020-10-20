@@ -29,6 +29,9 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                         <div><?php echo $this->loadTemplate('contacts'); ?></div>
                     </div>
                     <div class="span4">
+                        <?php if ($this->item->id === null): ?>
+                            <div><?php echo $this->loadTemplate('search'); ?></div>
+                        <?php endif;?>
                         <?php if ($this->item->id !== null): ?>
                             <div><?php echo $this->loadTemplate('contracts'); ?></div>
                         <?php endif;?>
