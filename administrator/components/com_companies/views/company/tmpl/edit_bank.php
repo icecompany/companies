@@ -1,7 +1,6 @@
 <?php
 defined('_JEXEC') or die;
 ?>
-<div class="center"><h2><?php echo JText::sprintf('COM_COMPANIES_LAYOUT_COMPANY_BANK'); ?></h2></div>
 <fieldset class="adminform">
     <div class="control-group form-inline">
         <?php foreach ($this->form->getFieldset('bank') as $field) : ?>

@@ -29,7 +29,6 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                         <div><?php echo $this->loadTemplate('contacts'); ?></div>
                     </div>
                     <div class="span4">
-                        <div><?php echo $this->loadTemplate('bank'); ?></div>
                         <?php if ($this->item->id !== null): ?>
                             <div><?php echo $this->loadTemplate('contracts'); ?></div>
                         <?php endif;?>
@@ -50,6 +49,15 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                     <div class="row-fluid">
                         <div class="span12">
                             <div><?php echo $this->loadTemplate('persons'); ?></div>
+                        </div>
+                    </div>
+                    <?php echo JHtml::_('bootstrap.endTab'); ?>
+                <?php endif;?>
+                <?php if ($this->item->id !== null): ?>
+                    <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'bank', JText::sprintf('COM_COMPANIES_TAB_COMPANY_BANK')); ?>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div><?php echo $this->loadTemplate('bank'); ?></div>
                         </div>
                     </div>
                     <?php echo JHtml::_('bootstrap.endTab'); ?>
