@@ -18,6 +18,11 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
             <?php echo JText::sprintf('COM_COMPANIES_HEAD_COMPANIES_IN_PROJECT');?>
         </th>
     <?php endif;?>
+    <?php if (is_numeric($this->notInProject)): ?>
+        <th>
+            <?php echo JText::sprintf('COM_COMPANIES_BUTTON_ADD_CONTRACT');?>
+        </th>
+    <?php endif;?>
     <th>
         <?php echo JHtml::_('searchtools.sort', 'COM_COMPANIES_HEAD_COMPANIES_CITY', 'city', $listDirn, $listOrder); ?>
     </th>

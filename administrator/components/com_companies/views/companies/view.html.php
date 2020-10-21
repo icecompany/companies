@@ -6,7 +6,7 @@ defined('_JEXEC') or die;
 class CompaniesViewCompanies extends HtmlView
 {
     protected $sidebar = '';
-    public $items, $pagination, $uid, $state, $filterForm, $activeFilters;
+    public $items, $pagination, $uid, $state, $filterForm, $activeFilters, $notInProject;
 
     public function display($tpl = null)
     {
@@ -15,6 +15,7 @@ class CompaniesViewCompanies extends HtmlView
         $this->state = $this->get('State');
         $this->filterForm = $this->get('FilterForm');
         $this->activeFilters = $this->get('ActiveFilters');
+        $this->notInProject = $this->state->get('filter.not_in_project');
         $this->filterForm->addFieldPath(JPATH_ADMINISTRATOR . "/components/com_prj/models/fields");
 
         // Show the toolbar

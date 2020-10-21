@@ -105,7 +105,7 @@ class CompaniesModelCompanies extends ListModel
                     ->select("sip.title as status_in_project")
                     ->leftJoin("#__mkv_contracts cip on cip.companyID = e.id")
                     ->leftJoin("#__mkv_contract_statuses sip on sip.code = cip.status")
-                    ->where("(cip.projectID = {$this->_db->q($in_project)} and cip.id is not null)");
+                    ->where("(cip.projectID = {$this->_db->q($in_project)} and cip.id is not null and cip.status in (1, 5, 6, 9, 10))");
             }
             $not_in_project = $this->getState('filter.not_in_project');
             if (is_numeric($not_in_project)) {
@@ -127,6 +127,7 @@ class CompaniesModelCompanies extends ListModel
         $items = parent::getItems();
         $result = array('items' => array());
         $return = CompaniesHelper::getReturnUrl();
+        $not = $this->state->get('filter.not_in_project');
         foreach ($items as $item) {
             $arr = array();
             $arr['id'] = $item->id;
@@ -137,6 +138,11 @@ class CompaniesModelCompanies extends ListModel
             if (is_numeric($this->state->get('filter.in_project'))) {
                 $url = JRoute::_("index.php?option=com_contracts&amp;task=contract.edit&amp;id={$item->contractID_in_project}&amp;return={$return}");
                 $arr['in_project'] = JHtml::link($url, $item->status_in_project ?? JText::sprintf('COM_MKV_STATUS_IN_PROJECT'));
+            }
+            $arr['manager'] = $item->manager ?? JText::sprintf('COM_COMPANIES_MESSAGE_UNKNOWN');
+            if (is_numeric($not)) {
+                $url = JRoute::_("index.php?option=com_contracts&amp;task=contract.add&amp;companyID={$item->id}&amp;projectID={$not}&amp;return={$return}");
+                $arr['not_in_project'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_BUTTON_ADD_CONTRACT'));
             }
             $arr['manager'] = $item->manager ?? JText::sprintf('COM_COMPANIES_MESSAGE_UNKNOWN');
             $result['items'][] = $this->prepare($arr);

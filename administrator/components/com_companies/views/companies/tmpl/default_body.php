@@ -19,6 +19,11 @@ foreach ($this->items['items'] as $i => $item) :
                 <?php echo $item['in_project'];?>
             </td>
         <?php endif;?>
+        <?php if (is_numeric($this->notInProject)): ?>
+            <td>
+                <?php echo $item['not_in_project'];?>
+            </td>
+        <?php endif;?>
         <td>
             <?php echo $item['city'];?>
         </td>
