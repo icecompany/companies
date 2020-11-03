@@ -36,7 +36,7 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                 </div>
                 <?php echo JHtml::_('bootstrap.endTab'); ?>
                 <?php if ($this->item->id !== null): ?>
-                    <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'contracts', JText::sprintf('COM_COMPANIES_TAB_COMPANY_CONTRACTS')); ?>
+                    <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'contracts', JText::sprintf('COM_COMPANIES_TAB_COMPANY_IN_CONTRACTS')); ?>
                     <div class="row-fluid">
                         <div class="span12">
                             <div><?php echo $this->loadTemplate('contracts'); ?></div>
