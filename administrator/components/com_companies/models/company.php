@@ -22,6 +22,8 @@ class CompaniesModelCompany extends AdminModel {
             $item->sisters = $this->loadSisters($item->id);
             //История участия в форумах
             $item->armies = $this->loadArmies($item->id);
+            //История участия в чужих форумах
+            $item->other_projects = $this->loadOtherProjects($item->id);
         }
         else {
             $app = JFactory::getApplication();
@@ -96,6 +98,8 @@ class CompaniesModelCompany extends AdminModel {
         $links['parent_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_CHILD'));
         $url = JRoute::_("index.php?option={$this->option}&amp;task=army.add&amp;companyID={$item->id}&amp;return={$return}");
         $links['army_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_ARMY'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=otherProject.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['other_project_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_OTHER_PROJECT'));
 
         return $links;
     }
@@ -225,22 +229,21 @@ class CompaniesModelCompany extends AdminModel {
         }
     }
 
-    public function getScript()
-    {
-        return 'administrator/components/' . $this->option . '/models/forms/company.js';
-    }
-
     private function loadContacts(int $companyID): array
     {
-        $params = array('companyID' => $companyID);
-        $model = ListModel::getInstance('Contacts', 'CompaniesModel', $params);
+        $model = ListModel::getInstance('Contacts', 'CompaniesModel', ['companyID' => $companyID]);
+        return $model->getItems();
+    }
+
+    private function loadOtherProjects(int $companyID): array
+    {
+        $model = ListModel::getInstance('OtherProjects', 'CompaniesModel', ['companyID' => $companyID]);
         return $model->getItems();
     }
 
     private function loadActivities(int $companyID)
     {
-        $params = array('companyID' => $companyID);
-        $model = ListModel::getInstance('Companies_activities', 'CompaniesModel', $params);
+        $model = ListModel::getInstance('Companies_activities', 'CompaniesModel', ['companyID' => $companyID]);
         $items = $model->getItems();
         $ids = array();
         foreach ($items as $item) {
@@ -318,6 +321,12 @@ class CompaniesModelCompany extends AdminModel {
     {
         $config = CompaniesHelper::getConfig('settings_company_required_fields');
         return ($config !== null) ? $config : array();
+    }
+
+
+    public function getScript()
+    {
+        return 'administrator/components/' . $this->option . '/models/forms/company.js';
     }
 
 }

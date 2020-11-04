@@ -41,6 +41,9 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                     <div class="row-fluid">
                         <div class="span12">
                             <div><?php echo $this->loadTemplate('contracts'); ?></div>
+                            <?php if (CompaniesHelper::canDo('core.access.dossier')): ?>
+                                <div><?php echo $this->loadTemplate('contracts_other'); ?></div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <?php echo JHtml::_('bootstrap.endTab'); ?>

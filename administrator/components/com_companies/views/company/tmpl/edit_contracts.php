@@ -1,6 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 ?>
+<div class="center"><h2><?php echo JText::sprintf('COM_COMPANIES_LAYOUT_COMPANY_OUR_PROJECTS'); ?></h2></div>
 <table class="table table-stripped">
     <thead>
     <tr>
