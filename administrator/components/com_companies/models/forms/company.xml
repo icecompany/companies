@@ -275,6 +275,38 @@
                 class="span12"
         />
     </fieldset>
+    <fieldset name="dossier_moscow_office">
+        <field
+                name="moscow_office_index"
+                type="text"
+                label="COM_COMPANIES_FORM_COMPANY_MOSCOW_OFFICE_INDEX_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_MOSCOW_OFFICE_INDEX_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_OFFICE_INDEX_HINT"
+                message="COM_COMPANIES_FORM_COMPANY_MOSCOW_OFFICE_INDEX_MESSAGE"
+                validate="index"
+                maxlength="6"
+                autocomplete="false"
+                class="span12"
+        />
+        <field
+                name="moscow_office_street"
+                type="text"
+                label="COM_COMPANIES_FORM_COMPANY_MOSCOW_OFFICE_STREET_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_MOSCOW_OFFICE_STREET_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_OFFICE_STREET_HINT"
+                autocomplete="false"
+                class="span12"
+        />
+        <field
+                name="moscow_office_house"
+                type="text"
+                label="COM_COMPANIES_FORM_COMPANY_MOSCOW_OFFICE_HOUSE_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_MOSCOW_OFFICE_HOUSE_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_OFFICE_HOUSE_HINT"
+                autocomplete="false"
+                class="span12"
+        />
+    </fieldset>
     <fieldset name="contacts">
         <field
                 name="phone_1"

@@ -157,7 +157,12 @@ let UI = {
         let fact = jQuery("#jform_fact_city");
         fact.append(`<option value="${id}" selected>${city}</option>`);
         fact.trigger("liszt:updated");
-    }
+    },
+    copy_addr_to_moscow: function () {
+        document.querySelector("#jform_moscow_office_index").value = document.querySelector("#jform_fact_index").value;
+        document.querySelector("#jform_moscow_office_street").value = document.querySelector("#jform_fact_street").value;
+        document.querySelector("#jform_moscow_office_house").value = document.querySelector("#jform_fact_house").value;
+    },
 };
 
 window.onload = function () {
@@ -175,6 +180,8 @@ window.onload = function () {
     UI.Fields.main_office_city.inp = document.querySelector("#jform_main_office_city_chzn .chzn-drop .chzn-search input");
     UI.Links.copy_addr = document.querySelector("#copy_addr");
     UI.Links.copy_addr.addEventListener('click', UI.copy_addr);
+    UI.Links.copy_addr_to_moscow = document.querySelector("#copy_addr_to_moscow");
+    UI.Links.copy_addr_to_moscow.addEventListener('click', UI.copy_addr_to_moscow);
     UI.Fields.unlock(UI.Fields.par);
     UI.Fields.unlock(UI.Fields.legal_city);
     UI.Fields.unlock(UI.Fields.fact_city);

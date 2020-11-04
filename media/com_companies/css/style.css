@@ -3,11 +3,11 @@ div.copy_addr {
   padding: 2px;
 }
 
-#copy_addr {
+#copy_addr, #copy_addr_to_moscow {
   cursor: pointer;
   color: #2a67a7;
 }
-#copy_addr:hover {
+#copy_addr:hover, #copy_addr_to_moscow:hover {
   text-decoration: underline;
 }
 

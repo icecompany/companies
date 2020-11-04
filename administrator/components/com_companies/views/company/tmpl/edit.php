@@ -26,6 +26,7 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                     <div class="span4">
                         <div><?php echo $this->loadTemplate('legal_address'); ?></div>
                         <div><?php echo $this->loadTemplate('fact_address'); ?></div>
+                        <div><?php echo $this->loadTemplate('dossier_moscow_office'); ?></div>
                     </div>
                     <div class="span4">
                         <?php if ($this->item->id === null): ?>
@@ -79,7 +80,6 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                         </div>
                         <div class="span6">
                             <div><?php echo $this->loadTemplate('dossier_main_office'); ?></div>
-                            <div><?php echo $this->loadTemplate('dossier_moscow_office'); ?></div>
                             <div><?php echo $this->loadTemplate('armies'); ?></div>
                         </div>
                     </div>
