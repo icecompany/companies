@@ -11,8 +11,18 @@ class JFormFieldContact extends JFormFieldList
     protected function getOptions()
     {
         $app = JFactory::getApplication();
+        $view = $app->input->getString('task', null);
         $fq = $app->input->getInt('contractID', null);
-        $contract = $this->getContract($fq ?? $app->getUserState("com_scheduler.task.contractID"));
+        $taskID = $app->input->getInt('id', 0);
+        if ($view === 'task' && $taskID > 0)
+        {
+            $contractID = $this->getContract($taskID);
+        }
+        else {
+            $contractID = $fq ?? $app->getUserState("com_scheduler.task.contractID");
+        }
+
+        $contract = $this->getContract($contractID);
         $companyID = $contract->companyID;
 
         $db = JFactory::getDbo();
@@ -37,6 +47,14 @@ class JFormFieldContact extends JFormFieldList
         }
 
         return $options;
+    }
+
+    private function getTask(int $taskID = 0)
+    {
+        JTable::addIncludePath(JPATH_ADMINISTRATOR . "/components/com_scheduler/tables");
+        $table = JTable::getInstance('Scheduler', 'TableScheduler');
+        $table->load($taskID);
+        return $table->contractID;
     }
 
     private function getContract(int $contractID)
