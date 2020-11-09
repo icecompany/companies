@@ -2,7 +2,7 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\MVC\View\HtmlView;
 
-class CompaniesViewClient extends HtmlView {
+class CompaniesViewCooperation extends HtmlView {
     protected $item, $form, $script;
 
     public function display($tmp = null) {
@@ -17,14 +17,14 @@ class CompaniesViewClient extends HtmlView {
     }
 
     protected function addToolbar() {
-	    JToolBarHelper::apply('client.apply', 'JTOOLBAR_APPLY');
-        JToolbarHelper::save('client.save', 'JTOOLBAR_SAVE');
-        JToolbarHelper::cancel('client.cancel', 'JTOOLBAR_CLOSE');
+	    JToolBarHelper::apply('cooperation.apply', 'JTOOLBAR_APPLY');
+        JToolbarHelper::save('cooperation.save', 'JTOOLBAR_SAVE');
+        JToolbarHelper::cancel('cooperation.cancel', 'JTOOLBAR_CLOSE');
     }
 
     protected function setDocument() {
-        $title = JText::sprintf('COM_COMPANIES_TITLE_EDIT_CLIENT', $this->item->company);
-        JToolbarHelper::title($title, 'user');
+        $title = JText::sprintf('COM_COMPANIES_TITLE_EDIT_COOPERATION', $this->item->company);
+        JToolbarHelper::title($title, 'search');
         JHtml::_('bootstrap.framework');
     }
 }

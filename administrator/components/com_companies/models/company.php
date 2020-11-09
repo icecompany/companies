@@ -102,6 +102,8 @@ class CompaniesModelCompany extends AdminModel {
         $links['other_project_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_OTHER_PROJECT'));
         $url = JRoute::_("index.php?option={$this->option}&amp;task=client.add&amp;companyID={$item->id}&amp;return={$return}");
         $links['client_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=cooperation.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['cooperation_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
 
         return $links;
     }
@@ -190,6 +192,14 @@ class CompaniesModelCompany extends AdminModel {
         $item = parent::getItem();
         if ($item->id === null) return [];
         $model = ListModel::getInstance('Clients', 'CompaniesModel', ['companyID' => $item->id, 'ignore_request' => true]);
+        return $model->getItems();
+    }
+
+    public function getCooperations(): array
+    {
+        $item = parent::getItem();
+        if ($item->id === null) return [];
+        $model = ListModel::getInstance('Cooperations', 'CompaniesModel', ['companyID' => $item->id, 'ignore_request' => true]);
         return $model->getItems();
     }
 

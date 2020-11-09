@@ -1,6 +1,11 @@
 <?php
 defined('_JEXEC') or die;
 ?>
-<div>
-    <?php echo $this->loadTemplate('clients');?>
+<div class="span12">
+    <div class="span6">
+        <?php echo $this->loadTemplate('clients');?>
+    </div>
+    <div class="span6">
+        <?php echo $this->loadTemplate('cooperations');?>
+    </div>
 </div>

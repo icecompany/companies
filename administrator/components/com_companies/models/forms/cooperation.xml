@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_companies/models/rules">
+    <fieldset name="general">
+        <field
+                name="clientID"
+                type="list"
+                label="COM_COMPANIES_FORM_COOPERATION_COMPANY_LABEL"
+                description="COM_COMPANIES_FORM_COOPERATION_COMPANY_DESC"
+                class="span12"
+        >
+            <option value=""></option>
+        </field>
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="hidden_client_id"
+                type="hidden"
+        />
+        <field
+                name="hidden_client_title"
+                type="hidden"
+        />
+        <field
+                name="companyID"
+                type="hidden"
+        />
+    </fieldset>
+</form>
