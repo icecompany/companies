@@ -75,7 +75,7 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                     </div>
                     <?php echo JHtml::_('bootstrap.endTab'); ?>
                 <?php endif;?>
-                <?php if ($this->item->id !== null && CompaniesHelper::canDo('core.access.dossier')): ?>
+                <?php if ($this->item->id !== null): ?>
                     <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'audience', JText::sprintf('COM_COMPANIES_TAB_COMPANY_AUDIENCE')); ?>
                     <div class="row-fluid">
                         <div class="span12">
