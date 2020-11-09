@@ -8,6 +8,7 @@ defined('_JEXEC') or die;
         <thead>
         <tr>
             <th><?php echo JText::sprintf('COM_MKV_HEAD_COMPANY');?></th>
+            <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_COMPANIES_CITY_SIMPLE');?></th>
             <th style="width: 5%;"><?php echo JText::sprintf('COM_COMPANIES_HEAD_DELETE');?></th>
         </tr>
         </thead>
@@ -15,6 +16,7 @@ defined('_JEXEC') or die;
         <?php foreach ($this->clients['client'] as $client): ?>
             <tr>
                 <td><?php echo $client['company_link'];?></td>
+                <td><?php echo $client['city'];?></td>
                 <td><?php echo $client['delete_link'];?></td>
             </tr>
         <?php endforeach; ?>
@@ -28,6 +30,7 @@ defined('_JEXEC') or die;
         <thead>
         <tr>
             <th><?php echo JText::sprintf('COM_MKV_HEAD_COMPANY');?></th>
+            <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_COMPANIES_CITY_SIMPLE');?></th>
             <th style="width: 5%;"><?php echo JText::sprintf('COM_COMPANIES_HEAD_DELETE');?></th>
         </tr>
         </thead>
@@ -35,6 +38,7 @@ defined('_JEXEC') or die;
         <?php foreach ($this->clients['parent'] as $client): ?>
             <tr>
                 <td><?php echo $client['company_link'];?></td>
+                <td><?php echo $client['city'];?></td>
                 <td><?php echo $client['delete_link'];?></td>
             </tr>
         <?php endforeach; ?>

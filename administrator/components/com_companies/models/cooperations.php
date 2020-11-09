@@ -27,9 +27,13 @@ class CompaniesModelCooperations extends ListModel
             ->select("cl.id, cl.companyID, cl.clientID")
             ->select("p.title as parent")
             ->select("d.title as client")
+            ->select("c1.name as city_parent")
+            ->select("c2.name as city_client")
             ->from("#__mkv_companies_cooperation cl")
             ->leftJoin("#__mkv_companies as p on p.id = cl.companyID")
-            ->leftJoin("#__mkv_companies as d on d.id = cl.clientID");
+            ->leftJoin("#__mkv_companies as d on d.id = cl.clientID")
+            ->leftJoin("#__grph_cities c1 on c1.id = p.fact_city")
+            ->leftJoin("#__grph_cities c2 on c2.id = d.fact_city");
 
         $this->setState('list.limit', 0);
 
@@ -52,6 +56,7 @@ class CompaniesModelCooperations extends ListModel
             $url_parent = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item->companyID}&amp;return={$return}");
             $url_client = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item->clientID}&amp;return={$return}");
             $type = ($item->companyID != $this->companyID) ? 'parent' : 'client';
+            $arr["city"] = ($item->companyID != $this->companyID) ? $item->city_parent : $item->city_client;
             $arr['company_link'] = JHtml::link(($item->companyID != $this->companyID) ? $url_parent : $url_client, ($item->companyID != $this->companyID) ? $item->parent : $item->client);
             $url = JRoute::_("index.php?option={$this->option}&amp;task=cooperations.delete&amp;cid[]={$item->id}&amp;return={$return}");
             $arr['delete_link'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_HEAD_DELETE'));
