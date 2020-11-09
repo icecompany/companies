@@ -56,6 +56,7 @@ class CompaniesModelCooperations extends ListModel
             $url_parent = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item->companyID}&amp;return={$return}");
             $url_client = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item->clientID}&amp;return={$return}");
             $type = ($item->companyID != $this->companyID) ? 'parent' : 'client';
+            $arr['activities'] = $this->getActivities(($item->companyID != $this->companyID) ? $item->companyID : $item->clientID);
             $arr["city"] = ($item->companyID != $this->companyID) ? $item->city_parent : $item->city_client;
             $arr['company_link'] = JHtml::link(($item->companyID != $this->companyID) ? $url_parent : $url_client, ($item->companyID != $this->companyID) ? $item->parent : $item->client);
             $url = JRoute::_("index.php?option={$this->option}&amp;task=cooperations.delete&amp;cid[]={$item->id}&amp;return={$return}");
@@ -64,6 +65,21 @@ class CompaniesModelCooperations extends ListModel
         }
         return $result;
     }
+
+    private function getActivities(int $companyID): string
+    {
+        $am = ListModel::getInstance('Companies_Activities', 'CompaniesModel', ['companyID' => $companyID]);
+        $activities = $am->getItems();
+        $result = [];
+        if (empty($activities)) return '';
+        foreach ($activities as $activity) {
+            $table = JTable::getInstance('Activities', 'TableCompanies');
+            $table->load($activity['activityID']);
+            $result[] = $table->title;
+        }
+        return implode(', ', $result);
+    }
+
 
     /* Сортировка по умолчанию */
     protected function populateState($ordering = 'd.title', $direction = 'ASC')
