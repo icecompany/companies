@@ -63,6 +63,7 @@ class TableCompaniesCompanies extends Table
     var $moscow_office_index = null;
     var $moscow_office_street = null;
     var $moscow_office_house = null;
+    var $targets = null;
     var $comment = null;
     var $published = null;
 	/**

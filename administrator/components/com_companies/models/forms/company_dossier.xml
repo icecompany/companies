@@ -24,6 +24,18 @@
                 type="hidden"
         />
     </fieldset>
+    <fieldset name="audience">
+        <field
+                name="targets"
+                type="textarea"
+                label="COM_COMPANIES_FORM_COMPANY_TARGETS_LABEL"
+                description="COM_COMPANIES_FORM_COMPANY_TARGETS_DESC"
+                hint="COM_COMPANIES_FORM_COMPANY_TARGETS_HINT"
+                autocomplete="off"
+                rows="3"
+                class="span12"
+        />
+    </fieldset>
     <fieldset name="general">
         <field
                 name="form"
