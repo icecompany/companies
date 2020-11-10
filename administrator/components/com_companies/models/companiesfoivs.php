@@ -26,7 +26,7 @@ class CompaniesModelCompaniesFoivs extends ListModel
         $db = $this->getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select("cf.id, cf.companyID, cf.foivID")
+            ->select("cf.id, cf.companyID, cf.foivID, cf.department, cf.comment")
             ->select("f.title as foiv")
             ->select("e.title as company")
             ->from("#__mkv_companies_foivs cf")
@@ -74,6 +74,8 @@ class CompaniesModelCompaniesFoivs extends ListModel
             $arr['companyID'] = $item->companyID;
             $arr['company'] = $item->company;
             $arr['foiv'] = $item->foiv;
+            $arr['department'] = $item->department;
+            $arr['comment'] = $item->comment;
             $arr['foivID'] = $item->foivID;
             $result[] = $arr;
         }

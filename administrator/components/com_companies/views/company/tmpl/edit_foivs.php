@@ -9,7 +9,9 @@ defined('_JEXEC') or die;
     <table class="table table-stripped">
         <thead>
         <tr>
-            <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_FOIV');?></th>
+            <th style="width: 30%;"><?php echo JText::sprintf('COM_COMPANIES_HEAD_FOIV');?></th>
+            <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_FOIV_DEPARTMENT');?></th>
+            <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_COMMENT');?></th>
             <th style="width: 5%;"><?php echo JText::sprintf('COM_COMPANIES_HEAD_DELETE');?></th>
         </tr>
         </thead>
@@ -17,6 +19,8 @@ defined('_JEXEC') or die;
         <?php foreach ($this->foivs as $foiv): ?>
             <tr>
                 <td><?php echo $foiv['edit_link'];?></td>
+                <td><?php echo $foiv['department'];?></td>
+                <td><?php echo $foiv['comment'];?></td>
                 <td><?php echo $foiv['delete_link'];?></td>
             </tr>
         <?php endforeach; ?>
