@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
     <table class="table table-stripped">
         <thead>
         <tr>
-            <th style="width: 5%"><?php echo JText::sprintf('COM_COMPANIES_HEAD_FOIV');?></th>
+            <th><?php echo JText::sprintf('COM_COMPANIES_HEAD_FOIV');?></th>
             <th style="width: 5%;"><?php echo JText::sprintf('COM_COMPANIES_HEAD_DELETE');?></th>
         </tr>
         </thead>
