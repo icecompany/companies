@@ -104,6 +104,8 @@ class CompaniesModelCompany extends AdminModel {
         $links['client_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
         $url = JRoute::_("index.php?option={$this->option}&amp;task=cooperation.add&amp;companyID={$item->id}&amp;return={$return}");
         $links['cooperation_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=companiesfoiv.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['foiv_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
 
         return $links;
     }
@@ -185,6 +187,14 @@ class CompaniesModelCompany extends AdminModel {
                     if (!$this->deleteActivity($companyID, $item)) return false;
         }
         return true;
+    }
+
+    public function getFoivs(): array
+    {
+        $item = parent::getItem();
+        if ($item->id === null) return [];
+        $model = ListModel::getInstance('CompaniesFoivs', 'CompaniesModel', ['companyID' => $item->id, 'ignore_request' => true]);
+        return $model->getItems();
     }
 
     public function getClients(): array

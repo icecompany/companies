@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_companies/models/rules">
+    <fieldset name="general">
+        <field
+                name="foivID"
+                type="Foiv"
+                label="COM_COMPANIES_FORM_FOIVID_LABEL"
+                description="COM_COMPANIES_FORM_FOIVID_DESC"
+                required="true"
+                class="span12"
+        />
+        <field
+                name="department"
+                type="text"
+                label="COM_COMPANIES_FORM_FOIV_DEPARTMENT_LABEL"
+                description="COM_COMPANIES_FORM_FOIV_DEPARTMENT_DESC"
+                hint="COM_COMPANIES_FORM_FOIV_DEPARTMENT_HINT"
+                autocomplete="off"
+                class="span12"
+        />
+        <field
+                name="comment"
+                type="textarea"
+                label="COM_COMPANIES_FORM_FOIV_COMMENT_LABEL"
+                description="COM_COMPANIES_FORM_FOIV_COMMENT_DESC"
+                hint="COM_COMPANIES_FORM_COMMENT_HINT"
+                rows="3"
+                autocomplete="off"
+                class="span12"
+        />
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="companyID"
+                type="hidden"
+        />
+    </fieldset>
+</form>
