@@ -57,6 +57,7 @@ class CompaniesModelClients extends ListModel
             $url_client = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item->clientID}&amp;return={$return}");
             $type = ($item->companyID != $this->companyID) ? 'parent' : 'client';
             $arr['activities'] = $this->getActivities(($item->companyID != $this->companyID) ? $item->companyID : $item->clientID);
+            $arr['contracts'] = $this->getContracts(($item->companyID != $this->companyID) ? $item->companyID : $item->clientID);
             $arr["city"] = ($item->companyID != $this->companyID) ? $item->city_parent : $item->city_client;
             $arr['company_link'] = JHtml::link(($item->companyID != $this->companyID) ? $url_parent : $url_client, ($item->companyID != $this->companyID) ? $item->parent : $item->client);
             $url = JRoute::_("index.php?option={$this->option}&amp;task=clients.delete&amp;cid[]={$item->id}&amp;return={$return}");
@@ -66,18 +67,25 @@ class CompaniesModelClients extends ListModel
         return $result;
     }
     
-    private function getActivities(int $companyID): string
+    private function getActivities(int $companyID): array
     {
         $am = ListModel::getInstance('Companies_Activities', 'CompaniesModel', ['companyID' => $companyID]);
         $activities = $am->getItems();
         $result = [];
-        if (empty($activities)) return '';
+        if (empty($activities)) return [];
         foreach ($activities as $activity) {
             $table = JTable::getInstance('Activities', 'TableCompanies');
             $table->load($activity['activityID']);
             $result[] = $table->title;
         }
-        return implode(', ', $result);
+        return $result;
+    }
+
+    private function getContracts(int $companyID): array
+    {
+        JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . "/components/com_contracts/models", "ContractsModel");
+        $model = JModelLegacy::getInstance('Contracts', 'ContractsModel', ['companyID' => $companyID, 'ignore_request' => true]);
+        return $model->getItems();
     }
 
     /* Сортировка по умолчанию */
