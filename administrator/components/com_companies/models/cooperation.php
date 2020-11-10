@@ -65,7 +65,7 @@ class CompaniesModelCooperation extends AdminModel {
     {
         $all = get_class_vars($table);
         unset($all['_errors']);
-        $nulls = []; //Поля, которые NULL
+        $nulls = ['comment']; //Поля, которые NULL
         foreach ($all as $field => $v) {
             if (empty($field)) continue;
             if (in_array($field, $nulls)) {

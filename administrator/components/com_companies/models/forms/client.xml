@@ -11,6 +11,16 @@
             <option value=""></option>
         </field>
         <field
+                name="comment"
+                type="textarea"
+                label="COM_COMPANIES_FORM_COOPERATION_COMPANY_LABEL"
+                description="COM_COMPANIES_FORM_COOPERATION_COMPANY_DESC"
+                hint="COM_COMPANIES_FORM_COMMENT_HINT"
+                rows="3"
+                autocomplete="off"
+                class="span12"
+        />
+        <field
                 name="id"
                 type="hidden"
         />

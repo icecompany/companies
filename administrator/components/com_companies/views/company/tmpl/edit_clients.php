@@ -17,7 +17,10 @@ defined('_JEXEC') or die;
         <tbody>
         <?php foreach ($this->clients['client'] as $client): ?>
             <tr>
-                <td><?php echo $client['company_link'];?></td>
+                <td>
+                    <?php echo $client['company_link'];?><br>
+                    <?php echo $client['comment'];?>
+                </td>
                 <td><?php echo $client['city'];?></td>
                 <td>
                     <?php if (!empty($client['contracts']['items'])): ?>
@@ -68,7 +71,10 @@ defined('_JEXEC') or die;
         <tbody>
         <?php foreach ($this->clients['parent'] as $client): ?>
             <tr>
-                <td><?php echo $client['company_link'];?></td>
+                <td>
+                    <?php echo $client['company_link'];?><br>
+                    <?php echo $client['comment'];?>
+                </td>
                 <td><?php echo $client['city'];?></td>
                 <td>
                     <?php if (!empty($client['contracts']['items'])): ?>

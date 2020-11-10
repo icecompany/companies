@@ -9,6 +9,7 @@ class TableCompaniesPartners extends Table
     var $company_1_ID = null;
     var $company_2_ID = null;
     var $type = null;
+    var $comment = null;
 
 	public function __construct(JDatabaseDriver $db)
 	{

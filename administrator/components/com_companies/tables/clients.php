@@ -8,6 +8,7 @@ class TableCompaniesClients extends Table
     var $id = null;
     var $companyID = null;
     var $clientID = null;
+    var $comment = null;
 
 	public function __construct(JDatabaseDriver $db)
 	{

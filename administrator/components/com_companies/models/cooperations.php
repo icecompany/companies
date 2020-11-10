@@ -24,7 +24,7 @@ class CompaniesModelCooperations extends ListModel
         $query = $db->getQuery(true);
 
         $query
-            ->select("cl.id, cl.companyID, cl.clientID")
+            ->select("cl.id, cl.companyID, cl.clientID, cl.comment")
             ->select("p.title as parent")
             ->select("d.title as client")
             ->select("c1.name as city_parent")
@@ -53,6 +53,7 @@ class CompaniesModelCooperations extends ListModel
         foreach ($items as $item) {
             $arr = [];
             $arr['id'] = $item->id;
+            $arr['comment'] = $item->comment;
             $url_parent = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item->companyID}&amp;return={$return}");
             $url_client = JRoute::_("index.php?option={$this->option}&amp;task=company.edit&amp;id={$item->clientID}&amp;return={$return}");
             $type = ($item->companyID != $this->companyID) ? 'parent' : 'client';
