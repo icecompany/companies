@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_companies/models/rules">
+    <fieldset name="general">
+        <field
+                name="company_2_ID"
+                type="list"
+                label="COM_COMPANIES_FORM_PARTNER_COMPANY_LABEL"
+                description="COM_COMPANIES_FORM_PARTNER_COMPANY_DESC"
+                class="span12"
+        >
+            <option value=""></option>
+        </field>
+        <field
+                name="type"
+                type="list"
+                label="COM_COMPANIES_FORM_PARTNER_TYPE_LABEL"
+                description="COM_COMPANIES_FORM_PARTNER_TYPE_DESC"
+                class="span12"
+                required="true"
+                >
+            <option value="partner">COM_COMPANIES_FORM_PARTNER_TYPE_PARTNER</option>
+            <option value="competitor">COM_COMPANIES_FORM_PARTNER_TYPE_COMPETITOR</option>
+        </field>
+        <field
+                name="comment"
+                type="textarea"
+                label="COM_COMPANIES_FORM_PARTNER_COMMENT_LABEL"
+                description="COM_COMPANIES_FORM_PARTNER_COMMENT_DESC"
+                hint="COM_COMPANIES_FORM_COMMENT_HINT"
+                rows="3"
+                autocomplete="off"
+                class="span12"
+        />
+        <field
+                name="company_1_ID"
+                type="hidden"
+        />
+        <field
+                name="id"
+                type="hidden"
+        />
+    </fieldset>
+</form>

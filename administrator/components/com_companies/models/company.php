@@ -86,35 +86,6 @@ class CompaniesModelCompany extends AdminModel {
         return $model->getItems();
     }
 
-    public function getLinks(): array
-    {
-        $item = parent::getItem();
-        $links = array('contact_add', 'children_add');
-        if ($item->id === null) return $links;
-        $return = CompaniesHelper::getReturnUrl();
-        $url = JRoute::_("index.php?option={$this->option}&amp;task=contact.add&amp;companyID={$item->id}&amp;return={$return}");
-        $links['contact_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_CONTACT'));
-        $url = JRoute::_("index.php?option={$this->option}&amp;task=parent.add&amp;parentID={$item->id}&amp;return={$return}");
-        $links['parent_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_CHILD'));
-        $url = JRoute::_("index.php?option={$this->option}&amp;task=army.add&amp;companyID={$item->id}&amp;return={$return}");
-        $links['army_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_ARMY'));
-        $url = JRoute::_("index.php?option={$this->option}&amp;task=otherProject.add&amp;companyID={$item->id}&amp;return={$return}");
-        $links['other_project_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_OTHER_PROJECT'));
-        $url = JRoute::_("index.php?option={$this->option}&amp;task=client.add&amp;companyID={$item->id}&amp;return={$return}");
-        $links['client_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
-        $url = JRoute::_("index.php?option={$this->option}&amp;task=cooperation.add&amp;companyID={$item->id}&amp;return={$return}");
-        $links['cooperation_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
-        $url = JRoute::_("index.php?option={$this->option}&amp;task=companiesfoiv.add&amp;companyID={$item->id}&amp;return={$return}");
-        $links['foiv_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
-
-        return $links;
-    }
-
-    public function getTable($name = 'Companies', $prefix = 'TableCompanies', $options = array())
-    {
-        return JTable::getInstance($name, $prefix, $options);
-    }
-
     public function getForm($data = array(), $loadData = true)
     {
         $id = JFactory::getApplication()->input->getInt('id', 0);
@@ -134,17 +105,6 @@ class CompaniesModelCompany extends AdminModel {
         foreach ($all as $item) if (!in_array($item, $required)) $form->setFieldAttribute($item, 'required', false);
 
         return $form;
-    }
-
-    protected function loadFormData()
-    {
-        $data = JFactory::getApplication()->getUserState($this->option.'.edit.company.data', array());
-        if (empty($data))
-        {
-            $data = $this->getItem();
-        }
-
-        return $data;
     }
 
     protected function prepareTable($table)
@@ -205,6 +165,14 @@ class CompaniesModelCompany extends AdminModel {
         return $model->getItems();
     }
 
+    public function getPartners(): array
+    {
+        $item = parent::getItem();
+        if ($item->id === null) return [];
+        $model = ListModel::getInstance('Partners', 'CompaniesModel', ['companyID' => $item->id, 'ignore_request' => true]);
+        return $model->getItems();
+    }
+
     public function getCooperations(): array
     {
         $item = parent::getItem();
@@ -243,20 +211,6 @@ class CompaniesModelCompany extends AdminModel {
             else return false;
         }
         return true;
-    }
-
-    protected function canEditState($record)
-    {
-        $user = JFactory::getUser();
-
-        if (!empty($record->id))
-        {
-            return $user->authorise('core.edit.state', $this->option . '.company.' . (int) $record->id);
-        }
-        else
-        {
-            return parent::canEditState($record);
-        }
     }
 
     private function loadContacts(int $companyID): array
@@ -353,6 +307,63 @@ class CompaniesModelCompany extends AdminModel {
         return ($config !== null) ? $config : array();
     }
 
+    protected function loadFormData()
+    {
+        $data = JFactory::getApplication()->getUserState($this->option.'.edit.company.data', array());
+        if (empty($data))
+        {
+            $data = $this->getItem();
+        }
+
+        return $data;
+    }
+
+    public function getLinks(): array
+    {
+        $item = parent::getItem();
+        $links = array('contact_add', 'children_add');
+        if ($item->id === null) return $links;
+        $return = CompaniesHelper::getReturnUrl();
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=contact.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['contact_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_CONTACT'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=parent.add&amp;parentID={$item->id}&amp;return={$return}");
+        $links['parent_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_CHILD'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=army.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['army_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_ARMY'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=otherProject.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['other_project_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_OTHER_PROJECT'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=client.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['client_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=cooperation.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['cooperation_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=companiesfoiv.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['foiv_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=partner.add&amp;type=partner&amp;companyID={$item->id}&amp;return={$return}");
+        $links['partner_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=partner.add&amp;type=competitor&amp;companyID={$item->id}&amp;return={$return}");
+        $links['competitor_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
+
+        return $links;
+    }
+
+    public function getTable($name = 'Companies', $prefix = 'TableCompanies', $options = array())
+    {
+        return JTable::getInstance($name, $prefix, $options);
+    }
+
+    protected function canEditState($record)
+    {
+        $user = JFactory::getUser();
+
+        if (!empty($record->id))
+        {
+            return $user->authorise('core.edit.state', $this->option . '.company.' . (int) $record->id);
+        }
+        else
+        {
+            return parent::canEditState($record);
+        }
+    }
 
     public function getScript()
     {

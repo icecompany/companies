@@ -38,3 +38,13 @@ defined('_JEXEC') or die;
         </div>
     </div>
 </div>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="span6">
+            <?php echo $this->loadTemplate('partners');?>
+        </div>
+        <div class="span6">
+            <?php echo $this->loadTemplate('competitors');?>
+        </div>
+    </div>
+</div>
