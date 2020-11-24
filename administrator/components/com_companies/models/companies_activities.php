@@ -18,6 +18,7 @@ class CompaniesModelCompanies_activities extends ListModel
         $this->export = false;
         $this->companyID = (!isset($config['companyID'])) ? 0 : $config['companyID'];
         $this->activityID = (!isset($config['activityID'])) ? 0 : $config['activityID'];
+        $this->companyIDs = $config['companyIDs'] ?? [];
         parent::__construct($config);
     }
 
@@ -34,6 +35,15 @@ class CompaniesModelCompanies_activities extends ListModel
         if ($this->companyID > 0 && $this->activityID == 0) {
             $query->where("a.companyID = {$this->companyID}");
         }
+        if (!empty($this->companyIDs)) {
+            $ids = implode(', ', $this->companyIDs);
+            if (!empty($ids)) {
+                $query
+                    ->where("a.companyID in ({$ids})")
+                    ->leftJoin("#__mkv_activities act on act.id = a.activityID")
+                    ->select("act.title as activity");
+            }
+        }
         $this->setState('list.limit', 0);
 
         return $query;
@@ -48,11 +58,12 @@ class CompaniesModelCompanies_activities extends ListModel
             $arr['id'] = $item->id;
             $arr['companyID'] = $item->companyID;
             $arr['activityID'] = $item->activityID;
+            $arr['activity'] = $item->activity;
             $result[] = $arr;
         }
         return $result;
     }
 
-    private $export, $companyID, $activityID;
+    private $export, $companyID, $activityID, $companyIDs;
 
 }
