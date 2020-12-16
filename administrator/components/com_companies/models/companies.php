@@ -105,7 +105,7 @@ class CompaniesModelCompanies extends ListModel
                     ->select("sip.title as status_in_project")
                     ->leftJoin("#__mkv_contracts cip on cip.companyID = e.id")
                     ->leftJoin("#__mkv_contract_statuses sip on sip.code = cip.status")
-                    ->where("(cip.projectID = {$this->_db->q($in_project)} and cip.id is not null and cip.status in (1, 5, 6, 9, 10))");
+                    ->where("(cip.projectID = {$this->_db->q($in_project)} and cip.id is not null)");
             }
             $not_in_project = $this->getState('filter.not_in_project');
             if (is_numeric($not_in_project)) {
