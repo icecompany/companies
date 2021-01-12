@@ -22,6 +22,7 @@ class CompaniesModelContacts extends ListModel
         $this->export = false;
         $this->companyID = (!isset($config['companyID'])) ? 0 : $config['companyID'];
         $this->companyIDs = (!isset($config['companyIDs'])) ? [] : $config['companyIDs'];
+        $this->active = $config['active'] ?? false;
         parent::__construct($config);
     }
 
@@ -36,6 +37,7 @@ class CompaniesModelContacts extends ListModel
             ->select("aes_decrypt(c.phone_mobile,@pass) as phone_mobile")
             ->select("aes_decrypt(c.email,@pass) as email")
             ->from("#__mkv_companies_contacts c");
+        if ($this->active) $query->where("c.main = 1");
         if ($this->companyID > 0) {
             $query->where("c.companyID = {$this->companyID}");
             $this->setState('list.limit', 0);
@@ -144,6 +146,6 @@ class CompaniesModelContacts extends ListModel
         return parent::getStoreId($id);
     }
 
-    private $export, $companyID, $companyIDs;
+    private $export, $companyID, $companyIDs, $active;
 
 }
