@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_companies/models/rules">
+    <fieldset name="general">
+        <field
+                name="year"
+                type="Year"
+                label="COM_COMPANIES_FORM_OTHER_PROJECT_YEAR_LABEL"
+                description="COM_COMPANIES_FORM_OTHER_PROJECT_YEAR_DESC"
+                filter="integer"
+                required="true"
+                class="span12"
+        />
+        <field
+                name="turnover"
+                type="text"
+                label="COM_COMPANIES_FORM_OTHER_PROJECT_FINANCES_LABEL"
+                description="COM_COMPANIES_FORM_OTHER_PROJECT_FINANCES_DESC"
+                hint="100000"
+                required="true"
+                autocomplete="off"
+                class="span12"
+        />
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="companyID"
+                type="hidden"
+        />
+    </fieldset>
+</form>

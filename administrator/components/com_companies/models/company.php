@@ -24,6 +24,8 @@ class CompaniesModelCompany extends AdminModel {
             $item->armies = $this->loadArmies($item->id);
             //История участия в чужих форумах
             $item->other_projects = $this->loadOtherProjects($item->id);
+            //Оборот средств компании
+            $item->turnovers = $this->loadTurnovers($item->id);
         }
         else {
             $app = JFactory::getApplication();
@@ -225,6 +227,12 @@ class CompaniesModelCompany extends AdminModel {
         return $model->getItems();
     }
 
+    private function loadTurnovers(int $companyID): array
+    {
+        $model = ListModel::getInstance('Turnovers', 'CompaniesModel', ['companyID' => $companyID]);
+        return $model->getItems();
+    }
+
     private function loadActivities(int $companyID)
     {
         $model = ListModel::getInstance('Companies_activities', 'CompaniesModel', ['companyID' => $companyID]);
@@ -342,6 +350,8 @@ class CompaniesModelCompany extends AdminModel {
         $links['partner_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
         $url = JRoute::_("index.php?option={$this->option}&amp;task=partner.add&amp;type=competitor&amp;companyID={$item->id}&amp;return={$return}");
         $links['competitor_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=turnover.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['turnover_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
 
         return $links;
     }
