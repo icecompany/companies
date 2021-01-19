@@ -27,7 +27,7 @@ class CompaniesModelOtherProjects extends ListModel
         $query = $db->getQuery(true);
 
         $query
-            ->select("id, companyID, year, title, finances")
+            ->select("id, companyID, year, title")
             ->from("#__mkv_companies_projects_other");
 
         $this->setState('list.limit', 0);
@@ -56,8 +56,6 @@ class CompaniesModelOtherProjects extends ListModel
             $arr['edit_link'] = JHtml::link($url, $item->title);
             $url = JRoute::_("index.php?option={$this->option}&amp;task=otherProjects.delete&amp;cid[]={$item->id}&amp;return={$return}");
             $arr['delete_link'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_HEAD_OTHER_PROJECT_DELETE'));
-            $amount = number_format((float) $item->finances ?? 0, MKV_FORMAT_DEC_COUNT, MKV_FORMAT_SEPARATOR_FRACTION, MKV_FORMAT_SEPARATOR_DEC);
-            $arr['finances'] = JText::sprintf("COM_CONTRACTS_CURRENCY_RUB_AMOUNT_SHORT", $amount);
             $result[] = $arr;
         }
         return $result;

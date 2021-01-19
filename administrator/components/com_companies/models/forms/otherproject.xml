@@ -21,17 +21,6 @@
                 class="span12"
         />
         <field
-                name="finances"
-                type="text"
-                label="COM_COMPANIES_FORM_OTHER_PROJECT_FINANCES_LABEL"
-                description="COM_COMPANIES_FORM_OTHER_PROJECT_FINANCES_DESC"
-                hint="1000000"
-                required="true"
-                autocomplete="off"
-                class="span12"
-                filter="float"
-        />
-        <field
                 name="id"
                 type="hidden"
         />
