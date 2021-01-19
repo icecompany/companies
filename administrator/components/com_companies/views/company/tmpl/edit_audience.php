@@ -24,7 +24,7 @@ defined('_JEXEC') or die;
             <?php echo $this->loadTemplate('foivs');?>
         </div>
         <div class="span6">
-
+            <?php echo $this->loadTemplate('regions');?>
         </div>
     </div>
 </div>

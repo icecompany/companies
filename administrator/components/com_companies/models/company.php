@@ -26,6 +26,8 @@ class CompaniesModelCompany extends AdminModel {
             $item->other_projects = $this->loadOtherProjects($item->id);
             //Оборот средств компании
             $item->turnovers = $this->loadTurnovers($item->id);
+            //Субъекты РФ
+            $item->regions = $this->loadRegions($item->id);
         }
         else {
             $app = JFactory::getApplication();
@@ -233,6 +235,12 @@ class CompaniesModelCompany extends AdminModel {
         return $model->getItems();
     }
 
+    private function loadRegions(int $companyID): array
+    {
+        $model = ListModel::getInstance('Regions', 'CompaniesModel', ['companyID' => $companyID]);
+        return $model->getItems();
+    }
+
     private function loadActivities(int $companyID)
     {
         $model = ListModel::getInstance('Companies_activities', 'CompaniesModel', ['companyID' => $companyID]);
@@ -329,7 +337,7 @@ class CompaniesModelCompany extends AdminModel {
     public function getLinks(): array
     {
         $item = parent::getItem();
-        $links = array('contact_add', 'children_add');
+        $links = ['contact_add', 'children_add'];
         if ($item->id === null) return $links;
         $return = CompaniesHelper::getReturnUrl();
         $url = JRoute::_("index.php?option={$this->option}&amp;task=contact.add&amp;companyID={$item->id}&amp;return={$return}");
@@ -352,6 +360,8 @@ class CompaniesModelCompany extends AdminModel {
         $links['competitor_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
         $url = JRoute::_("index.php?option={$this->option}&amp;task=turnover.add&amp;companyID={$item->id}&amp;return={$return}");
         $links['turnover_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
+        $url = JRoute::_("index.php?option={$this->option}&amp;task=region.add&amp;companyID={$item->id}&amp;return={$return}");
+        $links['region_add'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_LINK_COMPANY_ADD_INFO'));
 
         return $links;
     }
