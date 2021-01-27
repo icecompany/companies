@@ -73,6 +73,18 @@ class CompaniesModelContacts extends ListModel
                     $for_building = $this->_db->q($for_building);
                     $query->where("c.for_building = {$for_building}");
                 }
+                //Только компании, к которым есть доступ
+                if ((CompaniesHelper::canDo('core.access.only_mir_expo') || CompaniesHelper::canDo('core.access.only_priority')) && JFactory::getUser()->id != 377) {
+                    $parents = [];
+                    $query
+                        ->leftJoin("#__mkv_companies_parents cp on cp.companyID = e.id");
+                    if (CompaniesHelper::canDo('core.access.only_mir_expo')) $parents[] = 1295;
+                    if (CompaniesHelper::canDo('core.access.only_priority')) $parents[] = 520;
+                    if (!empty($parents)) {
+                        $parents = implode(', ', $parents);
+                        if (!empty($parents)) $query->where("cp.parentID in ({$parents})");
+                    }
+                }
 
                 /* Сортировка */
                 $orderCol = $this->state->get('list.ordering');

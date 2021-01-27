@@ -12,6 +12,7 @@ class CompaniesModelCompany extends AdminModel {
             //Роительская компания
             $item->hidden_parent_id = $this->loadParentID((int) $item->id);
             if ($item->hidden_parent_id !== '') $item->hidden_parent_title = $this->loadParentTitle($item->hidden_parent_id);
+            $this->canEdit((int) $item->hidden_parent_id ?? 0);
             //Дочерние компании
             $item->children = $this->loadChildren($item->id);
             //Виды деятельности
@@ -54,6 +55,10 @@ class CompaniesModelCompany extends AdminModel {
     public function save($data)
     {
         $s1 = parent::save($data);
+
+        if (CompaniesHelper::canDo('core.access.only_mir_expo') && !CompaniesHelper::canDo('core.access.only_priority') && JFactory::getUser()->id != 377) $data['arentID'] = 1295;
+        if (CompaniesHelper::canDo('core.access.only_priority') && !CompaniesHelper::canDo('core.access.only_mir_expo') && JFactory::getUser()->id != 377) $data['parentID'] = 520;
+
         $companyID = $data['id'] ?? JFactory::getDbo()->insertid();
         $s2 = $this->saveParentID((int) $companyID, (int) $data['parentID'] ?? 0);
         $s3 = $this->saveActivities((int) $companyID, (array) $data['activities'] ?? array());
@@ -369,6 +374,17 @@ class CompaniesModelCompany extends AdminModel {
     public function getTable($name = 'Companies', $prefix = 'TableCompanies', $options = array())
     {
         return JTable::getInstance($name, $prefix, $options);
+    }
+
+    public function canEdit(int $parentID = 0): bool {
+        if ((!CompaniesHelper::canDo('core.access.only_mir_expo') && !CompaniesHelper::canDo('core.access.only_priority')) || (JFactory::getUser()->id == 377)) return true;
+        if (CompaniesHelper::canDo('core.access.only_mir_expo') && $parentID == 1295) {
+            return true;
+        }
+        if (CompaniesHelper::canDo('core.access.only_priority') && $parentID == 520) {
+            return true;
+        }
+        jexit('Access denied');
     }
 
     protected function canEditState($record)

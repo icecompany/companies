@@ -17,6 +17,10 @@ class CompaniesViewCompany extends HtmlView {
             $this->foivs = $this->get('Foivs');
             $this->partners = $this->get('Partners');
         }
+        //Только компании, к которым есть доступ
+        if ((CompaniesHelper::canDo('core.access.only_mir_expo') || CompaniesHelper::canDo('core.access.only_priority')) && JFactory::getUser()->id != 377) {
+            $this->form->setFieldAttribute('parentID', 'readonly', true);
+        }
 
         $this->addToolbar();
         $this->setDocument();
@@ -25,8 +29,8 @@ class CompaniesViewCompany extends HtmlView {
     }
 
     protected function addToolbar() {
-        JToolBarHelper::apply('company.apply', 'JTOOLBAR_APPLY');
-        JToolbarHelper::save('company.save', 'JTOOLBAR_SAVE');
+        JToolBarHelper::apply('company.apply');
+        JToolbarHelper::save('company.save');
         if ($this->item->id !== null) {
             JToolbarHelper::custom('company.add_contract', 'briefcase', 'briefcase', JText::sprintf('COM_COMPANIES_BUTTON_ADD_CONTRACT'), false);
         }

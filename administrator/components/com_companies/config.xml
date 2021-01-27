@@ -49,6 +49,32 @@
 			<option value="email">COM_COMPANIES_FORM_COMPANY_EMAIL_LABEL</option>
 			<option value="site">COM_COMPANIES_FORM_COMPANY_SITE_LABEL</option>
 		</field>
+        <field
+                name="spacer_groups"
+                type="spacer"
+                label="COM_COMPANIES_SETTINGS_SPACER_GROUPS_LABEL"
+                description="COM_COMPANIES_SETTINGS_SPACER_GROUPS_DESC"
+                component="com_companies"
+                section="component"
+        />
+        <field
+            name="group_mir_expo"
+            type="usergroup"
+            label="COM_COMPANIES_SETTINGS_SPACER_GROUPS_LABEL"
+            description="COM_COMPANIES_SETTINGS_SPACER_GROUPS_DESC"
+            required="true"
+            component="com_companies"
+            section="component"
+        />
+        <field
+            name="group_priority"
+            type="usergroup"
+            label="COM_COMPANIES_SETTINGS_FIELD_GROUP_PRIORITY_LABEL"
+            description="COM_COMPANIES_SETTINGS_FIELD_GROUP_PRIORITY_DESC"
+            required="true"
+            component="com_companies"
+            section="component"
+        />
     </fieldset>
     <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
         <field name="rules"

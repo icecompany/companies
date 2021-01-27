@@ -113,6 +113,18 @@ class CompaniesModelCompanies extends ListModel
                 if (!empty($ids)) $query->where("e.id not in ({$ids})");
             }
         }
+        //Только компании, к которым есть доступ
+        if ((CompaniesHelper::canDo('core.access.only_mir_expo') || CompaniesHelper::canDo('core.access.only_priority')) && JFactory::getUser()->id != 377) {
+            $parents = [];
+            $query
+                ->leftJoin("#__mkv_companies_parents cp on cp.companyID = e.id");
+            if (CompaniesHelper::canDo('core.access.only_mir_expo')) $parents[] = 1295;
+            if (CompaniesHelper::canDo('core.access.only_priority')) $parents[] = 520;
+            if (!empty($parents)) {
+                $parents = implode(', ', $parents);
+                if (!empty($parents)) $query->where("cp.parentID in ({$parents})");
+            }
+        }
         //Ограничение длины списка
         $limit = (!$this->export) ? $this->getState('list.limit') : 0;
         $this->setState('list.limit', $limit);
