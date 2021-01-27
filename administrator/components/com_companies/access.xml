@@ -10,6 +10,7 @@
 		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
 		<action name="core.edit.own" title="JACTION_EDITOWN" description="JACTION_EDITOWN_COMPONENT_DESC" />
 		<action name="core.edit.value" title="JACTION_EDITVALUE" description="JACTION_EDITVALUE_COMPONENT_DESC" />
+		<action name="core.contractor" title="COM_COMPANIES_SETTINGS_FIELD_CONTRACTOR_LABEL" description="COM_COMPANIES_SETTINGS_FIELD_CONTRACTOR_DESC" />
 		<action name="core.access.dossier" title="COM_COMPANIES_ACCESS_DOSSIER_LABEL" description="COM_COMPANIES_ACCESS_DOSSIER_DESC" />
 		<action name="core.access.activities" title="COM_COMPANIES_SETTINGS_FIELD_ACCESS_ACTIVITIES_LABEL" description="COM_COMPANIES_SETTINGS_FIELD_ACCESS_ACTIVITIES_DESC" />
 		<action name="core.access.complain" title="COM_COMPANIES_ACCESS_COMPLAIN_LABEL" description="COM_COMPANIES_ACCESS_COMPLAIN_DESC" />

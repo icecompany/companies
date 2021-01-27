@@ -16,6 +16,8 @@ class JFormFieldActivity extends JFormFieldList
             ->select("a.id, a.title")
             ->from("`#__mkv_activities` a")
             ->order("a.weight");
+        $contractor = (int) (CompaniesHelper::canDo('core.contractor'));
+        $query->where("a.for_contractor = {$db->q($contractor)}");
         $result = $db->setQuery($query)->loadObjectList();
 
         $options = array();
