@@ -11,6 +11,7 @@
 		<action name="core.edit.own" title="JACTION_EDITOWN" description="JACTION_EDITOWN_COMPONENT_DESC" />
 		<action name="core.edit.value" title="JACTION_EDITVALUE" description="JACTION_EDITVALUE_COMPONENT_DESC" />
 		<action name="core.access.dossier" title="COM_COMPANIES_ACCESS_DOSSIER_LABEL" description="COM_COMPANIES_ACCESS_DOSSIER_DESC" />
+		<action name="core.access.activities" title="COM_COMPANIES_SETTINGS_FIELD_ACCESS_ACTIVITIES_LABEL" description="COM_COMPANIES_SETTINGS_FIELD_ACCESS_ACTIVITIES_DESC" />
 		<action name="core.access.complain" title="COM_COMPANIES_ACCESS_COMPLAIN_LABEL" description="COM_COMPANIES_ACCESS_COMPLAIN_DESC" />
 		<action name="core.access.only_mir_expo" title="COM_COMPANIES_SETTINGS_FIELD_ACCESS_ONLY_MIR_EXPO_LABEL" description="COM_COMPANIES_SETTINGS_FIELD_ACCESS_ONLY_MIR_EXPO_DESC" />
 		<action name="core.access.only_priority" title="COM_COMPANIES_SETTINGS_FIELD_ACCESS_ONLY_PRIORITY_LABEL" description="COM_COMPANIES_SETTINGS_FIELD_ACCESS_ONLY_PRIORITY_DESC" />

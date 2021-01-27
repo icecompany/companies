@@ -10,7 +10,9 @@ class CompaniesHelper
 	    PrjHelper::addNotifies();
 		HTMLHelper::_('sidebar.addEntry', JText::sprintf('COM_COMPANIES_MENU_COMPANIES'), 'index.php?option=com_companies&amp;view=companies', $vName === 'companies');
 		HTMLHelper::_('sidebar.addEntry', JText::sprintf('COM_COMPANIES_MENU_CONTACTS'), 'index.php?option=com_companies&amp;view=contacts', $vName === 'contacts');
-		HTMLHelper::_('sidebar.addEntry', JText::sprintf('COM_COMPANIES_MENU_ACTIVITIES'), 'index.php?option=com_companies&amp;view=activities', $vName === 'activities');
+		if (self::canDo('core.access.activities')) {
+            HTMLHelper::_('sidebar.addEntry', JText::sprintf('COM_COMPANIES_MENU_ACTIVITIES'), 'index.php?option=com_companies&amp;view=activities', $vName === 'activities');
+        }
 		if (self::canDo('core.access.complain')) {
             HTMLHelper::_('sidebar.addEntry', JText::sprintf('COM_COMPANIES_MENU_COMPLAIN'), 'index.php?option=com_companies&amp;view=complain', $vName === 'complain');
         }
