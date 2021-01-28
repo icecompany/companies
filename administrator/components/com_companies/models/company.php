@@ -29,6 +29,8 @@ class CompaniesModelCompany extends AdminModel {
             $item->turnovers = $this->loadTurnovers($item->id);
             //Субъекты РФ
             $item->regions = $this->loadRegions($item->id);
+            //Досье из текущей армии
+            $item->current_army = $this->loadCurrentArmy($item->id);
         }
         else {
             $app = JFactory::getApplication();
@@ -93,6 +95,16 @@ class CompaniesModelCompany extends AdminModel {
     {
         $model = ListModel::getInstance('Armies', 'CompaniesModel', array('companyID' => $companyID));
         return $model->getItems();
+    }
+
+    public function loadCurrentArmy(int $companyID)
+    {
+        $year = CompaniesHelper::getYearOfCurrentProject();
+        if ($year > 0) {
+            $table = JTable::getInstance('Army_history', 'TableCompanies');
+            $table->load(['companyID' => $companyID, 'army_year' => $year]);
+        }
+        else return null;
     }
 
     public function getForm($data = array(), $loadData = true)
