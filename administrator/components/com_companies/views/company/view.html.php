@@ -29,17 +29,20 @@ class CompaniesViewCompany extends HtmlView {
     }
 
     protected function addToolbar() {
-        JToolBarHelper::apply('company.apply');
-        JToolbarHelper::save('company.save');
-        if ($this->item->id !== null) {
-            JToolbarHelper::custom('company.add_contract', 'briefcase', 'briefcase', JText::sprintf('COM_COMPANIES_BUTTON_ADD_CONTRACT'), false);
+        if (JFactory::getApplication()->input->getString('layout') !== 'dossier') {
+            JToolBarHelper::apply('company.apply');
+            JToolbarHelper::save('company.save');
+            if ($this->item->id !== null) {
+                JToolbarHelper::custom('company.add_contract', 'briefcase', 'briefcase', JText::sprintf('COM_COMPANIES_BUTTON_ADD_CONTRACT'), false);
+            }
+            JToolbarHelper::cancel('company.cancel', 'JTOOLBAR_CLOSE');
         }
-        JToolbarHelper::cancel('company.cancel', 'JTOOLBAR_CLOSE');
         JFactory::getApplication()->input->set('hidemainmenu', true);
     }
 
     protected function setDocument() {
         $title = ($this->item->id !== null) ? JText::sprintf('COM_COMPANIES_TITLE_EDIT_COMPANY', $this->item->title) : JText::sprintf('COM_COMPANIES_TITLE_ADD_COMPANY');
+        if (JFactory::getApplication()->input->getString('layout') === 'dossier') $title = $this->item->title;
         JToolbarHelper::title($title, 'home');
         JHtml::_('bootstrap.framework');
     }

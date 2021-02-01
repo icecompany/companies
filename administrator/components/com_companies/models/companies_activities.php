@@ -33,7 +33,10 @@ class CompaniesModelCompanies_activities extends ListModel
             $query->where("a.activityID = {$this->activityID}");
         }
         if ($this->companyID > 0 && $this->activityID == 0) {
-            $query->where("a.companyID = {$this->companyID}");
+            $query
+                ->leftJoin("#__mkv_activities act on act.id = a.activityID")
+                ->select("act.title as activity")
+                ->where("a.companyID = {$this->companyID}");
         }
         if (!empty($this->companyIDs)) {
             $ids = implode(', ', $this->companyIDs);

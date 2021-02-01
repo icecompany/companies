@@ -60,6 +60,7 @@ class CompaniesModelPartners extends ListModel
             $arr['activities'] = $this->getActivities($need_id);
             $arr['contracts'] = $this->getContracts($need_id);
             $arr["city"] = ($this->companyID != $item->company_1_ID) ? $item->city_1 : $item->city_2;
+            $arr["title"] = ($this->companyID != $item->company_1_ID) ? $item->company_1 : $item->company_2;
             $arr['company_link'] = JHtml::link(($this->companyID != $item->company_1_ID) ? $company_1 : $company_2, ($this->companyID != $item->company_1_ID) ? $item->company_1 : $item->company_2);
             $url = JRoute::_("index.php?option={$this->option}&amp;task=partners.delete&amp;cid[]={$item->id}&amp;return={$return}");
             $arr['delete_link'] = JHtml::link($url, JText::sprintf('COM_COMPANIES_HEAD_DELETE'));

@@ -31,3 +31,15 @@ JHtml::_('formbehavior.chosen', 'select');
     <div class="center"><h2><?php echo JText::sprintf('COM_COMPANIES_LAYOUT_COMPANY_OUR_PROJECTS'); ?></h2></div>
     <?php echo $this->loadTemplate('contracts');?>
 </p>
+<p>
+    <?php echo $this->loadTemplate('contracts_other');?>
+</p>
+<p>
+    <?php echo $this->loadTemplate('audience');?>
+</p>
+<p>
+    <?php echo $this->loadTemplate('turnover');?>
+</p>
+<p>
+    <strong><?php echo JText::sprintf('COM_COMPANIES_FORM_COMPANY_ACTIVITIES_LABEL');?>: </strong><?php echo $this->item->activities_list;?>
+</p>

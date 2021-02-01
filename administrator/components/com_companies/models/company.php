@@ -17,6 +17,8 @@ class CompaniesModelCompany extends AdminModel {
             $item->children = $this->loadChildren($item->id);
             //Виды деятельности
             $item->activities = $this->loadActivities($item->id);
+            //Виды деятельности (через запятую)
+            $item->activities_list = $this->loadActivities($item->id, true);
             //Контакты
             $item->contacts = $this->loadContacts($item->id);
             //Компании-сёстры
@@ -258,13 +260,17 @@ class CompaniesModelCompany extends AdminModel {
         return $model->getItems();
     }
 
-    private function loadActivities(int $companyID)
+    private function loadActivities(int $companyID, bool $list = false)
     {
         $model = ListModel::getInstance('Companies_activities', 'CompaniesModel', ['companyID' => $companyID]);
         $items = $model->getItems();
         $ids = array();
-        foreach ($items as $item) {
-            $ids[] = $item['activityID'];
+        if (!$list) {
+            foreach ($items as $item) $ids[] = $item['activityID'];
+        }
+        else {
+            foreach ($items as $item) $ids[] = $item['activity'];
+            $ids = implode(', ', $ids);
         }
         return $ids;
     }

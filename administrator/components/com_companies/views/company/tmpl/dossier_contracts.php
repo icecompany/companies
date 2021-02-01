@@ -60,7 +60,6 @@ defined('_JEXEC') or die;
 <?php echo "<strong>", JText::sprintf('COM_COMPANIES_HEAD_ARMY_FORUM_NEW_ITEMS'), "</strong>", ": ", $this->item->current_army->forum_new_items ?? 'Нет информации';?><br>
 <?php echo "<strong>", JText::sprintf('COM_COMPANIES_HEAD_ARMY_NEW_IN_WORLD_ITEMS'), "</strong>", ": ", $this->item->current_army->full_new_items ?? 'Нет информации';?><br>
 <?php echo "<strong>", JText::sprintf('COM_COMPANIES_HEAD_ARMY_DIVERSIFICATION'), "</strong>", ": ", $this->item->current_army->diversification ?? 'Нет информации';?><br>
-<?php echo "<strong>", JText::sprintf('COM_COMPANIES_HEAD_ARMY_DIVERSIFICATION'), "</strong>", ": ", $this->item->current_army->diversification ?? 'Нет информации';?><br>
 <?php echo "<strong>", JText::sprintf('COM_COMPANIES_HEAD_ARMY_TARGETS'), "</strong>", ": ", $this->item->targets ?? 'Нет информации';?><br>
 
 <div class="center"><h4><?php echo JText::sprintf('COM_COMPANIES_HEAD_PREVIOUS_PROJECT');?></h4></div>
