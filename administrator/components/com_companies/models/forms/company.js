@@ -242,3 +242,7 @@ Joomla.submitbutton = function (task) {
         Joomla.submitform(task, form);
     }
 };
+
+function CallPrint() {
+    window.print();
+}

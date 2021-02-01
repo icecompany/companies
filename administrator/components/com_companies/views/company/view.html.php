@@ -35,6 +35,7 @@ class CompaniesViewCompany extends HtmlView {
             if ($this->item->id !== null) {
                 JToolbarHelper::custom('company.add_contract', 'briefcase', 'briefcase', JText::sprintf('COM_COMPANIES_BUTTON_ADD_CONTRACT'), false);
             }
+            if (CompaniesHelper::canDo('core.access.dossier')) JToolbarHelper::custom('dossier.print', 'print', 'print', JText::sprintf('COM_COMPANIES_BUTTON_PRINT'), false);
             JToolbarHelper::cancel('company.cancel', 'JTOOLBAR_CLOSE');
         }
         JFactory::getApplication()->input->set('hidemainmenu', true);

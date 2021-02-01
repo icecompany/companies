@@ -11,6 +11,18 @@ HTMLHelper::_('script', 'https://code.jquery.com/ui/1.11.4/jquery-ui.min.js', ar
 HTMLHelper::_('script', $this->script);
 HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto', 'relative' => true));
 ?>
+<script>
+    Joomla.submitbutton = function (task) {
+        let form = document.querySelector('#adminForm');
+        if (task === 'dossier.print') {
+            let id = getURLParam(location.search, 'id');
+            let w = window.open(`/administrator/index.php?option=com_companies&view=company&layout=dossier&id=${id}`);
+            w.print();
+            return false;
+        }
+        else Joomla.submitform(task, form);
+    };
+</script>
 <form action="<?php echo CompaniesHelper::getActionUrl(); ?>"
       method="post" name="adminForm" id="adminForm" xmlns="http://www.w3.org/1999/html" class="form-validate">
     <div class="row-fluid">
