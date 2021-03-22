@@ -42,7 +42,7 @@ HTMLHelper::_('stylesheet', 'com_companies/style.css', array('version' => 'auto'
                     </div>
                     <div class="span4">
                         <?php if ($this->item->id === null): ?>
-                            <div><?php echo $this->loadTemplate('search'); ?></div>
+                            <div style="max-height: 300px; overflow: auto;"><?php echo $this->loadTemplate('search'); ?></div>
                         <?php endif;?>
                         <div><?php echo $this->loadTemplate('contacts'); ?></div>
                     </div>
